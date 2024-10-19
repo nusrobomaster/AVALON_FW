@@ -1,0 +1,19 @@
+../System/stm_utils/Src/supercap_controllers.cpp:14:19:HAL_StatusTypeDef supercap_control_manager::init_loop()	16	static
+../System/stm_utils/Src/supercap_controllers.cpp:19:6:void supercap_control_manager::update_pid_maxpow()	16	static
+../System/stm_utils/Src/supercap_controllers.cpp:24:6:void supercap_control_manager::setup_pid_controllers()	32	static
+../System/stm_utils/Src/supercap_controllers.cpp:98:7:void supercap_control_manager::loop_update(float, float, float, float, float)	64	static
+../System/stm_utils/Src/supercap_controllers.cpp:132:20:HAL_StatusTypeDef supercap_control_manager::stop_loop()	16	static
+../System/stm_utils/Src/supercap_controllers.cpp:139:20:HAL_StatusTypeDef supercap_control_manager::start_gates_pwm(float)	16	static
+../System/stm_utils/Src/supercap_controllers.cpp:144:20:HAL_StatusTypeDef supercap_control_manager::stop_gates_pwm()	16	static
+../System/stm_utils/Src/supercap_controllers.cpp:149:7:void supercap_control_manager::silent_mode()	16	static
+../System/stm_utils/Src/supercap_controllers.cpp:157:7:void supercap_control_manager::update_dutyCycle(float)	32	static
+../System/stm_utils/Src/supercap_controllers.cpp:183:8:float supercap_control_manager::get_PID(LoopCtrl_PID*, float, float, float)	56	static
+../System/stm_utils/Src/supercap_controllers.cpp:200:8:float supercap_control_manager::get_PID_FF(LoopCtrl_PID*, float, float, float)	56	static
+../System/stm_utils/Src/supercap_controllers.cpp:225:6:void supercap_control_manager::set_ref_chassis_power(float)	16	static
+../System/stm_utils/Src/supercap_controllers.cpp:229:7:void supercap_control_manager::all_safety_checks()	16	static
+../System/stm_utils/Src/supercap_controllers.cpp:238:7:void supercap_control_manager::safety_change_level(uint8_t, uint8_t)	16	static
+../System/stm_utils/Src/supercap_controllers.cpp:248:7:void supercap_control_manager::safety_check_voltages()	32	static,ignoring_inline_asm
+../System/stm_utils/Src/supercap_controllers.cpp:297:7:void supercap_control_manager::safety_check_currents()	40	static,ignoring_inline_asm
+../System/stm_utils/Src/supercap_controllers.cpp:448:7:void supercap_control_manager::safety_check_temp()	24	static,ignoring_inline_asm
+../System/stm_utils/Src/supercap_controllers.cpp:499:7:void supercap_control_manager::safety_check_powers()	40	static,ignoring_inline_asm
+../System/stm_utils/Src/supercap_controllers.cpp:555:7:void supercap_control_manager::safety_check_dma()	16	static,ignoring_inline_asm

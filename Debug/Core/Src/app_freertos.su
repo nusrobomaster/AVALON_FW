@@ -1,0 +1,2 @@
+C:/Users/ybakk/STM32CubeIDE/workspace_1.12.0/supercap_maybe/System/BRoCo/include/Protocol/ProtocolMacros.h:7:17:uint16_t __gen_crc16(const uint8_t*, uint16_t)	24	static
+../Core/Src/app_freertos.cpp:73:6:void MX_FREERTOS_Init()	8	static

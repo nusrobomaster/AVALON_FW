@@ -1,0 +1,9 @@
+C:/Users/ybakk/STM32CubeIDE/workspace_1.12.0/supercap_maybe/System/comm/Inc/Thread.h:24:10:Thread::~Thread()	1
+C:/Users/ybakk/STM32CubeIDE/workspace_1.12.0/supercap_maybe/System/comm/Inc/Thread.h:24:10:virtual Thread::~Thread()	1
+C:/Users/ybakk/STM32CubeIDE/workspace_1.12.0/supercap_maybe/System/comm/Inc/DataStructures.h:304:11:uint8_t* SuperCapData::toArray(uint8_t*)	1
+C:/Users/ybakk/STM32CubeIDE/workspace_1.12.0/supercap_maybe/System/BRoCo/include/Protocol/ProtocolMacros.h:7:17:uint16_t __gen_crc16(const uint8_t*, uint16_t)	2
+../System/Threads/Src/SuperCapCommThread.cpp:19:1:SuperCapCommThread::~SuperCapCommThread()	1
+../System/Threads/Src/SuperCapCommThread.cpp:19:1:virtual SuperCapCommThread::~SuperCapCommThread()	1
+../System/Threads/Src/SuperCapCommThread.cpp:22:6:virtual void SuperCapCommThread::init()	1
+../System/Threads/Src/SuperCapCommThread.cpp:34:6:virtual void SuperCapCommThread::loop()	1
+../System/Threads/Src/SuperCapCommThread.cpp:53:6:static void SuperCapCommThread::handle_max_power(uint8_t, MaxChassisPowerPacket*)	3
