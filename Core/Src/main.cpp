@@ -18,7 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "cmsis_os.h"
+//#include "cmsis_os.h"
 #include "adc.h"
 #include "dma.h"
 #include "fdcan.h"
@@ -35,6 +35,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "supercap_controllers.hpp"
+#include "msg_handler.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,6 +47,7 @@
 /* Private define ------------------------------------------------------------*/
 
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -58,21 +60,15 @@
 
 /* USER CODE BEGIN PV */
 supercap_control_manager supercap_controller(&hadc1, &hadc2, &hadc3);
-
-static uint8_t filter_lengths[5] = {64,32,64,32,32};
+CANComm canComDriver(&hfdcan3);
+static uint8_t filter_lengths[5] = {32,64,64,64,64};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
-float temperature = 0.0f;
-float duty_ratio = 0.9f;
-float cap_voltage = 0.0f;
-float chassis_voltage = 0.0f;
-float cap_current = 0.0f;
-float battery_current = 0.0f;
-float source_current = 0.0f;
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -124,8 +120,17 @@ int main(void)
   MX_HRTIM1_Init();
   MX_ADC3_Init();
   MX_CRC_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_Base_Start_IT(&htim2);
+  initCANComm(&hfdcan3);
 
+  supercap_controller.adc_init(filter_lengths);
+  HAL_Delay(1000);
+//  HAL_Delay(100);
+  HAL_HRTIM_WaveformCountStart_IT(&hhrtim1, HRTIM_TIMERID_MASTER|HRTIM_TIMERID_TIMER_A|HRTIM_TIMERID_TIMER_E);
+////  HAL_Delay(100);
+  supercap_controller.init_loop();
 
 //  HAL_GPIO_TogglePin(BAT_MOS_HIGH_GPIO_Port, BAT_MOS_HIGH_Pin);
 
@@ -134,13 +139,13 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  osKernelInitialize();
-
-  /* Call init function for freertos objects (in cmsis_os2.c) */
-  MX_FREERTOS_Init();
-
-  /* Start scheduler */
-  osKernelStart();
+//  osKernelInitialize();
+//
+//  /* Call init function for freertos objects (in cmsis_os2.c) */
+//  MX_FREERTOS_Init();
+//
+//  /* Start scheduler */
+//  osKernelStart();
 
 
   /* We should never get here as control is now taken by the scheduler */
@@ -158,22 +163,22 @@ int main(void)
   }
   /* USER CODE END 3 */
 }
-void StartDefaultTask(void *argument)
-{
-  /* USER CODE BEGIN StartDefaultTask */
-  /* Infinite loop */
-  supercap_controller.adc_init(filter_lengths);
-//  HAL_Delay(100);
-  HAL_HRTIM_WaveformCountStart_IT(&hhrtim1, HRTIM_TIMERID_MASTER|HRTIM_TIMERID_TIMER_A|HRTIM_TIMERID_TIMER_E);
-////  HAL_Delay(100);
-  supercap_controller.init_loop();
-  for(;;)
-  {
-//	HAL_IWDG_Refresh(&hiwdg);
-//    osDelay(1);
-  }
-  /* USER CODE END StartDefaultTask */
-}
+//void StartDefaultTask(void *argument)
+//{
+//  /* USER CODE BEGIN StartDefaultTask */
+//  /* Infinite loop */
+////  supercap_controller.adc_init(filter_lengths);
+//////  HAL_Delay(100);
+////  HAL_HRTIM_WaveformCountStart_IT(&hhrtim1, HRTIM_TIMERID_MASTER|HRTIM_TIMERID_TIMER_A|HRTIM_TIMERID_TIMER_E);
+////////  HAL_Delay(100);
+////  supercap_controller.init_loop();
+//  for(;;)
+//  {
+////	HAL_IWDG_Refresh(&hiwdg);
+////    osDelay(1);
+//  }
+//  /* USER CODE END StartDefaultTask */
+//}
 /**
   * @brief System Clock Configuration
   * @retval None
@@ -222,71 +227,17 @@ void SystemClock_Config(void)
   }
 }
 /* USER CODE BEGIN 4 */
-
- void AnalogSignal_ADCDMA_OVRStop(ADC_HandleTypeDef *hadc)
+extern "C"
 {
-	hadc->Instance->CR |= 0x00000010;//ADC->CR->ADSTP write 1
-}
-
- void AnalogSignal_ADCDMA_OVRRecovery(ADC_HandleTypeDef *hadc)
+void TIM2_IRQHandler(void)
 {
-	__HAL_ADC_CLEAR_FLAG(hadc, ADC_FLAG_OVR);
-	hadc->Instance->CFGR |= 0x00000001;//ADC->CFGR->DMAEN write 1
-
-	__HAL_DMA_CLEAR_FLAG(hadc->DMA_Handle, DMA_FLAG_TE1);
-	hadc->DMA_Handle->Instance->CCR |= 0x00000001;//DMA->CCRx->EN write 1
-
-	while(__HAL_ADC_GET_FLAG(hadc, ADC_FLAG_RDY) == 0UL)
-	{
-		;
-	}
-	hadc->Instance->CR |= 0x00000004;//ADC->CR->ADSTART write 1
+    __HAL_TIM_CLEAR_FLAG(&htim2, TIM_FLAG_UPDATE);
+//    updateStatus();
+//    ErrorChecker::handleErrorState();
+    canComDriver.sendMessage();
 }
-//
-//
-void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
-{
-	AnalogSignal_ADCDMA_OVRStop(hadc);
-//	HAL_Delay(100);
-//	Safety_DMAden_ItemCheck();
 }
 
-void HAL_HRTIM_RepetitionEventCallback(HRTIM_HandleTypeDef * hhrtim, uint32_t TimerIdx){
-	uint8_t ADC_OVR_Flag=0;
-	if(__HAL_ADC_GET_FLAG(&hadc1, ADC_FLAG_OVR)==1UL)
-	{
-		AnalogSignal_ADCDMA_OVRRecovery(&hadc1);
-		ADC_OVR_Flag=1;
-	}
-	if(__HAL_ADC_GET_FLAG(&hadc2, ADC_FLAG_OVR)==1UL)
-	{
-		AnalogSignal_ADCDMA_OVRRecovery(&hadc2);
-		ADC_OVR_Flag=1;
-	}
-//	int i = 0;
-//	while (i < 100000) {
-//		++i;
-//		// Wait until the target tick count is reached
-//	}
-	if(ADC_OVR_Flag==0)
-		{
-			supercap_controller.sample_adc();
-			supercap_controller.all_safety_checks();
-			cap_voltage = supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::V_cap], adc_names::V_cap);
-			chassis_voltage = supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::V_bat], adc_names::V_bat);
-			cap_current = supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::I_cap], adc_names::I_cap);
-			battery_current = supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::I_bat], adc_names::I_bat);
-			source_current = supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::I_chassis], adc_names::I_chassis);
-			supercap_controller.loop_update(
-				  supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::I_cap], adc_names::I_cap),
-				  supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::I_bat], adc_names::I_bat),
-				  supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::V_cap], adc_names::V_cap),
-				  supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::I_chassis], adc_names::I_chassis),
-				  supercap_controller.get_compensated_adc(supercap_controller.ADC_filtered_data[adc_names::V_bat], adc_names::V_bat)
-			);
-
-	}
-}
 /* USER CODE END 4 */
 
 ///**

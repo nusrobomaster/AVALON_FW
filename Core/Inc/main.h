@@ -26,12 +26,13 @@
 extern "C" {
 #endif
 
+
+
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -54,7 +55,7 @@ void StartDefaultTask(void *argument);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+//void softwareReset();
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

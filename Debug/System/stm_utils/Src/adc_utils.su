@@ -1,6 +1,0 @@
-../System/stm_utils/Src/adc_utils.cpp:14:19:HAL_StatusTypeDef adc_manager::adc_init(uint8_t*)	24	static
-../System/stm_utils/Src/adc_utils.cpp:34:20:HAL_StatusTypeDef adc_manager::sample_adc()	40	static
-../System/stm_utils/Src/adc_utils.cpp:69:11:uint16_t adc_manager::moving_average(mov_avrg_filter&, uint16_t)	24	static
-../System/stm_utils/Src/adc_utils.cpp:86:6:void adc_manager::set_gains_offsets()	16	static
-../System/stm_utils/Src/adc_utils.cpp:103:8:float adc_manager::get_temperature()	24	static
-../System/stm_utils/Src/adc_utils.cpp:110:7:float adc_manager::get_compensated_adc(uint16_t, adc_names)	16	static

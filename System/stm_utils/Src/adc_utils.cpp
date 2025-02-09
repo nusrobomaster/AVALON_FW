@@ -11,6 +11,14 @@
 uint16_t adc1_samples[2][16][2];
 uint16_t adc2_samples[2][16][3];
 
+mov_avrg_filter filters[5];
+
+uint16_t ADC_filtered_data[5];
+
+float adc_gains[5];
+float adc_offsets[5];
+
+
 HAL_StatusTypeDef adc_manager::adc_init(uint8_t* filters_length){
 
   HAL_ADC_Start_DMA(adc_cap_, (uint32_t*)(&adc1_samples[0][0][0]),64);
@@ -29,44 +37,10 @@ HAL_StatusTypeDef adc_manager::adc_init(uint8_t* filters_length){
 	  }
   }
   set_gains_offsets();
+  return HAL_OK;
 }
 
- HAL_StatusTypeDef adc_manager::sample_adc(){
-	uint8_t Cap_HalfFull, Bat_HalfFull;
-	if(__HAL_DMA_GET_FLAG(hadc1.DMA_Handle, DMA_FLAG_HT1) == SET){
-		__HAL_DMA_CLEAR_FLAG(hadc1.DMA_Handle, DMA_FLAG_HT1);
-		Cap_HalfFull=0;
-	} else {
-		Cap_HalfFull=1;
-	}
-	if(__HAL_DMA_GET_FLAG(hadc2.DMA_Handle, DMA_FLAG_HT1) == SET) {
-		__HAL_DMA_CLEAR_FLAG(hadc2.DMA_Handle, DMA_FLAG_HT1);
-		Bat_HalfFull=0;
-	} else {
-		Bat_HalfFull=1;
-	}
-	uint16_t sum=0;
-	for(uint8_t i = 0; i < 2 ; i++){
-		sum = 0;
-		for(uint8_t j = 0; j < 16; j++)
-		{
-			sum += adc1_samples[Cap_HalfFull][j][i];
-		}
-		ADC_sampled_data[i] = (sum>>4);
-	}
-	for(uint8_t i = 0; i < 3 ; i++){
-		sum = 0;
-		for(uint8_t j = 0; j < 16; j++)
-		{
-			sum += adc2_samples[Bat_HalfFull][j][i];
-		}
-		ADC_sampled_data[i+2] = (sum>>4);
-	}
-	for(uint8_t i = 0; i < 5; i++)
-		ADC_filtered_data[i] = moving_average(filters[i], ADC_sampled_data[i]);
-}
-
- uint16_t adc_manager::moving_average(mov_avrg_filter& filter, uint16_t new_sample){
+ uint16_t moving_average(mov_avrg_filter& filter, uint16_t new_sample){
 	filter.sum -= filter.window_filter[filter.index];
 	filter.sum += new_sample;
 	filter.window_filter[filter.index] = new_sample;
@@ -84,20 +58,20 @@ HAL_StatusTypeDef adc_manager::adc_init(uint8_t* filters_length){
 }
 
 void adc_manager::set_gains_offsets(){
-	adc_gains[adc_names::V_cap] = 0.0088623046875f;
-	adc_offsets[adc_names::V_cap] = 0.4914794921875f;
+	adc_gains[adc_names::V_cap] = VCAP_GAIN;
+	adc_offsets[adc_names::V_cap] = VCAP_OFFSET;
 
-	adc_gains[adc_names::I_cap] = -(0.0040293f);
-	adc_offsets[adc_names::I_cap] = -(-8.25f + 0.31227863582f - 0.0402927399f);
+	adc_gains[adc_names::I_cap] = ICAP_GAIN;
+	adc_offsets[adc_names::I_cap] = ICAP_OFFSET;
 
-	adc_gains[adc_names::V_bat] = 0.0088623046875f;
-	adc_offsets[adc_names::V_bat] = 0.5060302734375f;
+	adc_gains[adc_names::V_bat] = VBAT_GAIN;
+	adc_offsets[adc_names::V_bat] = VBAT_OFFSET;
 
-	adc_gains[adc_names::I_chassis] = -(0.0040293f);
-	adc_offsets[adc_names::I_chassis] = -(-8.25f + 0.4089821269f + 0.0161170959f -0.193406105f);
+	adc_gains[adc_names::I_chassis] = ISOURCE_GAIN;
+	adc_offsets[adc_names::I_chassis] = ISOURCE_OFFSET;
 
-	adc_gains[adc_names::I_bat] = -(0.0040293f);
-	adc_offsets[adc_names::I_bat] = -(-8.25f + 0.2598981019f + 0.012087822f - 0.0402927399f) ;
+	adc_gains[adc_names::I_bat] = IBAT_GAIN;
+	adc_offsets[adc_names::I_bat] = IBAT_OFFSET ;
 }
 
  float adc_manager::get_temperature(){
@@ -107,6 +81,6 @@ void adc_manager::set_gains_offsets(){
 
 }
 
-float adc_manager::get_compensated_adc(uint16_t val, adc_names name){
-	return (((float)(val)) * adc_gains[name]) +  adc_offsets[name];
-}
+//float adc_manager::get_compensated_adc(uint16_t val, adc_names name){
+//	return (((float)(val)) * adc_gains[name]) +  adc_offsets[name];
+//}

@@ -9,11 +9,11 @@
 #define THREAD_HPP_
 
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "cmsis_os.h"
+//#include "FreeRTOS.h"
+//#include "task.h"
+//#include "cmsis_os.h"
 #include "stm32g4xx_hal.h"
-#include "semphr.h"
+//#include "semphr.h"
 
 class Thread {
 public:
