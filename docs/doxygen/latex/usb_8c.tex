@@ -1,0 +1,62 @@
+\doxysection{Core/\+Src/usb.c File Reference}
+\hypertarget{usb_8c}{}\label{usb_8c}\index{Core/Src/usb.c@{Core/Src/usb.c}}
+
+
+This file provides code for the configuration of the USB instances.  
+
+
+{\ttfamily \#include "{}usb.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{usb_8c_acade11ca9152720e1fcaaf9efa6ed337}{MX\+\_\+\+USB\+\_\+\+PCD\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{usb_8c_ab88e6d72062dc5d478ab12b435695ccb}{HAL\+\_\+\+PCD\+\_\+\+Msp\+Init}} (PCD\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}pcd\+Handle)
+\item 
+void \mbox{\hyperlink{usb_8c_a0a53f3c7c744fcfa7bdba6e9badc70d4}{HAL\+\_\+\+PCD\+\_\+\+Msp\+De\+Init}} (PCD\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}pcd\+Handle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+PCD\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{usb_8c_afabb8e1d05154a3b694f4f4d150b194f}{hpcd\+\_\+\+USB\+\_\+\+FS}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of the USB instances. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2024 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{usb_8c_a0a53f3c7c744fcfa7bdba6e9badc70d4}\index{usb.c@{usb.c}!HAL\_PCD\_MspDeInit@{HAL\_PCD\_MspDeInit}}
+\index{HAL\_PCD\_MspDeInit@{HAL\_PCD\_MspDeInit}!usb.c@{usb.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_PCD\_MspDeInit()}{HAL\_PCD\_MspDeInit()}}
+{\footnotesize\ttfamily \label{usb_8c_a0a53f3c7c744fcfa7bdba6e9badc70d4} 
+void HAL\+\_\+\+PCD\+\_\+\+Msp\+De\+Init (\begin{DoxyParamCaption}\item[{PCD\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{pcd\+Handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{usb_8c_ab88e6d72062dc5d478ab12b435695ccb}\index{usb.c@{usb.c}!HAL\_PCD\_MspInit@{HAL\_PCD\_MspInit}}
+\index{HAL\_PCD\_MspInit@{HAL\_PCD\_MspInit}!usb.c@{usb.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_PCD\_MspInit()}{HAL\_PCD\_MspInit()}}
+{\footnotesize\ttfamily \label{usb_8c_ab88e6d72062dc5d478ab12b435695ccb} 
+void HAL\+\_\+\+PCD\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{PCD\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{pcd\+Handle}{}\end{DoxyParamCaption})}
+
+Initializes the peripherals clocks\Hypertarget{usb_8c_acade11ca9152720e1fcaaf9efa6ed337}\index{usb.c@{usb.c}!MX\_USB\_PCD\_Init@{MX\_USB\_PCD\_Init}}
+\index{MX\_USB\_PCD\_Init@{MX\_USB\_PCD\_Init}!usb.c@{usb.c}}
+\doxysubsubsection{\texorpdfstring{MX\_USB\_PCD\_Init()}{MX\_USB\_PCD\_Init()}}
+{\footnotesize\ttfamily \label{usb_8c_acade11ca9152720e1fcaaf9efa6ed337} 
+void MX\+\_\+\+USB\+\_\+\+PCD\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{usb_8c_afabb8e1d05154a3b694f4f4d150b194f}\index{usb.c@{usb.c}!hpcd\_USB\_FS@{hpcd\_USB\_FS}}
+\index{hpcd\_USB\_FS@{hpcd\_USB\_FS}!usb.c@{usb.c}}
+\doxysubsubsection{\texorpdfstring{hpcd\_USB\_FS}{hpcd\_USB\_FS}}
+{\footnotesize\ttfamily \label{usb_8c_afabb8e1d05154a3b694f4f4d150b194f} 
+PCD\+\_\+\+Handle\+Type\+Def hpcd\+\_\+\+USB\+\_\+\+FS}
+

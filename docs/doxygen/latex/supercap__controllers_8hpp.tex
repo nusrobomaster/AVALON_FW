@@ -1,0 +1,201 @@
+\doxysection{System/stm\+\_\+utils/\+Inc/supercap\+\_\+controllers.hpp File Reference}
+\hypertarget{supercap__controllers_8hpp}{}\label{supercap__controllers_8hpp}\index{System/stm\_utils/Inc/supercap\_controllers.hpp@{System/stm\_utils/Inc/supercap\_controllers.hpp}}
+
+
+Core control logic for the supercapacitor power manager.  
+
+
+{\ttfamily \#include "{}adc\+\_\+utils.\+hpp"{}}\newline
+{\ttfamily \#include "{}hrtim.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsupercap__control__manager}{supercap\+\_\+control\+\_\+manager}}
+\begin{DoxyCompactList}\small\item\em Main control class for managing the supercapacitor charge/discharge behavior. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{supercap__controllers_8hpp_ad1791c15f9c563ba5db7c6cf9b7d9303}{HRTIM\+\_\+\+PERIOD}}~34000
+\begin{DoxyCompactList}\small\item\em Defines the full period (and half-\/period) for HRTIM PWM in timer ticks. Used to calculate duty cycle offset during PWM generation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__controllers_8hpp_aef40924c46c76ec92e838a2bf3a84fe1}{HRTIM\+\_\+\+HALF\+\_\+\+PERIOD}}~17000
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79}{Safety\+\_\+\+Detect\+Item\+Typedef}} \{ \mbox{\hyperlink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79a6dc7329986a7d9cb2d1055734af76ed3}{voltage\+Err}}
+, \mbox{\hyperlink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79acc03ead3284ecb449bada5a041bf597e}{current\+Err}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates the various error detection sources used for safety monitoring. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92c}{safety\+Level\+Def}} \{ \newline
+\mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92cad39f1aeb49159b3560b773670af53091}{safe}}
+, \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca8de9aef05fc85e519a0cfce33573f492}{warning}}
+, \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca54016404fbedbcdc1d6cee80a11a273f}{wtf}}
+, \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92cae674dad1b068a0f517e1f061191db302}{run\+Away}}
+, \newline
+\mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca762262832fe227551367d5a88ca3ba5f}{its\+Joever}}
+ \}
+\begin{DoxyCompactList}\small\item\em Safety level definitions for runtime system checks. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17}{Mode\+\_\+\+Mode\+Typedef}} \{ \mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17a0e9a37114c0e458d28d52f06ec0f2242}{idle}}
+, \mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17aebc81705969b8c5ae986b0b2ec08d1d5}{normal}}
+ \}
+\begin{DoxyCompactList}\small\item\em Modes for the supercap control loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{supercap__controllers_8hpp_a7dd54fc66122a231da37b565f13d23c5}{software\+Reset}} ()
+\begin{DoxyCompactList}\small\item\em Software-\/triggered MCU reset function (called on fatal error or remote command). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{supercap__controllers_8hpp_a279987673281ac0b5a019326653e3520}{safety\+Item\+Level}} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em Global safety flags indexed by \doxylink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79}{Safety\+\_\+\+Detect\+Item\+Typedef}. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{supercap__controllers_8hpp_abe6e2082cb3bc83efd0c83f6c75adde1}{chassis\+\_\+voltage}}
+\begin{DoxyCompactList}\small\item\em Extern global values for chassis voltage and battery current (used across control loops and diagnostics). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{supercap__controllers_8hpp_aaecc091ac17639abe1eb50af6f0cb7fb}{battery\+\_\+current}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Core control logic for the supercapacitor power manager. 
+
+This header defines the controller class and enums responsible for managing the supercapacitor charge/discharge behavior, error safety levels, and PID loops.
+
+Created on\+: Jul 6, 2024 Author\+: Yassine Bakkali 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{supercap__controllers_8hpp_aef40924c46c76ec92e838a2bf3a84fe1}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!HRTIM\_HALF\_PERIOD@{HRTIM\_HALF\_PERIOD}}
+\index{HRTIM\_HALF\_PERIOD@{HRTIM\_HALF\_PERIOD}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}
+\doxysubsubsection{\texorpdfstring{HRTIM\_HALF\_PERIOD}{HRTIM\_HALF\_PERIOD}}
+{\footnotesize\ttfamily \label{supercap__controllers_8hpp_aef40924c46c76ec92e838a2bf3a84fe1} 
+\#define HRTIM\+\_\+\+HALF\+\_\+\+PERIOD~17000}
+
+\Hypertarget{supercap__controllers_8hpp_ad1791c15f9c563ba5db7c6cf9b7d9303}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!HRTIM\_PERIOD@{HRTIM\_PERIOD}}
+\index{HRTIM\_PERIOD@{HRTIM\_PERIOD}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}
+\doxysubsubsection{\texorpdfstring{HRTIM\_PERIOD}{HRTIM\_PERIOD}}
+{\footnotesize\ttfamily \label{supercap__controllers_8hpp_ad1791c15f9c563ba5db7c6cf9b7d9303} 
+\#define HRTIM\+\_\+\+PERIOD~34000}
+
+
+
+Defines the full period (and half-\/period) for HRTIM PWM in timer ticks. Used to calculate duty cycle offset during PWM generation. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!Mode\_ModeTypedef@{Mode\_ModeTypedef}}
+\index{Mode\_ModeTypedef@{Mode\_ModeTypedef}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}
+\doxysubsubsection{\texorpdfstring{Mode\_ModeTypedef}{Mode\_ModeTypedef}}
+{\footnotesize\ttfamily \label{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17} 
+enum \mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17}{Mode\+\_\+\+Mode\+Typedef}}}
+
+
+
+Modes for the supercap control loop. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{idle@{idle}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!idle@{idle}}}\Hypertarget{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17a0e9a37114c0e458d28d52f06ec0f2242}\label{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17a0e9a37114c0e458d28d52f06ec0f2242} 
+idle&Supercap system inactive. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{normal@{normal}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!normal@{normal}}}\Hypertarget{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17aebc81705969b8c5ae986b0b2ec08d1d5}\label{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17aebc81705969b8c5ae986b0b2ec08d1d5} 
+normal&Supercap active and managing power. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!Safety\_DetectItemTypedef@{Safety\_DetectItemTypedef}}
+\index{Safety\_DetectItemTypedef@{Safety\_DetectItemTypedef}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}
+\doxysubsubsection{\texorpdfstring{Safety\_DetectItemTypedef}{Safety\_DetectItemTypedef}}
+{\footnotesize\ttfamily \label{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79} 
+enum \mbox{\hyperlink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79}{Safety\+\_\+\+Detect\+Item\+Typedef}}}
+
+
+
+Enumerates the various error detection sources used for safety monitoring. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{voltageErr@{voltageErr}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!voltageErr@{voltageErr}}}\Hypertarget{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79a6dc7329986a7d9cb2d1055734af76ed3}\label{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79a6dc7329986a7d9cb2d1055734af76ed3} 
+voltage\+Err&Detected unsafe or unstable voltage conditions. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{currentErr@{currentErr}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!currentErr@{currentErr}}}\Hypertarget{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79acc03ead3284ecb449bada5a041bf597e}\label{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79acc03ead3284ecb449bada5a041bf597e} 
+current\+Err&Detected unsafe current draw or injection. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92c}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!safetyLevelDef@{safetyLevelDef}}
+\index{safetyLevelDef@{safetyLevelDef}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}
+\doxysubsubsection{\texorpdfstring{safetyLevelDef}{safetyLevelDef}}
+{\footnotesize\ttfamily \label{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92c} 
+enum \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92c}{safety\+Level\+Def}}}
+
+
+
+Safety level definitions for runtime system checks. 
+
+These are used internally to determine how critical a condition is and what kind of reaction the controller should take. \begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{safe@{safe}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!safe@{safe}}}\Hypertarget{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92cad39f1aeb49159b3560b773670af53091}\label{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92cad39f1aeb49159b3560b773670af53091} 
+safe&Normal operation. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{warning@{warning}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!warning@{warning}}}\Hypertarget{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca8de9aef05fc85e519a0cfce33573f492}\label{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca8de9aef05fc85e519a0cfce33573f492} 
+warning&Mild error, could recover automatically. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{wtf@{wtf}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!wtf@{wtf}}}\Hypertarget{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca54016404fbedbcdc1d6cee80a11a273f}\label{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca54016404fbedbcdc1d6cee80a11a273f} 
+wtf&Dangerous state; enters idle. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{runAway@{runAway}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!runAway@{runAway}}}\Hypertarget{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92cae674dad1b068a0f517e1f061191db302}\label{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92cae674dad1b068a0f517e1f061191db302} 
+run\+Away&Reserved for runaway behavior. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{itsJoever@{itsJoever}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!itsJoever@{itsJoever}}}\Hypertarget{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca762262832fe227551367d5a88ca3ba5f}\label{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca762262832fe227551367d5a88ca3ba5f} 
+its\+Joever&Catastrophic failure (system shutdown trigger) \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{supercap__controllers_8hpp_a7dd54fc66122a231da37b565f13d23c5}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!softwareReset@{softwareReset}}
+\index{softwareReset@{softwareReset}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}
+\doxysubsubsection{\texorpdfstring{softwareReset()}{softwareReset()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8hpp_a7dd54fc66122a231da37b565f13d23c5} 
+void software\+Reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Software-\/triggered MCU reset function (called on fatal error or remote command). 
+
+Software-\/triggered MCU reset function (called on fatal error or remote command).
+
+Used during critical fault recovery to completely reboot the board. Disables interrupts and enters an infinite loop until the system reset is triggered via NVIC. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{supercap__controllers_8hpp_aaecc091ac17639abe1eb50af6f0cb7fb}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!battery\_current@{battery\_current}}
+\index{battery\_current@{battery\_current}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}
+\doxysubsubsection{\texorpdfstring{battery\_current}{battery\_current}}
+{\footnotesize\ttfamily \label{supercap__controllers_8hpp_aaecc091ac17639abe1eb50af6f0cb7fb} 
+float battery\+\_\+current\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{supercap__controllers_8hpp_abe6e2082cb3bc83efd0c83f6c75adde1}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!chassis\_voltage@{chassis\_voltage}}
+\index{chassis\_voltage@{chassis\_voltage}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}
+\doxysubsubsection{\texorpdfstring{chassis\_voltage}{chassis\_voltage}}
+{\footnotesize\ttfamily \label{supercap__controllers_8hpp_abe6e2082cb3bc83efd0c83f6c75adde1} 
+float chassis\+\_\+voltage\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Extern global values for chassis voltage and battery current (used across control loops and diagnostics). 
+
+\Hypertarget{supercap__controllers_8hpp_a279987673281ac0b5a019326653e3520}\index{supercap\_controllers.hpp@{supercap\_controllers.hpp}!safetyItemLevel@{safetyItemLevel}}
+\index{safetyItemLevel@{safetyItemLevel}!supercap\_controllers.hpp@{supercap\_controllers.hpp}}
+\doxysubsubsection{\texorpdfstring{safetyItemLevel}{safetyItemLevel}}
+{\footnotesize\ttfamily \label{supercap__controllers_8hpp_a279987673281ac0b5a019326653e3520} 
+uint8\+\_\+t safety\+Item\+Level\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Global safety flags indexed by \doxylink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79}{Safety\+\_\+\+Detect\+Item\+Typedef}. 
+
+Global safety flags indexed by \doxylink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79}{Safety\+\_\+\+Detect\+Item\+Typedef}. 

@@ -1,0 +1,26 @@
+/**
+ * @mainpage Avalon Supercapacitor Power Manager - Firmware
+ *
+ * @section intro_sec Introduction
+ *
+ * This documentation covers the STM32-based firmware used to drive the Avalon supercapacitor
+ * power manager board developed for RMUC 2025. The system manages high-speed power delivery,
+ * bidirectional energy control, and safety management for supercap-assisted robotics.
+ *
+ * @section features_sec Features
+ * - Real-time power feedback control
+ * - CAN communication with robot control system
+ * - PID-based charge/discharge regulation
+ * - Voltage and current monitoring
+ * - Thermal supervision
+ *
+ * @section usage_sec Structure Overview
+ * - `main.cpp`: Starts the system.
+ * - `supercap_controllers.cpp`: Core control loop logic and PWM control.
+ * - `adc_utils.cpp`: ADC sampling, filtering, and compensation.
+ * - `msg_handler.cpp`: CAN communication layer.
+ *
+ * @section links_sec Related Resources
+ * - [Hardware Repository](https://github.com/YassineBakkali/Avalon_HW--RMUC_2025_Supercap-manager)
+ *
+ */

@@ -1,0 +1,122 @@
+\doxysection{System/stm\+\_\+utils/\+Src/adc\+\_\+utils.cpp File Reference}
+\hypertarget{adc__utils_8cpp}{}\label{adc__utils_8cpp}\index{System/stm\_utils/Src/adc\_utils.cpp@{System/stm\_utils/Src/adc\_utils.cpp}}
+
+
+Utility functions for ADC data acquisition and processing for the supercapacitor control board.  
+
+
+{\ttfamily \#include "{}adc\+\_\+utils.\+hpp"{}}\newline
+{\ttfamily \#include "{}math.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{adc__utils_8cpp_a291fc79fc894c0dfc6973022b77547b1}{moving\+\_\+average}} (\mbox{\hyperlink{structmov__avrg__filter}{mov\+\_\+avrg\+\_\+filter}} \&filter, uint16\+\_\+t new\+\_\+sample)
+\begin{DoxyCompactList}\small\item\em Updates the moving average for a given filter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{adc__utils_8cpp_a08737bb431cb4cae01fa4661b9bc286f}{adc1\+\_\+samples}} \mbox{[}2\mbox{]}\mbox{[}16\mbox{]}\mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Raw buffer for ADC1. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{adc__utils_8cpp_a7ee90f0e85f6ec368017308eda5b69af}{adc2\+\_\+samples}} \mbox{[}2\mbox{]}\mbox{[}16\mbox{]}\mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em Raw buffer for ADC2. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmov__avrg__filter}{mov\+\_\+avrg\+\_\+filter}} \mbox{\hyperlink{adc__utils_8cpp_a279b3b57733e7c5e4d8880b49fb7317d}{filters}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Filter states per channel. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{adc__utils_8cpp_a3e1e952364ca1f287cc67d3d04b59c0c}{ADC\+\_\+filtered\+\_\+data}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Filtered data per channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{adc__utils_8cpp_a022492d6772864952aa55c385aa22604}{adc\+\_\+gains}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Gain correction per channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{adc__utils_8cpp_af417779b6559c4900d6e0075c7b33d21}{adc\+\_\+offsets}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Offset correction per channel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility functions for ADC data acquisition and processing for the supercapacitor control board. 
+
+Handles DMA sampling, moving average filtering, ADC calibration, and compensation via gain/offset. Includes temperature sensing using an NTC thermistor.
+
+Created on\+: Jul 5, 2024 Author\+: Yassine Bakkali 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{adc__utils_8cpp_a291fc79fc894c0dfc6973022b77547b1}\index{adc\_utils.cpp@{adc\_utils.cpp}!moving\_average@{moving\_average}}
+\index{moving\_average@{moving\_average}!adc\_utils.cpp@{adc\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{moving\_average()}{moving\_average()}}
+{\footnotesize\ttfamily \label{adc__utils_8cpp_a291fc79fc894c0dfc6973022b77547b1} 
+uint16\+\_\+t moving\+\_\+average (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmov__avrg__filter}{mov\+\_\+avrg\+\_\+filter}} \&}]{filter}{, }\item[{uint16\+\_\+t}]{new\+\_\+sample}{}\end{DoxyParamCaption})}
+
+
+
+Updates the moving average for a given filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter} & Reference to the filter structure. \\
+\hline
+{\em new\+\_\+sample} & Latest ADC sample value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Averaged filtered value. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{adc__utils_8cpp_a08737bb431cb4cae01fa4661b9bc286f}\index{adc\_utils.cpp@{adc\_utils.cpp}!adc1\_samples@{adc1\_samples}}
+\index{adc1\_samples@{adc1\_samples}!adc\_utils.cpp@{adc\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{adc1\_samples}{adc1\_samples}}
+{\footnotesize\ttfamily \label{adc__utils_8cpp_a08737bb431cb4cae01fa4661b9bc286f} 
+uint16\+\_\+t adc1\+\_\+samples\mbox{[}2\mbox{]}\mbox{[}16\mbox{]}\mbox{[}2\mbox{]}}
+
+
+
+Raw buffer for ADC1. 
+
+\Hypertarget{adc__utils_8cpp_a7ee90f0e85f6ec368017308eda5b69af}\index{adc\_utils.cpp@{adc\_utils.cpp}!adc2\_samples@{adc2\_samples}}
+\index{adc2\_samples@{adc2\_samples}!adc\_utils.cpp@{adc\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{adc2\_samples}{adc2\_samples}}
+{\footnotesize\ttfamily \label{adc__utils_8cpp_a7ee90f0e85f6ec368017308eda5b69af} 
+uint16\+\_\+t adc2\+\_\+samples\mbox{[}2\mbox{]}\mbox{[}16\mbox{]}\mbox{[}3\mbox{]}}
+
+
+
+Raw buffer for ADC2. 
+
+\Hypertarget{adc__utils_8cpp_a3e1e952364ca1f287cc67d3d04b59c0c}\index{adc\_utils.cpp@{adc\_utils.cpp}!ADC\_filtered\_data@{ADC\_filtered\_data}}
+\index{ADC\_filtered\_data@{ADC\_filtered\_data}!adc\_utils.cpp@{adc\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{ADC\_filtered\_data}{ADC\_filtered\_data}}
+{\footnotesize\ttfamily \label{adc__utils_8cpp_a3e1e952364ca1f287cc67d3d04b59c0c} 
+uint16\+\_\+t ADC\+\_\+filtered\+\_\+data\mbox{[}5\mbox{]}}
+
+
+
+Filtered data per channel. 
+
+\Hypertarget{adc__utils_8cpp_a022492d6772864952aa55c385aa22604}\index{adc\_utils.cpp@{adc\_utils.cpp}!adc\_gains@{adc\_gains}}
+\index{adc\_gains@{adc\_gains}!adc\_utils.cpp@{adc\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{adc\_gains}{adc\_gains}}
+{\footnotesize\ttfamily \label{adc__utils_8cpp_a022492d6772864952aa55c385aa22604} 
+float adc\+\_\+gains\mbox{[}5\mbox{]}}
+
+
+
+Gain correction per channel. 
+
+\Hypertarget{adc__utils_8cpp_af417779b6559c4900d6e0075c7b33d21}\index{adc\_utils.cpp@{adc\_utils.cpp}!adc\_offsets@{adc\_offsets}}
+\index{adc\_offsets@{adc\_offsets}!adc\_utils.cpp@{adc\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{adc\_offsets}{adc\_offsets}}
+{\footnotesize\ttfamily \label{adc__utils_8cpp_af417779b6559c4900d6e0075c7b33d21} 
+float adc\+\_\+offsets\mbox{[}5\mbox{]}}
+
+
+
+Offset correction per channel. 
+
+\Hypertarget{adc__utils_8cpp_a279b3b57733e7c5e4d8880b49fb7317d}\index{adc\_utils.cpp@{adc\_utils.cpp}!filters@{filters}}
+\index{filters@{filters}!adc\_utils.cpp@{adc\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{filters}{filters}}
+{\footnotesize\ttfamily \label{adc__utils_8cpp_a279b3b57733e7c5e4d8880b49fb7317d} 
+\mbox{\hyperlink{structmov__avrg__filter}{mov\+\_\+avrg\+\_\+filter}} filters\mbox{[}5\mbox{]}}
+
+
+
+Filter states per channel. 
+

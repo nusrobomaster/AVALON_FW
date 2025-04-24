@@ -1,0 +1,63 @@
+\doxysection{supercap\+\_\+msg\+\_\+packet Struct Reference}
+\hypertarget{structsupercap__msg__packet}{}\label{structsupercap__msg__packet}\index{supercap\_msg\_packet@{supercap\_msg\_packet}}
+
+
+Outgoing status message structure sent over CAN.  
+
+
+
+
+{\ttfamily \#include $<$msg\+\_\+handler.\+hpp$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{structsupercap__msg__packet_aa5bafb74440db528f142b2688a05f1ad}{chassis\+\_\+power}}
+\begin{DoxyCompactList}\small\item\em Computed instantaneous power drawn by chassis. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structsupercap__msg__packet_a5012d0511af0685d5e0a6119f4c6ed4e}{error}}
+\begin{DoxyCompactList}\small\item\em Error code or flag (0 = OK) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structsupercap__msg__packet_a1489cf5bd9d5ae6f6f0b882f10fdaa6c}{cap\+\_\+energy}}
+\begin{DoxyCompactList}\small\item\em Supercap charge percentage (0–255 mapped) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Outgoing status message structure sent over CAN. 
+
+This message is periodically sent from the supercap board to the main controller and contains real-\/time power and error data. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structsupercap__msg__packet_a1489cf5bd9d5ae6f6f0b882f10fdaa6c}\index{supercap\_msg\_packet@{supercap\_msg\_packet}!cap\_energy@{cap\_energy}}
+\index{cap\_energy@{cap\_energy}!supercap\_msg\_packet@{supercap\_msg\_packet}}
+\doxysubsubsection{\texorpdfstring{cap\_energy}{cap\_energy}}
+{\footnotesize\ttfamily \label{structsupercap__msg__packet_a1489cf5bd9d5ae6f6f0b882f10fdaa6c} 
+uint8\+\_\+t supercap\+\_\+msg\+\_\+packet\+::cap\+\_\+energy}
+
+
+
+Supercap charge percentage (0–255 mapped) 
+
+\Hypertarget{structsupercap__msg__packet_aa5bafb74440db528f142b2688a05f1ad}\index{supercap\_msg\_packet@{supercap\_msg\_packet}!chassis\_power@{chassis\_power}}
+\index{chassis\_power@{chassis\_power}!supercap\_msg\_packet@{supercap\_msg\_packet}}
+\doxysubsubsection{\texorpdfstring{chassis\_power}{chassis\_power}}
+{\footnotesize\ttfamily \label{structsupercap__msg__packet_aa5bafb74440db528f142b2688a05f1ad} 
+float supercap\+\_\+msg\+\_\+packet\+::chassis\+\_\+power}
+
+
+
+Computed instantaneous power drawn by chassis. 
+
+\Hypertarget{structsupercap__msg__packet_a5012d0511af0685d5e0a6119f4c6ed4e}\index{supercap\_msg\_packet@{supercap\_msg\_packet}!error@{error}}
+\index{error@{error}!supercap\_msg\_packet@{supercap\_msg\_packet}}
+\doxysubsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily \label{structsupercap__msg__packet_a5012d0511af0685d5e0a6119f4c6ed4e} 
+uint8\+\_\+t supercap\+\_\+msg\+\_\+packet\+::error}
+
+
+
+Error code or flag (0 = OK) 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+System/stm\+\_\+utils/\+Inc/\mbox{\hyperlink{msg__handler_8hpp}{msg\+\_\+handler.\+hpp}}\end{DoxyCompactItemize}

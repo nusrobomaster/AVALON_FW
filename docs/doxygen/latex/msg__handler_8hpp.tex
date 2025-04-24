@@ -1,0 +1,193 @@
+\doxysection{System/stm\+\_\+utils/\+Inc/msg\+\_\+handler.hpp File Reference}
+\hypertarget{msg__handler_8hpp}{}\label{msg__handler_8hpp}\index{System/stm\_utils/Inc/msg\_handler.hpp@{System/stm\_utils/Inc/msg\_handler.hpp}}
+
+
+CAN communication handler for sending and receiving control messages related to the supercapacitor power module.  
+
+
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$fdcan.\+h$>$}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structref__msg__packet}{ref\+\_\+msg\+\_\+packet}}
+\begin{DoxyCompactList}\small\item\em Incoming reference message structure received over CAN. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structsupercap__msg__packet}{supercap\+\_\+msg\+\_\+packet}}
+\begin{DoxyCompactList}\small\item\em Outgoing status message structure sent over CAN. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_c_a_n_comm}{CANComm}}
+\begin{DoxyCompactList}\small\item\em Abstraction class to manage CAN communication for the supercap board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{msg__handler_8hpp_ae9462fd6c430027c9490d6d69a027afd}{CAN\+\_\+\+NODE\+\_\+\+ID}}~0x067
+\begin{DoxyCompactList}\small\item\em CAN ID for receiving command messages intended for this board. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{msg__handler_8hpp_a0e3614b57c320f658a6ca3d6ea40a31c}{DEVC\+\_\+\+NODE\+\_\+\+ID}}~0x077
+\begin{DoxyCompactList}\small\item\em CAN ID used by this board to send messages to others. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structref__msg__packet}{ref\+\_\+msg\+\_\+packet}} \mbox{\hyperlink{msg__handler_8hpp_accbbdaa94a932e3e7027dcafad0d528d}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
+\item 
+void \mbox{\hyperlink{msg__handler_8hpp_a4e7d276d1e16574e50fe1e190d7f770b}{init\+CANComm}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}fdcan\+\_\+)
+\begin{DoxyCompactList}\small\item\em Initializes CAN communication\+: configures filters and starts the FDCAN peripheral. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{msg__handler_8hpp_ae9eaffaeb0145f9bbc25e40f1e575ded}{enable\+\_\+module}}
+\begin{DoxyCompactList}\small\item\em Enable/disable flag for supercap control loop. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{msg__handler_8hpp_ad4693f3cf41505cc76fe9e313cbcc8ee}{reset}}
+\begin{DoxyCompactList}\small\item\em If set, triggers a software reset. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{msg__handler_8hpp_a11bb5e2c7e3683ca7534a1655a48ca5c}{pow\+\_\+limit}}
+\begin{DoxyCompactList}\small\item\em Maximum power budget (W) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{msg__handler_8hpp_a9abd75cfd7ea73d001fe6bb8d06cba28}{energy\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Optional buffer value to apply limiting strategy. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{msg__handler_8hpp_a250e80dc0171e67e7af98038460bc4c2}{chassis\+\_\+power}}
+\begin{DoxyCompactList}\small\item\em Computed instantaneous power drawn by chassis. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{msg__handler_8hpp_adc64ccb7538429fe78e3fe0139267370}{error}}
+\begin{DoxyCompactList}\small\item\em Error code or flag (0 = OK) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{msg__handler_8hpp_a9d92c38423d3989c0a4b58e72cdad91b}{cap\+\_\+energy}}
+\begin{DoxyCompactList}\small\item\em Supercap charge percentage (0–255 mapped) \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_c_a_n_comm}{CANComm}} \mbox{\hyperlink{msg__handler_8hpp_a5093b0478b4dc8b042d3888fe8de144d}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+CAN communication handler for sending and receiving control messages related to the supercapacitor power module. 
+
+This header defines the message packet structures and the \doxylink{class_c_a_n_comm}{CANComm} class that abstracts transmission and reception of messages using STM32\textquotesingle{}s FDCAN peripheral.
+
+Created on\+: Jan 20, 2025 Author\+: Yassine Bakkali 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{msg__handler_8hpp_ae9462fd6c430027c9490d6d69a027afd}\index{msg\_handler.hpp@{msg\_handler.hpp}!CAN\_NODE\_ID@{CAN\_NODE\_ID}}
+\index{CAN\_NODE\_ID@{CAN\_NODE\_ID}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{CAN\_NODE\_ID}{CAN\_NODE\_ID}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_ae9462fd6c430027c9490d6d69a027afd} 
+\#define CAN\+\_\+\+NODE\+\_\+\+ID~0x067}
+
+
+
+CAN ID for receiving command messages intended for this board. 
+
+\texorpdfstring{$<$}{<} Standard integer types FDCAN peripheral definitions \Hypertarget{msg__handler_8hpp_a0e3614b57c320f658a6ca3d6ea40a31c}\index{msg\_handler.hpp@{msg\_handler.hpp}!DEVC\_NODE\_ID@{DEVC\_NODE\_ID}}
+\index{DEVC\_NODE\_ID@{DEVC\_NODE\_ID}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{DEVC\_NODE\_ID}{DEVC\_NODE\_ID}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_a0e3614b57c320f658a6ca3d6ea40a31c} 
+\#define DEVC\+\_\+\+NODE\+\_\+\+ID~0x077}
+
+
+
+CAN ID used by this board to send messages to others. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{msg__handler_8hpp_accbbdaa94a932e3e7027dcafad0d528d}\index{msg\_handler.hpp@{msg\_handler.hpp}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_accbbdaa94a932e3e7027dcafad0d528d} 
+struct \mbox{\hyperlink{structref__msg__packet}{ref\+\_\+msg\+\_\+packet}} \+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(packed)}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{msg__handler_8hpp_a4e7d276d1e16574e50fe1e190d7f770b}\index{msg\_handler.hpp@{msg\_handler.hpp}!initCANComm@{initCANComm}}
+\index{initCANComm@{initCANComm}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{initCANComm()}{initCANComm()}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_a4e7d276d1e16574e50fe1e190d7f770b} 
+void init\+CANComm (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{fdcan\+\_\+}{}\end{DoxyParamCaption})}
+
+
+
+Initializes CAN communication\+: configures filters and starts the FDCAN peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fdcan\+\_\+} & Pointer to the FDCAN handle used (typically \&hfdcan3).\\
+\hline
+\end{DoxyParams}
+Initializes CAN communication\+: configures filters and starts the FDCAN peripheral.
+
+This function sets up the CAN ID filters, enables relevant interrupts, configures delay compensation, and starts the FDCAN interface.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fdcan\+\_\+} & Pointer to the FDCAN handle to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{msg__handler_8hpp_a5093b0478b4dc8b042d3888fe8de144d}\index{msg\_handler.hpp@{msg\_handler.hpp}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_}{\_\_attribute\_\_}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_a5093b0478b4dc8b042d3888fe8de144d} 
+struct \mbox{\hyperlink{structsupercap__msg__packet}{supercap\+\_\+msg\+\_\+packet}} \+\_\+\+\_\+attribute\+\_\+\+\_\+}
+
+\Hypertarget{msg__handler_8hpp_a9d92c38423d3989c0a4b58e72cdad91b}\index{msg\_handler.hpp@{msg\_handler.hpp}!cap\_energy@{cap\_energy}}
+\index{cap\_energy@{cap\_energy}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{cap\_energy}{cap\_energy}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_a9d92c38423d3989c0a4b58e72cdad91b} 
+uint8\+\_\+t cap\+\_\+energy}
+
+
+
+Supercap charge percentage (0–255 mapped) 
+
+\Hypertarget{msg__handler_8hpp_a250e80dc0171e67e7af98038460bc4c2}\index{msg\_handler.hpp@{msg\_handler.hpp}!chassis\_power@{chassis\_power}}
+\index{chassis\_power@{chassis\_power}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{chassis\_power}{chassis\_power}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_a250e80dc0171e67e7af98038460bc4c2} 
+float chassis\+\_\+power}
+
+
+
+Computed instantaneous power drawn by chassis. 
+
+\Hypertarget{msg__handler_8hpp_ae9eaffaeb0145f9bbc25e40f1e575ded}\index{msg\_handler.hpp@{msg\_handler.hpp}!enable\_module@{enable\_module}}
+\index{enable\_module@{enable\_module}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{enable\_module}{enable\_module}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_ae9eaffaeb0145f9bbc25e40f1e575ded} 
+uint8\+\_\+t enable\+\_\+module}
+
+
+
+Enable/disable flag for supercap control loop. 
+
+\Hypertarget{msg__handler_8hpp_a9abd75cfd7ea73d001fe6bb8d06cba28}\index{msg\_handler.hpp@{msg\_handler.hpp}!energy\_buffer@{energy\_buffer}}
+\index{energy\_buffer@{energy\_buffer}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{energy\_buffer}{energy\_buffer}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_a9abd75cfd7ea73d001fe6bb8d06cba28} 
+uint16\+\_\+t energy\+\_\+buffer}
+
+
+
+Optional buffer value to apply limiting strategy. 
+
+\Hypertarget{msg__handler_8hpp_adc64ccb7538429fe78e3fe0139267370}\index{msg\_handler.hpp@{msg\_handler.hpp}!error@{error}}
+\index{error@{error}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_adc64ccb7538429fe78e3fe0139267370} 
+uint8\+\_\+t error}
+
+
+
+Error code or flag (0 = OK) 
+
+\Hypertarget{msg__handler_8hpp_a11bb5e2c7e3683ca7534a1655a48ca5c}\index{msg\_handler.hpp@{msg\_handler.hpp}!pow\_limit@{pow\_limit}}
+\index{pow\_limit@{pow\_limit}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{pow\_limit}{pow\_limit}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_a11bb5e2c7e3683ca7534a1655a48ca5c} 
+uint8\+\_\+t pow\+\_\+limit}
+
+
+
+Maximum power budget (W) 
+
+\Hypertarget{msg__handler_8hpp_ad4693f3cf41505cc76fe9e313cbcc8ee}\index{msg\_handler.hpp@{msg\_handler.hpp}!reset@{reset}}
+\index{reset@{reset}!msg\_handler.hpp@{msg\_handler.hpp}}
+\doxysubsubsection{\texorpdfstring{reset}{reset}}
+{\footnotesize\ttfamily \label{msg__handler_8hpp_ad4693f3cf41505cc76fe9e313cbcc8ee} 
+uint8\+\_\+t reset}
+
+
+
+If set, triggers a software reset. 
+

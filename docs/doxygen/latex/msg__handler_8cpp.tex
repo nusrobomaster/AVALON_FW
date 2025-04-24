@@ -1,0 +1,106 @@
+\doxysection{System/stm\+\_\+utils/\+Src/msg\+\_\+handler.cpp File Reference}
+\hypertarget{msg__handler_8cpp}{}\label{msg__handler_8cpp}\index{System/stm\_utils/Src/msg\_handler.cpp@{System/stm\_utils/Src/msg\_handler.cpp}}
+
+
+Handles CAN message reception, decoding, and response for supercap control.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{msg__handler_8cpp_a4e7d276d1e16574e50fe1e190d7f770b}{init\+CANComm}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}fdcan\+\_\+)
+\begin{DoxyCompactList}\small\item\em Initializes and configures the CAN peripheral and message filters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{msg__handler_8cpp_a37d92c0f4f667c4dd4cbc9c3b5d5dad4}{HAL\+\_\+\+FDCAN\+\_\+\+Rx\+Fifo0\+Callback}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint32\+\_\+t Rx\+Fifo0\+ITs)
+\begin{DoxyCompactList}\small\item\em Callback triggered when a new CAN message is received. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{msg__handler_8cpp_a1d092ac08a1d1ebd6ca0d1d1fb8b6a31}{HAL\+\_\+\+FDCAN\+\_\+\+Error\+Status\+Callback}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint32\+\_\+t Error\+Status\+ITs)
+\begin{DoxyCompactList}\small\item\em Called on FDCAN error interrupt (e.\+g. bus-\/off state). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structref__msg__packet}{ref\+\_\+msg\+\_\+packet}} \mbox{\hyperlink{msg__handler_8cpp_af525b8091445c9c9e5503a3933d0eb38}{rx\+Msg}}
+\begin{DoxyCompactList}\small\item\em Local message object storing the latest received control packet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles CAN message reception, decoding, and response for supercap control. 
+
+This module handles communication over FDCAN between the supercapacitor module and the main robot controller. It allows receiving control signals (enable/disable, power limit updates) and transmits supercap status (power, energy).
+
+Created by\+: Yassine Bakkali Date\+: Jan 20, 2025 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{msg__handler_8cpp_a1d092ac08a1d1ebd6ca0d1d1fb8b6a31}\index{msg\_handler.cpp@{msg\_handler.cpp}!HAL\_FDCAN\_ErrorStatusCallback@{HAL\_FDCAN\_ErrorStatusCallback}}
+\index{HAL\_FDCAN\_ErrorStatusCallback@{HAL\_FDCAN\_ErrorStatusCallback}!msg\_handler.cpp@{msg\_handler.cpp}}
+\doxysubsubsection{\texorpdfstring{HAL\_FDCAN\_ErrorStatusCallback()}{HAL\_FDCAN\_ErrorStatusCallback()}}
+{\footnotesize\ttfamily \label{msg__handler_8cpp_a1d092ac08a1d1ebd6ca0d1d1fb8b6a31} 
+void HAL\+\_\+\+FDCAN\+\_\+\+Error\+Status\+Callback (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hfdcan}{, }\item[{uint32\+\_\+t}]{Error\+Status\+ITs}{}\end{DoxyParamCaption})}
+
+
+
+Called on FDCAN error interrupt (e.\+g. bus-\/off state). 
+
+Resets the CAN peripheral and reinitializes the communication settings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hfdcan} & Pointer to the affected CAN instance \\
+\hline
+{\em Error\+Status\+ITs} & Interrupt flags (unused) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{msg__handler_8cpp_a37d92c0f4f667c4dd4cbc9c3b5d5dad4}\index{msg\_handler.cpp@{msg\_handler.cpp}!HAL\_FDCAN\_RxFifo0Callback@{HAL\_FDCAN\_RxFifo0Callback}}
+\index{HAL\_FDCAN\_RxFifo0Callback@{HAL\_FDCAN\_RxFifo0Callback}!msg\_handler.cpp@{msg\_handler.cpp}}
+\doxysubsubsection{\texorpdfstring{HAL\_FDCAN\_RxFifo0Callback()}{HAL\_FDCAN\_RxFifo0Callback()}}
+{\footnotesize\ttfamily \label{msg__handler_8cpp_a37d92c0f4f667c4dd4cbc9c3b5d5dad4} 
+void HAL\+\_\+\+FDCAN\+\_\+\+Rx\+Fifo0\+Callback (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hfdcan}{, }\item[{uint32\+\_\+t}]{Rx\+Fifo0\+ITs}{}\end{DoxyParamCaption})}
+
+
+
+Callback triggered when a new CAN message is received. 
+
+If the message matches the expected node ID, it handles\+:
+\begin{DoxyItemize}
+\item Enabling/disabling the supercap loop
+\item Resetting the system
+\item Updating the power limit and energy buffer reference
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em hfdcan} & FDCAN peripheral instance \\
+\hline
+{\em Rx\+Fifo0\+ITs} & Interrupt source bitmask \\
+\hline
+\end{DoxyParams}
+\Hypertarget{msg__handler_8cpp_a4e7d276d1e16574e50fe1e190d7f770b}\index{msg\_handler.cpp@{msg\_handler.cpp}!initCANComm@{initCANComm}}
+\index{initCANComm@{initCANComm}!msg\_handler.cpp@{msg\_handler.cpp}}
+\doxysubsubsection{\texorpdfstring{initCANComm()}{initCANComm()}}
+{\footnotesize\ttfamily \label{msg__handler_8cpp_a4e7d276d1e16574e50fe1e190d7f770b} 
+void init\+CANComm (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{fdcan\+\_\+}{}\end{DoxyParamCaption})}
+
+
+
+Initializes and configures the CAN peripheral and message filters. 
+
+Initializes CAN communication\+: configures filters and starts the FDCAN peripheral.
+
+This function sets up the CAN ID filters, enables relevant interrupts, configures delay compensation, and starts the FDCAN interface.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fdcan\+\_\+} & Pointer to the FDCAN handle to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{msg__handler_8cpp_af525b8091445c9c9e5503a3933d0eb38}\index{msg\_handler.cpp@{msg\_handler.cpp}!rxMsg@{rxMsg}}
+\index{rxMsg@{rxMsg}!msg\_handler.cpp@{msg\_handler.cpp}}
+\doxysubsubsection{\texorpdfstring{rxMsg}{rxMsg}}
+{\footnotesize\ttfamily \label{msg__handler_8cpp_af525b8091445c9c9e5503a3933d0eb38} 
+\mbox{\hyperlink{structref__msg__packet}{ref\+\_\+msg\+\_\+packet}} rx\+Msg\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Local message object storing the latest received control packet. 
+

@@ -1,0 +1,291 @@
+\doxysection{supercap\+\_\+control\+\_\+manager Class Reference}
+\hypertarget{classsupercap__control__manager}{}\label{classsupercap__control__manager}\index{supercap\_control\_manager@{supercap\_control\_manager}}
+
+
+Main control class for managing the supercapacitor charge/discharge behavior.  
+
+
+
+
+{\ttfamily \#include $<$supercap\+\_\+controllers.\+hpp$>$}
+
+Inheritance diagram for supercap\+\_\+control\+\_\+manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsupercap__control__manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsupercap__control__manager_a9c6a56dec2098d79af654c8e2b03fbde}{supercap\+\_\+control\+\_\+manager}} (ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+cap, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+bat, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+temp)
+\begin{DoxyCompactList}\small\item\em Constructor for the supercap controller. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsupercap__control__manager_ad23eb2bbe99fb0f6b281a1eea871e5c8}{\texorpdfstring{$\sim$}{\string~}supercap\+\_\+control\+\_\+manager}} ()
+\begin{DoxyCompactList}\small\item\em Destructor (default) \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{classsupercap__control__manager_a938dd82a5e912e79b3838c4b0d3879bb}{init\+\_\+loop}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the control loop by setting up the PID controllers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsupercap__control__manager_aed93c989e0784f9363a064fde4d3f32e}{setup\+\_\+pid\+\_\+controllers}} ()
+\begin{DoxyCompactList}\small\item\em Configures PID controllers for power, current, and voltage regulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsupercap__control__manager_a3232216531c15765c269f70ca738edd6}{set\+\_\+ref\+\_\+chassis\+\_\+power}} (float ref\+\_\+power\+\_\+)
+\begin{DoxyCompactList}\small\item\em Sets the desired reference power draw (in watts) for the chassis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsupercap__control__manager_a4c8b57a0cc60b8915157f6ed261372cb}{loop\+\_\+update}} (float Icap\+\_\+, float Ibat\+\_\+, float Vcap\+\_\+, float Ichassis\+\_\+, float Vbat\+\_\+)
+\begin{DoxyCompactList}\small\item\em Performs a full control loop update using current sensor inputs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsupercap__control__manager_a50bdf5a8e41d2a23738aff8da8fde391}{stop\+\_\+loop}} ()
+\begin{DoxyCompactList}\small\item\em Stops the control loop and disables gate driving. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{classsupercap__control__manager_a6abb1fd969adbba14b518da8ec0830ae}{start\+\_\+loop}} ()
+\begin{DoxyCompactList}\small\item\em Starts the supercap control loop (if not in calibration mode). \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{classsupercap__control__manager_a532f7603af350d8fc079adee14d8ff71}{start\+\_\+gates\+\_\+pwm}} (float init\+\_\+duty\+\_\+cycle)
+\begin{DoxyCompactList}\small\item\em Initializes the gate PWM output using a given starting duty cycle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsupercap__control__manager_acfe7a6aec1ede157ea85260871aa6239}{all\+\_\+safety\+\_\+checks}} ()
+\begin{DoxyCompactList}\small\item\em Executes all defined safety checks (voltage, current). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsupercap__control__manager_ada5922bcb0490963cd9c812f0fd742f9}{silent\+\_\+mode}} ()
+\begin{DoxyCompactList}\small\item\em Manually forces system into a silent mode (e.\+g., for emergency recovery). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classadc__manager}{adc\+\_\+manager}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classadc__manager_a1a88da33daa8bbdd601bdb9d0dc7791f}{adc\+\_\+manager}} (ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+cap, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+bat, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+temp)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{classadc__manager_aa0e5b68c23328dbdd8fa687539f484c0}{adc\+\_\+init}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}filters\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Initializes ADCs and filter states. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classadc__manager_aae46d558401cfab485b8ced03624f05e}{get\+\_\+temperature}} ()
+\begin{DoxyCompactList}\small\item\em Reads temperature using onboard NTC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92c}{safety\+Level\+Def}} \mbox{\hyperlink{classsupercap__control__manager_a61078cf818a35904e0b949357b6c53ba}{safety\+Level}}
+\begin{DoxyCompactList}\small\item\em Current system safety level status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields inherited from \mbox{\hyperlink{classadc__manager}{adc\+\_\+manager}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classadc__manager_a00a4020c7ba022baff1b51fa178b277b}{calibration\+\_\+ready}} = false
+\begin{DoxyCompactList}\small\item\em Optional flag for calibration flow. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main control class for managing the supercapacitor charge/discharge behavior. 
+
+Inherits from {\ttfamily \doxylink{classadc__manager}{adc\+\_\+manager}} to reuse ADC data collection logic. This class manages PID-\/based power balancing, duty cycle generation, and safety enforcement logic. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsupercap__control__manager_a9c6a56dec2098d79af654c8e2b03fbde}\index{supercap\_control\_manager@{supercap\_control\_manager}!supercap\_control\_manager@{supercap\_control\_manager}}
+\index{supercap\_control\_manager@{supercap\_control\_manager}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{supercap\_control\_manager()}{supercap\_control\_manager()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_a9c6a56dec2098d79af654c8e2b03fbde} 
+supercap\+\_\+control\+\_\+manager\+::supercap\+\_\+control\+\_\+manager (\begin{DoxyParamCaption}\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc\+\_\+cap}{, }\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc\+\_\+bat}{, }\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc\+\_\+temp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for the supercap controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adc\+\_\+cap} & Pointer to ADC for supercap measurements \\
+\hline
+{\em adc\+\_\+bat} & Pointer to ADC for battery-\/side measurements \\
+\hline
+{\em adc\+\_\+temp} & Pointer to ADC used for temperature sensing \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsupercap__control__manager_ad23eb2bbe99fb0f6b281a1eea871e5c8}\index{supercap\_control\_manager@{supercap\_control\_manager}!````~supercap\_control\_manager@{\texorpdfstring{$\sim$}{\string~}supercap\_control\_manager}}
+\index{````~supercap\_control\_manager@{\texorpdfstring{$\sim$}{\string~}supercap\_control\_manager}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}supercap\_control\_manager()}{\string~supercap\_control\_manager()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_ad23eb2bbe99fb0f6b281a1eea871e5c8} 
+supercap\+\_\+control\+\_\+manager\+::\texorpdfstring{$\sim$}{\string~}supercap\+\_\+control\+\_\+manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor (default) 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsupercap__control__manager_acfe7a6aec1ede157ea85260871aa6239}\index{supercap\_control\_manager@{supercap\_control\_manager}!all\_safety\_checks@{all\_safety\_checks}}
+\index{all\_safety\_checks@{all\_safety\_checks}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{all\_safety\_checks()}{all\_safety\_checks()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_acfe7a6aec1ede157ea85260871aa6239} 
+void supercap\+\_\+control\+\_\+manager\+::all\+\_\+safety\+\_\+checks (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Executes all defined safety checks (voltage, current). 
+
+\Hypertarget{classsupercap__control__manager_a938dd82a5e912e79b3838c4b0d3879bb}\index{supercap\_control\_manager@{supercap\_control\_manager}!init\_loop@{init\_loop}}
+\index{init\_loop@{init\_loop}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{init\_loop()}{init\_loop()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_a938dd82a5e912e79b3838c4b0d3879bb} 
+HAL\+\_\+\+Status\+Type\+Def supercap\+\_\+control\+\_\+manager\+::init\+\_\+loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the control loop by setting up the PID controllers. 
+
+Initializes the supercapacitor control loop.
+
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+OK if setup is successful
+\end{DoxyReturn}
+This function is the main entry point for setting up all the PID controllers used in power, current, and voltage regulation of the supercapacitor buck-\/boost control system. It prepares the system to safely start PWM generation and transitions into active loop mode.
+
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+OK if initialization was successful. 
+\end{DoxyReturn}
+\Hypertarget{classsupercap__control__manager_a4c8b57a0cc60b8915157f6ed261372cb}\index{supercap\_control\_manager@{supercap\_control\_manager}!loop\_update@{loop\_update}}
+\index{loop\_update@{loop\_update}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{loop\_update()}{loop\_update()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_a4c8b57a0cc60b8915157f6ed261372cb} 
+void supercap\+\_\+control\+\_\+manager\+::loop\+\_\+update (\begin{DoxyParamCaption}\item[{float}]{Icap\+\_\+}{, }\item[{float}]{Ibat\+\_\+}{, }\item[{float}]{Vcap\+\_\+}{, }\item[{float}]{Ichassis\+\_\+}{, }\item[{float}]{Vbat\+\_\+}{}\end{DoxyParamCaption})}
+
+
+
+Performs a full control loop update using current sensor inputs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Icap\+\_\+} & Current into the supercap \\
+\hline
+{\em Ibat\+\_\+} & Current from the battery \\
+\hline
+{\em Vcap\+\_\+} & Voltage of the supercap bank \\
+\hline
+{\em Ichassis\+\_\+} & Current drawn by the chassis \\
+\hline
+{\em Vbat\+\_\+} & Voltage of the battery \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsupercap__control__manager_a3232216531c15765c269f70ca738edd6}\index{supercap\_control\_manager@{supercap\_control\_manager}!set\_ref\_chassis\_power@{set\_ref\_chassis\_power}}
+\index{set\_ref\_chassis\_power@{set\_ref\_chassis\_power}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{set\_ref\_chassis\_power()}{set\_ref\_chassis\_power()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_a3232216531c15765c269f70ca738edd6} 
+void supercap\+\_\+control\+\_\+manager\+::set\+\_\+ref\+\_\+chassis\+\_\+power (\begin{DoxyParamCaption}\item[{float}]{ref\+\_\+power\+\_\+}{}\end{DoxyParamCaption})}
+
+
+
+Sets the desired reference power draw (in watts) for the chassis. 
+
+Sets the chassis power reference for the outermost control loop.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+power\+\_\+} & The power target.\\
+\hline
+\end{DoxyParams}
+Used by the application layer to define the desired output power level that the control system should regulate around.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+power\+\_\+} & Desired chassis power reference in watts. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classsupercap__control__manager_aed93c989e0784f9363a064fde4d3f32e}\index{supercap\_control\_manager@{supercap\_control\_manager}!setup\_pid\_controllers@{setup\_pid\_controllers}}
+\index{setup\_pid\_controllers@{setup\_pid\_controllers}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{setup\_pid\_controllers()}{setup\_pid\_controllers()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_aed93c989e0784f9363a064fde4d3f32e} 
+void supercap\+\_\+control\+\_\+manager\+::setup\+\_\+pid\+\_\+controllers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Configures PID controllers for power, current, and voltage regulation. 
+
+Initializes all PID controllers used in the control loop.
+
+This sets up the PID control parameters for\+:
+\begin{DoxyItemize}
+\item pid\mbox{[}0\mbox{]}\+: Battery power control loop (P\+\_\+bat)
+\item pid\mbox{[}2\mbox{]}\+: Supercapacitor current control loop (I\+\_\+capa)
+\item pid\mbox{[}3\mbox{]}\+: Supercap upper voltage limit clamp (V\+\_\+cap\+\_\+max)
+\item pid\mbox{[}4\mbox{]}\+: Supercap lower voltage limit clamp (V\+\_\+cap\+\_\+min)
+\end{DoxyItemize}
+
+For each loop, the gain parameters and min/max output ranges are set. The controller states are initialized using {\ttfamily arm\+\_\+pid\+\_\+init\+\_\+f32}, and duty ratio is precomputed based on real-\/time readings to avoid unstable startup behavior.
+
+If {\ttfamily CALIBRATION\+\_\+\+MODE} is disabled, this also starts the PWM gates using the computed initial duty ratio and marks the system as initialized. \Hypertarget{classsupercap__control__manager_ada5922bcb0490963cd9c812f0fd742f9}\index{supercap\_control\_manager@{supercap\_control\_manager}!silent\_mode@{silent\_mode}}
+\index{silent\_mode@{silent\_mode}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{silent\_mode()}{silent\_mode()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_ada5922bcb0490963cd9c812f0fd742f9} 
+void supercap\+\_\+control\+\_\+manager\+::silent\+\_\+mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Manually forces system into a silent mode (e.\+g., for emergency recovery). 
+
+\Hypertarget{classsupercap__control__manager_a532f7603af350d8fc079adee14d8ff71}\index{supercap\_control\_manager@{supercap\_control\_manager}!start\_gates\_pwm@{start\_gates\_pwm}}
+\index{start\_gates\_pwm@{start\_gates\_pwm}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{start\_gates\_pwm()}{start\_gates\_pwm()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_a532f7603af350d8fc079adee14d8ff71} 
+HAL\+\_\+\+Status\+Type\+Def supercap\+\_\+control\+\_\+manager\+::start\+\_\+gates\+\_\+pwm (\begin{DoxyParamCaption}\item[{float}]{init\+\_\+duty\+\_\+cycle}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the gate PWM output using a given starting duty cycle. 
+
+Starts the high-\/resolution PWM gate outputs with an initial duty cycle.
+
+
+\begin{DoxyParams}{Parameters}
+{\em init\+\_\+duty\+\_\+cycle} & Duty ratio to apply \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+OK if successful
+\end{DoxyReturn}
+This function is typically called after PID controllers are initialized. It updates the gate PWM duty cycle and starts all 4 gate signals using the STM32 HRTIM peripheral.
+
+
+\begin{DoxyParams}{Parameters}
+{\em init\+\_\+duty\+\_\+cycle} & The duty cycle to start with, based on Vcap / Vbat ratio. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+OK if HRTIM started successfully. 
+\end{DoxyReturn}
+\Hypertarget{classsupercap__control__manager_a6abb1fd969adbba14b518da8ec0830ae}\index{supercap\_control\_manager@{supercap\_control\_manager}!start\_loop@{start\_loop}}
+\index{start\_loop@{start\_loop}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{start\_loop()}{start\_loop()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_a6abb1fd969adbba14b518da8ec0830ae} 
+HAL\+\_\+\+Status\+Type\+Def supercap\+\_\+control\+\_\+manager\+::start\+\_\+loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Starts the supercap control loop (if not in calibration mode). 
+
+Starts the control loop by re-\/enabling PWM gates and computing the initial duty ratio.
+
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+OK on success, HAL\+\_\+\+ERROR otherwise
+\end{DoxyReturn}
+Only runs if not in calibration mode. Reads current capacitor and battery voltages to estimate a stable initial duty cycle for the buck-\/boost circuit, then starts gate switching.
+
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+OK if started successfully, HAL\+\_\+\+ERROR otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classsupercap__control__manager_a50bdf5a8e41d2a23738aff8da8fde391}\index{supercap\_control\_manager@{supercap\_control\_manager}!stop\_loop@{stop\_loop}}
+\index{stop\_loop@{stop\_loop}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{stop\_loop()}{stop\_loop()}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_a50bdf5a8e41d2a23738aff8da8fde391} 
+void supercap\+\_\+control\+\_\+manager\+::stop\+\_\+loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Stops the control loop and disables gate driving. 
+
+Halts the control loop and disables PWM gate signals.
+
+This is the object method version. Sets loop flags to false and stops PWM via {\ttfamily stop\+\_\+gates\+\_\+pwm}. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{classsupercap__control__manager_a61078cf818a35904e0b949357b6c53ba}\index{supercap\_control\_manager@{supercap\_control\_manager}!safetyLevel@{safetyLevel}}
+\index{safetyLevel@{safetyLevel}!supercap\_control\_manager@{supercap\_control\_manager}}
+\doxysubsubsection{\texorpdfstring{safetyLevel}{safetyLevel}}
+{\footnotesize\ttfamily \label{classsupercap__control__manager_a61078cf818a35904e0b949357b6c53ba} 
+\mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92c}{safety\+Level\+Def}} supercap\+\_\+control\+\_\+manager\+::safety\+Level}
+
+
+
+Current system safety level status. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+System/stm\+\_\+utils/\+Inc/\mbox{\hyperlink{supercap__controllers_8hpp}{supercap\+\_\+controllers.\+hpp}}\item 
+System/stm\+\_\+utils/\+Src/\mbox{\hyperlink{supercap__controllers_8cpp}{supercap\+\_\+controllers.\+cpp}}\end{DoxyCompactItemize}

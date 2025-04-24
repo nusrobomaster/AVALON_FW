@@ -1,0 +1,150 @@
+\doxysection{Core/\+Src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{Core/Src/main.cpp@{Core/Src/main.cpp}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}adc.\+h"{}}\newline
+{\ttfamily \#include "{}dma.\+h"{}}\newline
+{\ttfamily \#include "{}fdcan.\+h"{}}\newline
+{\ttfamily \#include "{}hrtim.\+h"{}}\newline
+{\ttfamily \#include "{}iwdg.\+h"{}}\newline
+{\ttfamily \#include "{}spi.\+h"{}}\newline
+{\ttfamily \#include "{}tim.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+{\ttfamily \#include "{}usb.\+h"{}}\newline
+{\ttfamily \#include "{}gpio.\+h"{}}\newline
+{\ttfamily \#include "{}crc.\+h"{}}\newline
+{\ttfamily \#include "{}supercap\+\_\+controllers.\+hpp"{}}\newline
+{\ttfamily \#include "{}msg\+\_\+handler.\+hpp"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_abade755e13d07c10889ae83143656158}{MX\+\_\+\+FREERTOS\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Free\+RTOS initialization. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a38ad4725462bdc5e86c4ead4f04b9fc2}{TIM2\+\_\+\+IRQHandler}} (void)
+\item 
+void \mbox{\hyperlink{main_8cpp_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Period elapsed callback in non blocking mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsupercap__control__manager}{supercap\+\_\+control\+\_\+manager}} supercap\+\_\+controller \& \mbox{\hyperlink{main_8cpp_add56d0e5bd904f1dad7d58768d1ae0d8}{hadc1}}
+\item 
+\mbox{\hyperlink{class_c_a_n_comm}{CANComm}} can\+Com\+Driver \& \mbox{\hyperlink{main_8cpp_a307984617e0475d1c2394967f75e2f26}{hfdcan3}}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{main_8cpp_a14f3712388a55a54930031705def4190}{filter\+\_\+lengths}} \mbox{[}5\mbox{]} = \{32,64,64,64,64\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a1730ffe1e560465665eb47d9264826f9}\index{main.cpp@{main.cpp}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily \label{main_8cpp_a1730ffe1e560465665eb47d9264826f9} 
+void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Period elapsed callback in non blocking mode. 
+
+\begin{DoxyNote}{Note}
+This function is called when TIM2 interrupt took place, inside HAL\+\_\+\+TIM\+\_\+\+IRQHandler(). It makes a direct call to HAL\+\_\+\+Inc\+Tick() to increment a global variable "{}uw\+Tick"{} used as application time base. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em htim} & \+: TIM handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+This function is executed in case of error occurrence. 
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe} 
+int main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em int} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8cpp_abade755e13d07c10889ae83143656158}\index{main.cpp@{main.cpp}!MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}}
+\index{MX\_FREERTOS\_Init@{MX\_FREERTOS\_Init}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{MX\_FREERTOS\_Init()}{MX\_FREERTOS\_Init()}}
+{\footnotesize\ttfamily \label{main_8cpp_abade755e13d07c10889ae83143656158} 
+void MX\+\_\+\+FREERTOS\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Free\+RTOS initialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8cpp_a70af21c671abfcc773614a9a4f63d920}\index{main.cpp@{main.cpp}!SystemClock\_Config@{SystemClock\_Config}}
+\index{SystemClock\_Config@{SystemClock\_Config}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SystemClock\_Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily \label{main_8cpp_a70af21c671abfcc773614a9a4f63d920} 
+void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Configure the main internal regulator output voltage
+
+Initializes the RCC Oscillators according to the specified parameters in the RCC\+\_\+\+Osc\+Init\+Type\+Def structure.
+
+Initializes the CPU, AHB and APB buses clocks\Hypertarget{main_8cpp_a38ad4725462bdc5e86c4ead4f04b9fc2}\index{main.cpp@{main.cpp}!TIM2\_IRQHandler@{TIM2\_IRQHandler}}
+\index{TIM2\_IRQHandler@{TIM2\_IRQHandler}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{TIM2\_IRQHandler()}{TIM2\_IRQHandler()}}
+{\footnotesize\ttfamily \label{main_8cpp_a38ad4725462bdc5e86c4ead4f04b9fc2} 
+void TIM2\+\_\+\+IRQHandler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8cpp_a14f3712388a55a54930031705def4190}\index{main.cpp@{main.cpp}!filter\_lengths@{filter\_lengths}}
+\index{filter\_lengths@{filter\_lengths}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{filter\_lengths}{filter\_lengths}}
+{\footnotesize\ttfamily \label{main_8cpp_a14f3712388a55a54930031705def4190} 
+uint8\+\_\+t filter\+\_\+lengths\mbox{[}5\mbox{]} = \{32,64,64,64,64\}\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{main_8cpp_add56d0e5bd904f1dad7d58768d1ae0d8}\index{main.cpp@{main.cpp}!hadc1@{hadc1}}
+\index{hadc1@{hadc1}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{hadc1}{hadc1}}
+{\footnotesize\ttfamily \label{main_8cpp_add56d0e5bd904f1dad7d58768d1ae0d8} 
+\mbox{\hyperlink{classsupercap__control__manager}{supercap\+\_\+control\+\_\+manager}} supercap\+\_\+controller\& hadc1}
+
+\Hypertarget{main_8cpp_a307984617e0475d1c2394967f75e2f26}\index{main.cpp@{main.cpp}!hfdcan3@{hfdcan3}}
+\index{hfdcan3@{hfdcan3}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{hfdcan3}{hfdcan3}}
+{\footnotesize\ttfamily \label{main_8cpp_a307984617e0475d1c2394967f75e2f26} 
+\mbox{\hyperlink{class_c_a_n_comm}{CANComm}} can\+Com\+Driver\& hfdcan3}
+

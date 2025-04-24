@@ -1,0 +1,78 @@
+\doxysection{Core/\+Src/tim.c File Reference}
+\hypertarget{tim_8c}{}\label{tim_8c}\index{Core/Src/tim.c@{Core/Src/tim.c}}
+
+
+This file provides code for the configuration of the TIM instances.  
+
+
+{\ttfamily \#include "{}tim.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202}{MX\+\_\+\+TIM2\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{tim_8c_a265aef7a46164094e791259bf59d9cb4}{MX\+\_\+\+TIM8\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{tim_8c_a59716af159bfbbb6023b31354fb23af8}{HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+Init}} (TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}tim\+\_\+base\+Handle)
+\item 
+void \mbox{\hyperlink{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f}{HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+De\+Init}} (TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}tim\+\_\+base\+Handle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{tim_8c_a2c80fd5510e2990a59a5c90d745c716c}{htim2}}
+\item 
+TIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{tim_8c_a5faa27108379f799afb6984010bf0384}{htim8}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of the TIM instances. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2024 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f}\index{tim.c@{tim.c}!HAL\_TIM\_Base\_MspDeInit@{HAL\_TIM\_Base\_MspDeInit}}
+\index{HAL\_TIM\_Base\_MspDeInit@{HAL\_TIM\_Base\_MspDeInit}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_TIM\_Base\_MspDeInit()}{HAL\_TIM\_Base\_MspDeInit()}}
+{\footnotesize\ttfamily \label{tim_8c_adee8ed7d3ebb3a217c27ac10af86ce2f} 
+void HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+De\+Init (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{tim\+\_\+base\+Handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tim_8c_a59716af159bfbbb6023b31354fb23af8}\index{tim.c@{tim.c}!HAL\_TIM\_Base\_MspInit@{HAL\_TIM\_Base\_MspInit}}
+\index{HAL\_TIM\_Base\_MspInit@{HAL\_TIM\_Base\_MspInit}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_TIM\_Base\_MspInit()}{HAL\_TIM\_Base\_MspInit()}}
+{\footnotesize\ttfamily \label{tim_8c_a59716af159bfbbb6023b31354fb23af8} 
+void HAL\+\_\+\+TIM\+\_\+\+Base\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{TIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{tim\+\_\+base\+Handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202}\index{tim.c@{tim.c}!MX\_TIM2\_Init@{MX\_TIM2\_Init}}
+\index{MX\_TIM2\_Init@{MX\_TIM2\_Init}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{MX\_TIM2\_Init()}{MX\_TIM2\_Init()}}
+{\footnotesize\ttfamily \label{tim_8c_a4b8ff887fd3fdf26605e35927e4ff202} 
+void MX\+\_\+\+TIM2\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{tim_8c_a265aef7a46164094e791259bf59d9cb4}\index{tim.c@{tim.c}!MX\_TIM8\_Init@{MX\_TIM8\_Init}}
+\index{MX\_TIM8\_Init@{MX\_TIM8\_Init}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{MX\_TIM8\_Init()}{MX\_TIM8\_Init()}}
+{\footnotesize\ttfamily \label{tim_8c_a265aef7a46164094e791259bf59d9cb4} 
+void MX\+\_\+\+TIM8\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{tim_8c_a2c80fd5510e2990a59a5c90d745c716c}\index{tim.c@{tim.c}!htim2@{htim2}}
+\index{htim2@{htim2}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{htim2}{htim2}}
+{\footnotesize\ttfamily \label{tim_8c_a2c80fd5510e2990a59a5c90d745c716c} 
+TIM\+\_\+\+Handle\+Type\+Def htim2}
+
+\Hypertarget{tim_8c_a5faa27108379f799afb6984010bf0384}\index{tim.c@{tim.c}!htim8@{htim8}}
+\index{htim8@{htim8}!tim.c@{tim.c}}
+\doxysubsubsection{\texorpdfstring{htim8}{htim8}}
+{\footnotesize\ttfamily \label{tim_8c_a5faa27108379f799afb6984010bf0384} 
+TIM\+\_\+\+Handle\+Type\+Def htim8}
+

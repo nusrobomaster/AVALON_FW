@@ -1,0 +1,85 @@
+\doxysection{mov\+\_\+avrg\+\_\+filter Struct Reference}
+\hypertarget{structmov__avrg__filter}{}\label{structmov__avrg__filter}\index{mov\_avrg\_filter@{mov\_avrg\_filter}}
+
+
+Moving average filter structure.  
+
+
+
+
+{\ttfamily \#include $<$adc\+\_\+utils.\+hpp$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structmov__avrg__filter_a0b55e344f43e46a0519ebd2486d4d69b}{window\+\_\+filter}} \mbox{[}64\mbox{]}
+\begin{DoxyCompactList}\small\item\em Circular buffer of values. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structmov__avrg__filter_abf7f7ad272e280913faab69e63a4888f}{length}}
+\begin{DoxyCompactList}\small\item\em Number of samples in filter. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structmov__avrg__filter_ac13a509e592c8d6e88763b5722c8756a}{index}}
+\begin{DoxyCompactList}\small\item\em Current index in circular buffer. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{structmov__avrg__filter_afde9b91fa0a2c01e2c50ee843ec56562}{sum}}
+\begin{DoxyCompactList}\small\item\em Running sum of buffer. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structmov__avrg__filter_a9daa9d1240812b73e7f45bb2c7415a5b}{full}}
+\begin{DoxyCompactList}\small\item\em True if buffer has been filled at least once. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Moving average filter structure. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structmov__avrg__filter_a9daa9d1240812b73e7f45bb2c7415a5b}\index{mov\_avrg\_filter@{mov\_avrg\_filter}!full@{full}}
+\index{full@{full}!mov\_avrg\_filter@{mov\_avrg\_filter}}
+\doxysubsubsection{\texorpdfstring{full}{full}}
+{\footnotesize\ttfamily \label{structmov__avrg__filter_a9daa9d1240812b73e7f45bb2c7415a5b} 
+uint8\+\_\+t mov\+\_\+avrg\+\_\+filter\+::full}
+
+
+
+True if buffer has been filled at least once. 
+
+\Hypertarget{structmov__avrg__filter_ac13a509e592c8d6e88763b5722c8756a}\index{mov\_avrg\_filter@{mov\_avrg\_filter}!index@{index}}
+\index{index@{index}!mov\_avrg\_filter@{mov\_avrg\_filter}}
+\doxysubsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily \label{structmov__avrg__filter_ac13a509e592c8d6e88763b5722c8756a} 
+uint8\+\_\+t mov\+\_\+avrg\+\_\+filter\+::index}
+
+
+
+Current index in circular buffer. 
+
+\Hypertarget{structmov__avrg__filter_abf7f7ad272e280913faab69e63a4888f}\index{mov\_avrg\_filter@{mov\_avrg\_filter}!length@{length}}
+\index{length@{length}!mov\_avrg\_filter@{mov\_avrg\_filter}}
+\doxysubsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily \label{structmov__avrg__filter_abf7f7ad272e280913faab69e63a4888f} 
+uint8\+\_\+t mov\+\_\+avrg\+\_\+filter\+::length}
+
+
+
+Number of samples in filter. 
+
+\Hypertarget{structmov__avrg__filter_afde9b91fa0a2c01e2c50ee843ec56562}\index{mov\_avrg\_filter@{mov\_avrg\_filter}!sum@{sum}}
+\index{sum@{sum}!mov\_avrg\_filter@{mov\_avrg\_filter}}
+\doxysubsubsection{\texorpdfstring{sum}{sum}}
+{\footnotesize\ttfamily \label{structmov__avrg__filter_afde9b91fa0a2c01e2c50ee843ec56562} 
+uint32\+\_\+t mov\+\_\+avrg\+\_\+filter\+::sum}
+
+
+
+Running sum of buffer. 
+
+\Hypertarget{structmov__avrg__filter_a0b55e344f43e46a0519ebd2486d4d69b}\index{mov\_avrg\_filter@{mov\_avrg\_filter}!window\_filter@{window\_filter}}
+\index{window\_filter@{window\_filter}!mov\_avrg\_filter@{mov\_avrg\_filter}}
+\doxysubsubsection{\texorpdfstring{window\_filter}{window\_filter}}
+{\footnotesize\ttfamily \label{structmov__avrg__filter_a0b55e344f43e46a0519ebd2486d4d69b} 
+uint16\+\_\+t mov\+\_\+avrg\+\_\+filter\+::window\+\_\+filter\mbox{[}64\mbox{]}}
+
+
+
+Circular buffer of values. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+System/stm\+\_\+utils/\+Inc/\mbox{\hyperlink{adc__utils_8hpp}{adc\+\_\+utils.\+hpp}}\end{DoxyCompactItemize}

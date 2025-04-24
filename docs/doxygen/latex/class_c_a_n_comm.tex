@@ -1,0 +1,74 @@
+\doxysection{CANComm Class Reference}
+\hypertarget{class_c_a_n_comm}{}\label{class_c_a_n_comm}\index{CANComm@{CANComm}}
+
+
+Abstraction class to manage CAN communication for the supercap board.  
+
+
+
+
+{\ttfamily \#include $<$msg\+\_\+handler.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_c_a_n_comm_acab1c8b26f9a2cce535c8679d134d39b}{CANComm}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}fdcan\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor\+: sets up header configuration for outgoing messages. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_c_a_n_comm_a985e64e61760e3e6c95676201166d70a}{\texorpdfstring{$\sim$}{\string~}\+CANComm}} ()
+\begin{DoxyCompactList}\small\item\em Destructor (does nothing but defined for completeness). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_c_a_n_comm_a28400032a36ce634e1d1392ce78dd60e}{send\+Message}} ()
+\begin{DoxyCompactList}\small\item\em Sends the current {\ttfamily \doxylink{structsupercap__msg__packet}{supercap\+\_\+msg\+\_\+packet}} status over CAN. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstraction class to manage CAN communication for the supercap board. 
+
+This class handles CAN transmission of status messages and provides the scaffolding for receiving command/control messages via interrupt. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_c_a_n_comm_acab1c8b26f9a2cce535c8679d134d39b}\index{CANComm@{CANComm}!CANComm@{CANComm}}
+\index{CANComm@{CANComm}!CANComm@{CANComm}}
+\doxysubsubsection{\texorpdfstring{CANComm()}{CANComm()}}
+{\footnotesize\ttfamily \label{class_c_a_n_comm_acab1c8b26f9a2cce535c8679d134d39b} 
+CANComm\+::\+CANComm (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{fdcan\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor\+: sets up header configuration for outgoing messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fdcan\+\_\+} & Pointer to FDCAN handle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_c_a_n_comm_a985e64e61760e3e6c95676201166d70a}\index{CANComm@{CANComm}!````~CANComm@{\texorpdfstring{$\sim$}{\string~}CANComm}}
+\index{````~CANComm@{\texorpdfstring{$\sim$}{\string~}CANComm}!CANComm@{CANComm}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CANComm()}{\string~CANComm()}}
+{\footnotesize\ttfamily \label{class_c_a_n_comm_a985e64e61760e3e6c95676201166d70a} 
+CANComm\+::\texorpdfstring{$\sim$}{\string~}\+CANComm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor (does nothing but defined for completeness). 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_c_a_n_comm_a28400032a36ce634e1d1392ce78dd60e}\index{CANComm@{CANComm}!sendMessage@{sendMessage}}
+\index{sendMessage@{sendMessage}!CANComm@{CANComm}}
+\doxysubsubsection{\texorpdfstring{sendMessage()}{sendMessage()}}
+{\footnotesize\ttfamily \label{class_c_a_n_comm_a28400032a36ce634e1d1392ce78dd60e} 
+void CANComm\+::send\+Message (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Sends the current {\ttfamily \doxylink{structsupercap__msg__packet}{supercap\+\_\+msg\+\_\+packet}} status over CAN. 
+
+Sends a CAN message containing supercap status.
+
+Computes instantaneous chassis power, normalizes capacitor voltage into an 8-\/bit energy buffer estimate, and transmits it using FDCAN. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+System/stm\+\_\+utils/\+Inc/\mbox{\hyperlink{msg__handler_8hpp}{msg\+\_\+handler.\+hpp}}\item 
+System/stm\+\_\+utils/\+Src/\mbox{\hyperlink{msg__handler_8cpp}{msg\+\_\+handler.\+cpp}}\end{DoxyCompactItemize}

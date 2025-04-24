@@ -1,0 +1,128 @@
+\doxysection{adc\+\_\+manager Class Reference}
+\hypertarget{classadc__manager}{}\label{classadc__manager}\index{adc\_manager@{adc\_manager}}
+
+
+Class to manage ADC hardware sampling and filtering.  
+
+
+
+
+{\ttfamily \#include $<$adc\+\_\+utils.\+hpp$>$}
+
+Inheritance diagram for adc\+\_\+manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classadc__manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classadc__manager_a1a88da33daa8bbdd601bdb9d0dc7791f}{adc\+\_\+manager}} (ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+cap, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+bat, ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}adc\+\_\+temp)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+HAL\+\_\+\+Status\+Type\+Def \mbox{\hyperlink{classadc__manager_aa0e5b68c23328dbdd8fa687539f484c0}{adc\+\_\+init}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}filters\+\_\+length)
+\begin{DoxyCompactList}\small\item\em Initializes ADCs and filter states. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classadc__manager_aae46d558401cfab485b8ced03624f05e}{get\+\_\+temperature}} ()
+\begin{DoxyCompactList}\small\item\em Reads temperature using onboard NTC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classadc__manager_a00a4020c7ba022baff1b51fa178b277b}{calibration\+\_\+ready}} = false
+\begin{DoxyCompactList}\small\item\em Optional flag for calibration flow. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to manage ADC hardware sampling and filtering. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classadc__manager_a1a88da33daa8bbdd601bdb9d0dc7791f}\index{adc\_manager@{adc\_manager}!adc\_manager@{adc\_manager}}
+\index{adc\_manager@{adc\_manager}!adc\_manager@{adc\_manager}}
+\doxysubsubsection{\texorpdfstring{adc\_manager()}{adc\_manager()}}
+{\footnotesize\ttfamily \label{classadc__manager_a1a88da33daa8bbdd601bdb9d0dc7791f} 
+adc\+\_\+manager\+::adc\+\_\+manager (\begin{DoxyParamCaption}\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc\+\_\+cap}{, }\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc\+\_\+bat}{, }\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{adc\+\_\+temp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adc\+\_\+cap} & Pointer to ADC for capacitor-\/side sampling \\
+\hline
+{\em adc\+\_\+bat} & Pointer to ADC for battery-\/side sampling \\
+\hline
+{\em adc\+\_\+temp} & Pointer to ADC for temperature sensing \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classadc__manager_aa0e5b68c23328dbdd8fa687539f484c0}\index{adc\_manager@{adc\_manager}!adc\_init@{adc\_init}}
+\index{adc\_init@{adc\_init}!adc\_manager@{adc\_manager}}
+\doxysubsubsection{\texorpdfstring{adc\_init()}{adc\_init()}}
+{\footnotesize\ttfamily \label{classadc__manager_aa0e5b68c23328dbdd8fa687539f484c0} 
+HAL\+\_\+\+Status\+Type\+Def adc\+\_\+manager\+::adc\+\_\+init (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{filters\+\_\+length}{}\end{DoxyParamCaption})}
+
+
+
+Initializes ADCs and filter states. 
+
+Initializes ADC peripherals, DMA, and filter buffers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filters\+\_\+length} & Pointer to array of filter lengths per channel \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+OK if successful
+\end{DoxyReturn}
+Also starts internal ADC calibration and begins temperature ADC readings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filters\+\_\+length} & Pointer to an array specifying the filter window length per channel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+HAL\+\_\+\+OK if successful. 
+\end{DoxyReturn}
+\Hypertarget{classadc__manager_aae46d558401cfab485b8ced03624f05e}\index{adc\_manager@{adc\_manager}!get\_temperature@{get\_temperature}}
+\index{get\_temperature@{get\_temperature}!adc\_manager@{adc\_manager}}
+\doxysubsubsection{\texorpdfstring{get\_temperature()}{get\_temperature()}}
+{\footnotesize\ttfamily \label{classadc__manager_aae46d558401cfab485b8ced03624f05e} 
+float adc\+\_\+manager\+::get\+\_\+temperature (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reads temperature using onboard NTC. 
+
+Calculates the ambient temperature using a thermistor connected to an analog input.
+
+\begin{DoxyReturn}{Returns}
+Temperature in Celsius
+\end{DoxyReturn}
+Converts ADC reading to voltage, calculates NTC resistance, and applies the B-\/parameter equation.
+
+\begin{DoxyReturn}{Returns}
+Temperature in Celsius. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Field Documentation}
+\Hypertarget{classadc__manager_a00a4020c7ba022baff1b51fa178b277b}\index{adc\_manager@{adc\_manager}!calibration\_ready@{calibration\_ready}}
+\index{calibration\_ready@{calibration\_ready}!adc\_manager@{adc\_manager}}
+\doxysubsubsection{\texorpdfstring{calibration\_ready}{calibration\_ready}}
+{\footnotesize\ttfamily \label{classadc__manager_a00a4020c7ba022baff1b51fa178b277b} 
+bool adc\+\_\+manager\+::calibration\+\_\+ready = false}
+
+
+
+Optional flag for calibration flow. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+System/stm\+\_\+utils/\+Inc/\mbox{\hyperlink{adc__utils_8hpp}{adc\+\_\+utils.\+hpp}}\item 
+System/stm\+\_\+utils/\+Src/\mbox{\hyperlink{adc__utils_8cpp}{adc\+\_\+utils.\+cpp}}\end{DoxyCompactItemize}

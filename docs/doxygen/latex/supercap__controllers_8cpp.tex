@@ -1,0 +1,558 @@
+\doxysection{System/stm\+\_\+utils/\+Src/supercap\+\_\+controllers.cpp File Reference}
+\hypertarget{supercap__controllers_8cpp}{}\label{supercap__controllers_8cpp}\index{System/stm\_utils/Src/supercap\_controllers.cpp@{System/stm\_utils/Src/supercap\_controllers.cpp}}
+{\ttfamily \#include "{}supercap\+\_\+controllers.\+hpp"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{supercap__controllers_8cpp_a0c23b23ccd168233516afb335a2ae040}{ALPHA\+\_\+\+PID\+\_\+\+POWER}}~0.\+98f
+\begin{DoxyCompactList}\small\item\em Low-\/pass filter alpha constant for smoothing power signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{supercap__controllers_8cpp_a4f1940289143f288690030b42bd9bb40}{low\+\_\+pass\+\_\+filter}} (float current\+\_\+value, float previous\+\_\+value, float alpha)
+\begin{DoxyCompactList}\small\item\em First-\/order low pass filter. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_a510d23db2a669094d85a6db0f28c28fc}{update\+\_\+pid\+\_\+maxpow}} ()
+\begin{DoxyCompactList}\small\item\em Updates the internal PID limits for chassis power. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{supercap__controllers_8cpp_adf3e99356aa7839ba54e74a5a15bb49d}{moving\+\_\+average}} (\mbox{\hyperlink{structmov__avrg__filter}{mov\+\_\+avrg\+\_\+filter}} \&filter, uint16\+\_\+t new\+\_\+sample)
+\begin{DoxyCompactList}\small\item\em Calculates a moving average on a circular buffer filter structure. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_aba3127849c2e3b057ae866a50726d0dc}{sample\+\_\+adc}} ()
+\begin{DoxyCompactList}\small\item\em Samples and filters ADC data from both ADC1 and ADC2. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_a900e71684e129e79e1783534a3debe3b}{stop\+\_\+gates\+\_\+pwm}} ()
+\begin{DoxyCompactList}\small\item\em Disables all HRTIM PWM outputs driving the power gates. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_a96b593097aa92fa0833e7133289303d0}{stop\+\_\+loop}} ()
+\begin{DoxyCompactList}\small\item\em Internal version of loop stop (non-\/class variant). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supercap__controllers_8cpp_a7dd54fc66122a231da37b565f13d23c5}{software\+Reset}} ()
+\begin{DoxyCompactList}\small\item\em Forces a software reset of the MCU. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_a2f0721213d637875e8d354705ca5e309}{idle\+\_\+mode}} ()
+\begin{DoxyCompactList}\small\item\em Transitions the system into idle mode safely. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_a6b15df3bf8a89c80f9b0555a17081f5d}{update\+\_\+duty\+Cycle}} (float duty\+Ratio)
+\begin{DoxyCompactList}\small\item\em Updates the duty cycle for both half-\/bridges using the HRTIM peripheral. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{supercap__controllers_8cpp_a578660a3d9280d61ffaa4b3c3fd1492a}{get\+\_\+\+PID}} (\mbox{\hyperlink{struct_loop_ctrl___p_i_d}{Loop\+Ctrl\+\_\+\+PID}} \texorpdfstring{$\ast$}{*}pid\+\_\+struct, float ref, float feedback, float ff\+\_\+model)
+\begin{DoxyCompactList}\small\item\em Executes a single PID computation and clamps the result. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_a0b640a76fe53e2bdb8125a78d8f09a3d}{all\+\_\+safety\+\_\+checks}} ()
+\begin{DoxyCompactList}\small\item\em Runs all safety checks for voltage and current conditions. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_a3fdc9bc0c7f34cdfebf5ad8775557b8f}{loop\+\_\+update}} ()
+\begin{DoxyCompactList}\small\item\em Updates the control loop at each HRTIM callback cycle. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_a96056a8046434e0683c4c4b5cce9c26e}{safety\+\_\+change\+\_\+level}} (uint8\+\_\+t Item, uint8\+\_\+t Level)
+\begin{DoxyCompactList}\small\item\em Safely updates the level of a safety item if required. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_aa6f1aee2abb42683116182bcd70bc2d9}{safety\+\_\+check\+\_\+voltages}} ()
+\begin{DoxyCompactList}\small\item\em Performs safety checks on both chassis and supercapacitor voltages. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{supercap__controllers_8cpp_ae89ccaa857bc05c4a7c5d7725ac597dd}{safety\+\_\+check\+\_\+currents}} ()
+\begin{DoxyCompactList}\small\item\em Checks for overcurrent conditions on both the chassis and the supercapacitor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supercap__controllers_8cpp_a7dd450a88d47fb27ab95c1178d2e887c}{Analog\+Signal\+\_\+\+ADCDMA\+\_\+\+OVRStop}} (ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hadc)
+\begin{DoxyCompactList}\small\item\em Stops the ongoing ADC DMA conversion in case of overrun. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supercap__controllers_8cpp_a973a9131afb2a029427976a0395c0fc2}{Analog\+Signal\+\_\+\+ADCDMA\+\_\+\+OVRRecovery}} (ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hadc)
+\begin{DoxyCompactList}\small\item\em Recovers ADC and DMA after an overrun (OVR) condition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{supercap__controllers_8cpp_a81577a47369bdf873ab44bcacff40396}{HAL\+\_\+\+HRTIM\+\_\+\+Repetition\+Event\+Callback}} (HRTIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hhrtim, uint32\+\_\+t Timer\+Idx)
+\begin{DoxyCompactList}\small\item\em Main control loop callback called at each HRTIM repetition event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_a55509e1a9816b26433393148b19e8dcf}{Pchassis\+\_\+output}}
+\begin{DoxyCompactList}\small\item\em Output variables used in control and monitoring. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_ac0e82031947d3d4d9f2cf037a5f95010}{icap\+\_\+output}}
+\begin{DoxyCompactList}\small\item\em PID-\/calculated reference current for supercap. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_a60677df115fa0dc78ceaf25cc7adf6f3}{duty\+\_\+ratio\+\_\+output}}
+\begin{DoxyCompactList}\small\item\em Raw PID output for duty ratio. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_af30d8fa4b89fd391c7c55037f2c66328}{out\+\_\+duty\+\_\+ratio\+\_\+output}}
+\begin{DoxyCompactList}\small\item\em Clamped and validated duty ratio to apply. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{supercap__controllers_8cpp_a0fd96139ccb71c248b4fe6a33a4226d0}{max\+\_\+chassis\+\_\+power}} = 45
+\begin{DoxyCompactList}\small\item\em Max allowed chassis power under RMUC rules. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_afc1d28cfbce795d6ea954ebe725241f5}{temperature}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Global sensing variables updated during each loop. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_a04670db48f9ecf425c973b0b4c42fa7e}{duty\+\_\+ratio}} = 0.\+9f
+\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_aca6f1f4aeb1f4203dc361f5a66b5e785}{cap\+\_\+voltage}} = 0.\+0f
+\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_abe6e2082cb3bc83efd0c83f6c75adde1}{chassis\+\_\+voltage}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Extern global values for chassis voltage and battery current (used across control loops and diagnostics). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_a0bb2bcf0f70d5bb5657012d03d05ee4b}{cap\+\_\+current}} = 0.\+0f
+\item 
+float \mbox{\hyperlink{supercap__controllers_8cpp_aaecc091ac17639abe1eb50af6f0cb7fb}{battery\+\_\+current}} = 0.\+0f
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{supercap__controllers_8cpp_a46c7e940e741ba548759a21f902118a4}{ADC\+\_\+sampled\+\_\+data}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Intermediate ADC buffer after averaging. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{supercap__controllers_8cpp_a1e54fa0af2d142c1cf2cec156e08e34b}{is\+\_\+init}} = false
+\begin{DoxyCompactList}\small\item\em Internal state variables for control loop execution. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{supercap__controllers_8cpp_a2e86f659ad07cfa468b741a118bcae23}{in\+\_\+loop}} = false
+\begin{DoxyCompactList}\small\item\em True if control is actively running. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{supercap__controllers_8cpp_a9ad0a1ea7261d776caf4fafe278338fb}{safety\+Change\+Trigger}}
+\begin{DoxyCompactList}\small\item\em Tracks whether a safety level transition occurred. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{struct_loop_ctrl___p_i_d}{Loop\+Ctrl\+\_\+\+PID}} \mbox{\hyperlink{supercap__controllers_8cpp_add29c3bfa7876f2b1d4b4685782829bb}{pid}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array of PID control structures. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{supercap__controllers_8cpp_ad8f99c940b2cbb9852469dc445d114fb}{I\+\_\+supercap\+\_\+last}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Stores last supercap current reference. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17}{Mode\+\_\+\+Mode\+Typedef}} \mbox{\hyperlink{supercap__controllers_8cpp_adc0f512c64dfad893de755ec0dc721e0}{current\+\_\+mode}} = \mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17aebc81705969b8c5ae986b0b2ec08d1d5}{normal}}
+\begin{DoxyCompactList}\small\item\em Current control mode (normal, idle, etc.) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{supercap__controllers_8cpp_a279987673281ac0b5a019326653e3520}{safety\+Item\+Level}} \mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em Tracks safety status per monitored item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{supercap__controllers_8cpp_a0c23b23ccd168233516afb335a2ae040}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!ALPHA\_PID\_POWER@{ALPHA\_PID\_POWER}}
+\index{ALPHA\_PID\_POWER@{ALPHA\_PID\_POWER}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{ALPHA\_PID\_POWER}{ALPHA\_PID\_POWER}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a0c23b23ccd168233516afb335a2ae040} 
+\#define ALPHA\+\_\+\+PID\+\_\+\+POWER~0.\+98f}
+
+
+
+Low-\/pass filter alpha constant for smoothing power signal. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{supercap__controllers_8cpp_a0b640a76fe53e2bdb8125a78d8f09a3d}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!all\_safety\_checks@{all\_safety\_checks}}
+\index{all\_safety\_checks@{all\_safety\_checks}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{all\_safety\_checks()}{all\_safety\_checks()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a0b640a76fe53e2bdb8125a78d8f09a3d} 
+static void all\+\_\+safety\+\_\+checks (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Runs all safety checks for voltage and current conditions. 
+
+Combines the voltage and current safety check routines if the system is initialized. \Hypertarget{supercap__controllers_8cpp_a973a9131afb2a029427976a0395c0fc2}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!AnalogSignal\_ADCDMA\_OVRRecovery@{AnalogSignal\_ADCDMA\_OVRRecovery}}
+\index{AnalogSignal\_ADCDMA\_OVRRecovery@{AnalogSignal\_ADCDMA\_OVRRecovery}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{AnalogSignal\_ADCDMA\_OVRRecovery()}{AnalogSignal\_ADCDMA\_OVRRecovery()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a973a9131afb2a029427976a0395c0fc2} 
+void Analog\+Signal\+\_\+\+ADCDMA\+\_\+\+OVRRecovery (\begin{DoxyParamCaption}\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hadc}{}\end{DoxyParamCaption})}
+
+
+
+Recovers ADC and DMA after an overrun (OVR) condition. 
+
+Clears error flags and restarts the ADC and DMA modules to restore normal operation. Required to recover from transient ADC DMA overflows due to latency or missed callbacks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hadc} & Pointer to the ADC handle that experienced overrun. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{supercap__controllers_8cpp_a7dd450a88d47fb27ab95c1178d2e887c}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!AnalogSignal\_ADCDMA\_OVRStop@{AnalogSignal\_ADCDMA\_OVRStop}}
+\index{AnalogSignal\_ADCDMA\_OVRStop@{AnalogSignal\_ADCDMA\_OVRStop}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{AnalogSignal\_ADCDMA\_OVRStop()}{AnalogSignal\_ADCDMA\_OVRStop()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a7dd450a88d47fb27ab95c1178d2e887c} 
+void Analog\+Signal\+\_\+\+ADCDMA\+\_\+\+OVRStop (\begin{DoxyParamCaption}\item[{ADC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hadc}{}\end{DoxyParamCaption})}
+
+
+
+Stops the ongoing ADC DMA conversion in case of overrun. 
+
+This is a low-\/level emergency stop. It halts the ADC immediately to prevent further data corruption.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hadc} & Pointer to the ADC handle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{supercap__controllers_8cpp_a578660a3d9280d61ffaa4b3c3fd1492a}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!get\_PID@{get\_PID}}
+\index{get\_PID@{get\_PID}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{get\_PID()}{get\_PID()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a578660a3d9280d61ffaa4b3c3fd1492a} 
+static float get\+\_\+\+PID (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_loop_ctrl___p_i_d}{Loop\+Ctrl\+\_\+\+PID}} \texorpdfstring{$\ast$}{*}}]{pid\+\_\+struct}{, }\item[{float}]{ref}{, }\item[{float}]{feedback}{, }\item[{float}]{ff\+\_\+model}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Executes a single PID computation and clamps the result. 
+
+Applies the PID algorithm using the CMSIS-\/\+DSP library. The output is adjusted with a feedforward term. Integral and output values are clamped to safe min/max bounds to prevent wind-\/up or instability.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pid\+\_\+struct} & Pointer to the PID controller structure. \\
+\hline
+{\em ref} & Desired reference value (setpoint). \\
+\hline
+{\em feedback} & Current feedback value (measurement). \\
+\hline
+{\em ff\+\_\+model} & Optional feedforward term added to the output. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Final, clamped output value from the controller. 
+\end{DoxyReturn}
+\Hypertarget{supercap__controllers_8cpp_a81577a47369bdf873ab44bcacff40396}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!HAL\_HRTIM\_RepetitionEventCallback@{HAL\_HRTIM\_RepetitionEventCallback}}
+\index{HAL\_HRTIM\_RepetitionEventCallback@{HAL\_HRTIM\_RepetitionEventCallback}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{HAL\_HRTIM\_RepetitionEventCallback()}{HAL\_HRTIM\_RepetitionEventCallback()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a81577a47369bdf873ab44bcacff40396} 
+void HAL\+\_\+\+HRTIM\+\_\+\+Repetition\+Event\+Callback (\begin{DoxyParamCaption}\item[{HRTIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hhrtim}{, }\item[{uint32\+\_\+t}]{Timer\+Idx}{}\end{DoxyParamCaption})}
+
+
+
+Main control loop callback called at each HRTIM repetition event. 
+
+This function is tied to a high-\/frequency hardware timer (HRTIM). It\+:
+\begin{DoxyItemize}
+\item Checks for ADC overruns and recovers if needed
+\item Samples ADC data
+\item Executes the main closed-\/loop control update
+\end{DoxyItemize}
+
+This is where the entire feedback control logic is anchored, providing real-\/time regulation of current, power, and duty cycles for the supercap management system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hhrtim} & Pointer to the HRTIM handle (unused here). \\
+\hline
+{\em Timer\+Idx} & Index of the timer triggering the event (unused). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{supercap__controllers_8cpp_a2f0721213d637875e8d354705ca5e309}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!idle\_mode@{idle\_mode}}
+\index{idle\_mode@{idle\_mode}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{idle\_mode()}{idle\_mode()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a2f0721213d637875e8d354705ca5e309} 
+static void idle\+\_\+mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Transitions the system into idle mode safely. 
+
+Used during safety events or power-\/off conditions to gracefully exit the control loop. Ensures gates are off and no control loop logic executes. \Hypertarget{supercap__controllers_8cpp_a3fdc9bc0c7f34cdfebf5ad8775557b8f}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!loop\_update@{loop\_update}}
+\index{loop\_update@{loop\_update}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{loop\_update()}{loop\_update()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a3fdc9bc0c7f34cdfebf5ad8775557b8f} 
+static void loop\+\_\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Updates the control loop at each HRTIM callback cycle. 
+
+This function is the heart of the closed-\/loop control logic. It\+:
+\begin{DoxyItemize}
+\item Runs safety checks
+\item Reads filtered sensor values
+\item Computes a desired supercap current to keep battery power below limits
+\item Computes duty cycle through cascaded PID loops with voltage clamping
+\item Updates PWM outputs accordingly 
+\end{DoxyItemize}\Hypertarget{supercap__controllers_8cpp_a4f1940289143f288690030b42bd9bb40}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!low\_pass\_filter@{low\_pass\_filter}}
+\index{low\_pass\_filter@{low\_pass\_filter}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{low\_pass\_filter()}{low\_pass\_filter()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a4f1940289143f288690030b42bd9bb40} 
+static float low\+\_\+pass\+\_\+filter (\begin{DoxyParamCaption}\item[{float}]{current\+\_\+value}{, }\item[{float}]{previous\+\_\+value}{, }\item[{float}]{alpha}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+First-\/order low pass filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+value} & New input value \\
+\hline
+{\em previous\+\_\+value} & Previously filtered output \\
+\hline
+{\em alpha} & Filter constant (0 \texorpdfstring{$<$}{<} alpha \texorpdfstring{$<$}{<} 1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filtered result 
+\end{DoxyReturn}
+\Hypertarget{supercap__controllers_8cpp_adf3e99356aa7839ba54e74a5a15bb49d}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!moving\_average@{moving\_average}}
+\index{moving\_average@{moving\_average}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{moving\_average()}{moving\_average()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_adf3e99356aa7839ba54e74a5a15bb49d} 
+static uint16\+\_\+t moving\+\_\+average (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmov__avrg__filter}{mov\+\_\+avrg\+\_\+filter}} \&}]{filter}{, }\item[{uint16\+\_\+t}]{new\+\_\+sample}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Calculates a moving average on a circular buffer filter structure. 
+
+The moving average filter stores a rolling window of past {\ttfamily n} samples and returns the average based on either the full window or current fill state. This is used for noise filtering of analog signals such as current and voltage before feeding them into PID loops.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filter} & The filter state structure (holds index, window buffer, etc.) \\
+\hline
+{\em new\+\_\+sample} & The latest ADC sample to be added to the buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filtered (smoothed) 16-\/bit average value 
+\end{DoxyReturn}
+\Hypertarget{supercap__controllers_8cpp_a96056a8046434e0683c4c4b5cce9c26e}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!safety\_change\_level@{safety\_change\_level}}
+\index{safety\_change\_level@{safety\_change\_level}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{safety\_change\_level()}{safety\_change\_level()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a96056a8046434e0683c4c4b5cce9c26e} 
+static void safety\+\_\+change\+\_\+level (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{Item}{, }\item[{uint8\+\_\+t}]{Level}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Safely updates the level of a safety item if required. 
+
+Changes the level only if escalating or recovering from a serious state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Item} & Index of the safety item. \\
+\hline
+{\em Level} & New safety level to apply. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{supercap__controllers_8cpp_ae89ccaa857bc05c4a7c5d7725ac597dd}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!safety\_check\_currents@{safety\_check\_currents}}
+\index{safety\_check\_currents@{safety\_check\_currents}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{safety\_check\_currents()}{safety\_check\_currents()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_ae89ccaa857bc05c4a7c5d7725ac597dd} 
+static void safety\+\_\+check\+\_\+currents (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Checks for overcurrent conditions on both the chassis and the supercapacitor. 
+
+Monitors the current flowing through the capacitor and the main gate. If the current exceeds the defined safe limits, the system transitions into idle mode.
+
+Uses absolute values for current readings since direction doesn’t matter for safety. Only acts if the current error hasn\textquotesingle{}t already reached its most critical state. \Hypertarget{supercap__controllers_8cpp_aa6f1aee2abb42683116182bcd70bc2d9}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!safety\_check\_voltages@{safety\_check\_voltages}}
+\index{safety\_check\_voltages@{safety\_check\_voltages}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{safety\_check\_voltages()}{safety\_check\_voltages()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_aa6f1aee2abb42683116182bcd70bc2d9} 
+static void safety\+\_\+check\+\_\+voltages (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Performs safety checks on both chassis and supercapacitor voltages. 
+
+Uses counters for debounce behavior and disables the control loop if unsafe conditions persist (too high or low voltage on either side). \Hypertarget{supercap__controllers_8cpp_aba3127849c2e3b057ae866a50726d0dc}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!sample\_adc@{sample\_adc}}
+\index{sample\_adc@{sample\_adc}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{sample\_adc()}{sample\_adc()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_aba3127849c2e3b057ae866a50726d0dc} 
+static void sample\+\_\+adc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Samples and filters ADC data from both ADC1 and ADC2. 
+
+This function determines which half of the DMA double-\/buffer is ready for each ADC, averages multiple samples per channel (to reduce noise), and applies a moving average filter to smooth the data before it\textquotesingle{}s used for PID control and safety checks. \Hypertarget{supercap__controllers_8cpp_a7dd54fc66122a231da37b565f13d23c5}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!softwareReset@{softwareReset}}
+\index{softwareReset@{softwareReset}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{softwareReset()}{softwareReset()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a7dd54fc66122a231da37b565f13d23c5} 
+void software\+Reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Forces a software reset of the MCU. 
+
+Software-\/triggered MCU reset function (called on fatal error or remote command).
+
+Used during critical fault recovery to completely reboot the board. Disables interrupts and enters an infinite loop until the system reset is triggered via NVIC. \Hypertarget{supercap__controllers_8cpp_a900e71684e129e79e1783534a3debe3b}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!stop\_gates\_pwm@{stop\_gates\_pwm}}
+\index{stop\_gates\_pwm@{stop\_gates\_pwm}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{stop\_gates\_pwm()}{stop\_gates\_pwm()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a900e71684e129e79e1783534a3debe3b} 
+static void stop\+\_\+gates\+\_\+pwm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Disables all HRTIM PWM outputs driving the power gates. 
+
+Forces an output disable through the HRTIM register. Used in safety shutdown and during idle transitions to prevent accidental switching activity. \Hypertarget{supercap__controllers_8cpp_a96b593097aa92fa0833e7133289303d0}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!stop\_loop@{stop\_loop}}
+\index{stop\_loop@{stop\_loop}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{stop\_loop()}{stop\_loop()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a96b593097aa92fa0833e7133289303d0} 
+static void stop\+\_\+loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Internal version of loop stop (non-\/class variant). 
+
+Exists in addition to the class method for situations where non-\/member access is needed. \Hypertarget{supercap__controllers_8cpp_a6b15df3bf8a89c80f9b0555a17081f5d}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!update\_dutyCycle@{update\_dutyCycle}}
+\index{update\_dutyCycle@{update\_dutyCycle}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_dutyCycle()}{update\_dutyCycle()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a6b15df3bf8a89c80f9b0555a17081f5d} 
+static void update\+\_\+duty\+Cycle (\begin{DoxyParamCaption}\item[{float}]{duty\+Ratio}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Updates the duty cycle for both half-\/bridges using the HRTIM peripheral. 
+
+Based on the current ratio, calculates the appropriate compare values for each timer output. The cap and chassis sides are controlled separately using a normalized (0.\+0–1.0+) input ratio.
+
+
+\begin{DoxyParams}{Parameters}
+{\em duty\+Ratio} & Desired duty ratio (V\+\_\+cap / V\+\_\+bat), expected to be in \mbox{[}0.\+0, 2.\+0\mbox{]} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{supercap__controllers_8cpp_a510d23db2a669094d85a6db0f28c28fc}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!update\_pid\_maxpow@{update\_pid\_maxpow}}
+\index{update\_pid\_maxpow@{update\_pid\_maxpow}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{update\_pid\_maxpow()}{update\_pid\_maxpow()}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a510d23db2a669094d85a6db0f28c28fc} 
+static void update\+\_\+pid\+\_\+maxpow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Updates the internal PID limits for chassis power. 
+
+This function is used internally to update the maximum allowed output and integration range for the chassis power PID controller. It ensures that the controller stays within competition-\/legal limits by capping both the integral term and final output. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{supercap__controllers_8cpp_a46c7e940e741ba548759a21f902118a4}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!ADC\_sampled\_data@{ADC\_sampled\_data}}
+\index{ADC\_sampled\_data@{ADC\_sampled\_data}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{ADC\_sampled\_data}{ADC\_sampled\_data}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a46c7e940e741ba548759a21f902118a4} 
+uint16\+\_\+t ADC\+\_\+sampled\+\_\+data\mbox{[}5\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Intermediate ADC buffer after averaging. 
+
+\Hypertarget{supercap__controllers_8cpp_aaecc091ac17639abe1eb50af6f0cb7fb}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!battery\_current@{battery\_current}}
+\index{battery\_current@{battery\_current}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{battery\_current}{battery\_current}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_aaecc091ac17639abe1eb50af6f0cb7fb} 
+float battery\+\_\+current = 0.\+0f}
+
+\Hypertarget{supercap__controllers_8cpp_a0bb2bcf0f70d5bb5657012d03d05ee4b}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!cap\_current@{cap\_current}}
+\index{cap\_current@{cap\_current}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{cap\_current}{cap\_current}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a0bb2bcf0f70d5bb5657012d03d05ee4b} 
+float cap\+\_\+current = 0.\+0f}
+
+\Hypertarget{supercap__controllers_8cpp_aca6f1f4aeb1f4203dc361f5a66b5e785}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!cap\_voltage@{cap\_voltage}}
+\index{cap\_voltage@{cap\_voltage}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{cap\_voltage}{cap\_voltage}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_aca6f1f4aeb1f4203dc361f5a66b5e785} 
+float cap\+\_\+voltage = 0.\+0f}
+
+\Hypertarget{supercap__controllers_8cpp_abe6e2082cb3bc83efd0c83f6c75adde1}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!chassis\_voltage@{chassis\_voltage}}
+\index{chassis\_voltage@{chassis\_voltage}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{chassis\_voltage}{chassis\_voltage}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_abe6e2082cb3bc83efd0c83f6c75adde1} 
+float chassis\+\_\+voltage = 0.\+0f}
+
+
+
+Extern global values for chassis voltage and battery current (used across control loops and diagnostics). 
+
+\Hypertarget{supercap__controllers_8cpp_adc0f512c64dfad893de755ec0dc721e0}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!current\_mode@{current\_mode}}
+\index{current\_mode@{current\_mode}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{current\_mode}{current\_mode}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_adc0f512c64dfad893de755ec0dc721e0} 
+\mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17}{Mode\+\_\+\+Mode\+Typedef}} current\+\_\+mode = \mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17aebc81705969b8c5ae986b0b2ec08d1d5}{normal}}}
+
+
+
+Current control mode (normal, idle, etc.) 
+
+\Hypertarget{supercap__controllers_8cpp_a04670db48f9ecf425c973b0b4c42fa7e}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!duty\_ratio@{duty\_ratio}}
+\index{duty\_ratio@{duty\_ratio}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{duty\_ratio}{duty\_ratio}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a04670db48f9ecf425c973b0b4c42fa7e} 
+float duty\+\_\+ratio = 0.\+9f}
+
+\Hypertarget{supercap__controllers_8cpp_a60677df115fa0dc78ceaf25cc7adf6f3}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!duty\_ratio\_output@{duty\_ratio\_output}}
+\index{duty\_ratio\_output@{duty\_ratio\_output}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{duty\_ratio\_output}{duty\_ratio\_output}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a60677df115fa0dc78ceaf25cc7adf6f3} 
+float duty\+\_\+ratio\+\_\+output}
+
+
+
+Raw PID output for duty ratio. 
+
+\Hypertarget{supercap__controllers_8cpp_ad8f99c940b2cbb9852469dc445d114fb}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!I\_supercap\_last@{I\_supercap\_last}}
+\index{I\_supercap\_last@{I\_supercap\_last}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{I\_supercap\_last}{I\_supercap\_last}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_ad8f99c940b2cbb9852469dc445d114fb} 
+float I\+\_\+supercap\+\_\+last = 0.\+0f\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Stores last supercap current reference. 
+
+\Hypertarget{supercap__controllers_8cpp_ac0e82031947d3d4d9f2cf037a5f95010}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!icap\_output@{icap\_output}}
+\index{icap\_output@{icap\_output}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{icap\_output}{icap\_output}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_ac0e82031947d3d4d9f2cf037a5f95010} 
+float icap\+\_\+output}
+
+
+
+PID-\/calculated reference current for supercap. 
+
+\Hypertarget{supercap__controllers_8cpp_a2e86f659ad07cfa468b741a118bcae23}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!in\_loop@{in\_loop}}
+\index{in\_loop@{in\_loop}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{in\_loop}{in\_loop}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a2e86f659ad07cfa468b741a118bcae23} 
+uint8\+\_\+t in\+\_\+loop = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+True if control is actively running. 
+
+\Hypertarget{supercap__controllers_8cpp_a1e54fa0af2d142c1cf2cec156e08e34b}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!is\_init@{is\_init}}
+\index{is\_init@{is\_init}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{is\_init}{is\_init}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a1e54fa0af2d142c1cf2cec156e08e34b} 
+uint8\+\_\+t is\+\_\+init = false\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Internal state variables for control loop execution. 
+
+True if control loop is initialized \Hypertarget{supercap__controllers_8cpp_a0fd96139ccb71c248b4fe6a33a4226d0}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!max\_chassis\_power@{max\_chassis\_power}}
+\index{max\_chassis\_power@{max\_chassis\_power}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{max\_chassis\_power}{max\_chassis\_power}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a0fd96139ccb71c248b4fe6a33a4226d0} 
+uint8\+\_\+t max\+\_\+chassis\+\_\+power = 45}
+
+
+
+Max allowed chassis power under RMUC rules. 
+
+\Hypertarget{supercap__controllers_8cpp_af30d8fa4b89fd391c7c55037f2c66328}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!out\_duty\_ratio\_output@{out\_duty\_ratio\_output}}
+\index{out\_duty\_ratio\_output@{out\_duty\_ratio\_output}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{out\_duty\_ratio\_output}{out\_duty\_ratio\_output}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_af30d8fa4b89fd391c7c55037f2c66328} 
+float out\+\_\+duty\+\_\+ratio\+\_\+output}
+
+
+
+Clamped and validated duty ratio to apply. 
+
+\Hypertarget{supercap__controllers_8cpp_a55509e1a9816b26433393148b19e8dcf}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!Pchassis\_output@{Pchassis\_output}}
+\index{Pchassis\_output@{Pchassis\_output}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{Pchassis\_output}{Pchassis\_output}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a55509e1a9816b26433393148b19e8dcf} 
+float Pchassis\+\_\+output}
+
+
+
+Output variables used in control and monitoring. 
+
+Output power estimation to the chassis \Hypertarget{supercap__controllers_8cpp_add29c3bfa7876f2b1d4b4685782829bb}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!pid@{pid}}
+\index{pid@{pid}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{pid}{pid}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_add29c3bfa7876f2b1d4b4685782829bb} 
+\mbox{\hyperlink{struct_loop_ctrl___p_i_d}{Loop\+Ctrl\+\_\+\+PID}} pid\mbox{[}5\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Array of PID control structures. 
+
+\Hypertarget{supercap__controllers_8cpp_a9ad0a1ea7261d776caf4fafe278338fb}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!safetyChangeTrigger@{safetyChangeTrigger}}
+\index{safetyChangeTrigger@{safetyChangeTrigger}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{safetyChangeTrigger}{safetyChangeTrigger}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a9ad0a1ea7261d776caf4fafe278338fb} 
+uint8\+\_\+t safety\+Change\+Trigger\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Tracks whether a safety level transition occurred. 
+
+\Hypertarget{supercap__controllers_8cpp_a279987673281ac0b5a019326653e3520}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!safetyItemLevel@{safetyItemLevel}}
+\index{safetyItemLevel@{safetyItemLevel}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{safetyItemLevel}{safetyItemLevel}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_a279987673281ac0b5a019326653e3520} 
+uint8\+\_\+t safety\+Item\+Level\mbox{[}8\mbox{]}}
+
+
+
+Tracks safety status per monitored item. 
+
+Global safety flags indexed by \doxylink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79}{Safety\+\_\+\+Detect\+Item\+Typedef}. \Hypertarget{supercap__controllers_8cpp_afc1d28cfbce795d6ea954ebe725241f5}\index{supercap\_controllers.cpp@{supercap\_controllers.cpp}!temperature@{temperature}}
+\index{temperature@{temperature}!supercap\_controllers.cpp@{supercap\_controllers.cpp}}
+\doxysubsubsection{\texorpdfstring{temperature}{temperature}}
+{\footnotesize\ttfamily \label{supercap__controllers_8cpp_afc1d28cfbce795d6ea954ebe725241f5} 
+float temperature = 0.\+0f}
+
+
+
+Global sensing variables updated during each loop. 
+

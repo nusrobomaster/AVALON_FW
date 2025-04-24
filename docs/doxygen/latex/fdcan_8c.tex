@@ -1,0 +1,94 @@
+\doxysection{Core/\+Src/fdcan.c File Reference}
+\hypertarget{fdcan_8c}{}\label{fdcan_8c}\index{Core/Src/fdcan.c@{Core/Src/fdcan.c}}
+
+
+This file provides code for the configuration of the FDCAN instances.  
+
+
+{\ttfamily \#include "{}fdcan.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{fdcan_8c_a4784114feec74d6f17b043c8fd3a13d7}{MX\+\_\+\+FDCAN2\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{fdcan_8c_a23437b1f2eaa26f0b2bb53983fe47877}{MX\+\_\+\+FDCAN3\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{fdcan_8c_a93a2756cf80884d125eecad39c785c5d}{HAL\+\_\+\+FDCAN\+\_\+\+Msp\+Init}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}fdcan\+Handle)
+\item 
+void \mbox{\hyperlink{fdcan_8c_a7c1e54efb942c6aa706dbfc9f35914f9}{HAL\+\_\+\+FDCAN\+\_\+\+Msp\+De\+Init}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}fdcan\+Handle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+FDCAN\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{fdcan_8c_af71d0ea733e88dc84fb4506e3bb5d8ce}{hfdcan2}}
+\item 
+FDCAN\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{fdcan_8c_adcfb40a407dae9135a746a08a8819b5b}{hfdcan3}}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{fdcan_8c_ada7e19331a4b570673681234c3dd6132}{HAL\+\_\+\+RCC\+\_\+\+FDCAN\+\_\+\+CLK\+\_\+\+ENABLED}} =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of the FDCAN instances. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2024 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{fdcan_8c_a7c1e54efb942c6aa706dbfc9f35914f9}\index{fdcan.c@{fdcan.c}!HAL\_FDCAN\_MspDeInit@{HAL\_FDCAN\_MspDeInit}}
+\index{HAL\_FDCAN\_MspDeInit@{HAL\_FDCAN\_MspDeInit}!fdcan.c@{fdcan.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_FDCAN\_MspDeInit()}{HAL\_FDCAN\_MspDeInit()}}
+{\footnotesize\ttfamily \label{fdcan_8c_a7c1e54efb942c6aa706dbfc9f35914f9} 
+void HAL\+\_\+\+FDCAN\+\_\+\+Msp\+De\+Init (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{fdcan\+Handle}{}\end{DoxyParamCaption})}
+
+FDCAN2 GPIO Configuration PB5 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} FDCAN2\+\_\+\+RX PB6 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} FDCAN2\+\_\+\+TX
+
+FDCAN3 GPIO Configuration PB3 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} FDCAN3\+\_\+\+RX PB4 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} FDCAN3\+\_\+\+TX\Hypertarget{fdcan_8c_a93a2756cf80884d125eecad39c785c5d}\index{fdcan.c@{fdcan.c}!HAL\_FDCAN\_MspInit@{HAL\_FDCAN\_MspInit}}
+\index{HAL\_FDCAN\_MspInit@{HAL\_FDCAN\_MspInit}!fdcan.c@{fdcan.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_FDCAN\_MspInit()}{HAL\_FDCAN\_MspInit()}}
+{\footnotesize\ttfamily \label{fdcan_8c_a93a2756cf80884d125eecad39c785c5d} 
+void HAL\+\_\+\+FDCAN\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{fdcan\+Handle}{}\end{DoxyParamCaption})}
+
+Initializes the peripherals clocks
+
+FDCAN2 GPIO Configuration PB5 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} FDCAN2\+\_\+\+RX PB6 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} FDCAN2\+\_\+\+TX
+
+Initializes the peripherals clocks
+
+FDCAN3 GPIO Configuration PB3 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} FDCAN3\+\_\+\+RX PB4 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} FDCAN3\+\_\+\+TX\Hypertarget{fdcan_8c_a4784114feec74d6f17b043c8fd3a13d7}\index{fdcan.c@{fdcan.c}!MX\_FDCAN2\_Init@{MX\_FDCAN2\_Init}}
+\index{MX\_FDCAN2\_Init@{MX\_FDCAN2\_Init}!fdcan.c@{fdcan.c}}
+\doxysubsubsection{\texorpdfstring{MX\_FDCAN2\_Init()}{MX\_FDCAN2\_Init()}}
+{\footnotesize\ttfamily \label{fdcan_8c_a4784114feec74d6f17b043c8fd3a13d7} 
+void MX\+\_\+\+FDCAN2\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{fdcan_8c_a23437b1f2eaa26f0b2bb53983fe47877}\index{fdcan.c@{fdcan.c}!MX\_FDCAN3\_Init@{MX\_FDCAN3\_Init}}
+\index{MX\_FDCAN3\_Init@{MX\_FDCAN3\_Init}!fdcan.c@{fdcan.c}}
+\doxysubsubsection{\texorpdfstring{MX\_FDCAN3\_Init()}{MX\_FDCAN3\_Init()}}
+{\footnotesize\ttfamily \label{fdcan_8c_a23437b1f2eaa26f0b2bb53983fe47877} 
+void MX\+\_\+\+FDCAN3\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{fdcan_8c_ada7e19331a4b570673681234c3dd6132}\index{fdcan.c@{fdcan.c}!HAL\_RCC\_FDCAN\_CLK\_ENABLED@{HAL\_RCC\_FDCAN\_CLK\_ENABLED}}
+\index{HAL\_RCC\_FDCAN\_CLK\_ENABLED@{HAL\_RCC\_FDCAN\_CLK\_ENABLED}!fdcan.c@{fdcan.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_RCC\_FDCAN\_CLK\_ENABLED}{HAL\_RCC\_FDCAN\_CLK\_ENABLED}}
+{\footnotesize\ttfamily \label{fdcan_8c_ada7e19331a4b570673681234c3dd6132} 
+uint32\+\_\+t HAL\+\_\+\+RCC\+\_\+\+FDCAN\+\_\+\+CLK\+\_\+\+ENABLED =0\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{fdcan_8c_af71d0ea733e88dc84fb4506e3bb5d8ce}\index{fdcan.c@{fdcan.c}!hfdcan2@{hfdcan2}}
+\index{hfdcan2@{hfdcan2}!fdcan.c@{fdcan.c}}
+\doxysubsubsection{\texorpdfstring{hfdcan2}{hfdcan2}}
+{\footnotesize\ttfamily \label{fdcan_8c_af71d0ea733e88dc84fb4506e3bb5d8ce} 
+FDCAN\+\_\+\+Handle\+Type\+Def hfdcan2}
+
+\Hypertarget{fdcan_8c_adcfb40a407dae9135a746a08a8819b5b}\index{fdcan.c@{fdcan.c}!hfdcan3@{hfdcan3}}
+\index{hfdcan3@{hfdcan3}!fdcan.c@{fdcan.c}}
+\doxysubsubsection{\texorpdfstring{hfdcan3}{hfdcan3}}
+{\footnotesize\ttfamily \label{fdcan_8c_adcfb40a407dae9135a746a08a8819b5b} 
+FDCAN\+\_\+\+Handle\+Type\+Def hfdcan3}
+

@@ -1,0 +1,99 @@
+\doxysection{supercap\+\_\+def.\+h}
+\hypertarget{supercap__def_8h_source}{}\label{supercap__def_8h_source}\index{System/stm\_utils/Inc/supercap\_def.h@{System/stm\_utils/Inc/supercap\_def.h}}
+\mbox{\hyperlink{supercap__def_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ STM\_UTILS\_INC\_SUPERCAP\_DEF\_H\_}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ STM\_UTILS\_INC\_SUPERCAP\_DEF\_H\_}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ ─────\ Board\ \&\ Mode\ Configuration\ ───────────────────────────────}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ BOARD\_ID}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#error\ "{}BOARD\_ID\ VARIABLE\ MUST\ BE\ DEFINED."{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ CALIBRATION\_MODE}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#error\ "{}CALIBRATION\ MODE\ VARIABLE\ MUST\ BE\ DEFINED."{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ ─────\ PID\ Parameters:\ Power\ Loop\ ───────────────────────────────}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ P\_BATTERY\_KP\ 3.85f\ \ \ }}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ P\_BATTERY\_KI\ 0.048f\ \ }}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ P\_BATTERY\_KD\ 0.001f\ \ }}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ P\_BATTERY\_MIN\_OUTPUT\ -\/400.0f\ \ }}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ P\_CHASSIS\_MAX\_OUTPUT\ 2.0f\ \ \ \ \ }}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ P\_CHASSIS\_MIN\_OUTPUT\ -\/2.0f\ \ \ \ }}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ ─────\ PID\ Parameters:\ Current\ Loop\ (Supercap)\ ──────────────────}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ I\_SUPERCAP\_KP\ 0.0207f}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ I\_SUPERCAP\_KI\ 0.00022f}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ I\_SUPERCAP\_KD\ 0.0f}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ I\_SUPERCAP\_INTEG\_MAX\ 1.621f}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ I\_SUPERCAP\_INTEG\_MIN\ 0.127f}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ I\_SUPERCAP\_MAX\_OUTPUT\ 1.621f}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ I\_SUPERCAP\_MIN\_OUTPUT\ 0.127f}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ I\_SUPERCAP\_INIT\_VAL\ 0.14f\ \ }}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ ─────\ PID\ Parameters:\ Voltage\ Control\ (Supercap\ Max)\ ───────────}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMAX\_KP\ 0.001f}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMAX\_KI\ 0.0025f}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMAX\_KD\ 0.001f}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMAX\_INTEG\_MAX\ 1.6f}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMAX\_INTEG\_MIN\ 1.005f}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMAX\_MAX\_OUTPUT\ 1.6f}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMAX\_MIN\_OUTPUT\ 1.005f}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMAX\_REF\ 26.0f}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMAX\_INIT\_VAL\ 1.4f}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ ─────\ PID\ Parameters:\ Voltage\ Control\ (Supercap\ Min)\ ───────────}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMIN\_KP\ 0.001f}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMIN\_KI\ 0.0025f}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMIN\_KD\ 0.0f}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMIN\_INTEG\_MAX\ 0.179f}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMIN\_INTEG\_MIN\ 0.127f}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMIN\_MAX\_OUTPUT\ 0.179f}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMIN\_MIN\_OUTPUT\ 0.127f}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMIN\_REF\ 2.7f}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ V\_SUPERCAPMIN\_INIT\_VAL\ 0.1f}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ ─────\ Safety\ Thresholds\ ────────────────────────────────────────}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ SUPERCAP\_CURRENT\_MAX\ 18.0f\ \ \ }}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ SUPERCAP\_CURRENT\_MIN\ -\/18.0f}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ SUPERCAP\_CURRENT\_SAFETY\_MAX\ 20.5f\ }}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ ESR\_VALUE\ 0.17f\ }}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ SUPERCAP\_MAX\_VOLTAGE\ 25.5f}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ SUPERCAP\_MIN\_VOLTAGE\ 3.00f}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ MIN\_PMM\_VOLTAGE\ 18.0f\ \ }}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ MAX\_PMM\_VOLTAGE\ 28.0f\ \ }}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ MAX\_CAP\_CURRENT\ 18.0f\ \ }}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ ─────\ Temperature\ Sensor\ Parameters\ (NTC)\ ──────────────────────}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ TEMP\_PARAM\_B\ 3380.0f}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ TEMP\_FIX\_RES\ 10000.0f\ \ }}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ TEMP\_NTC\_RES\ 10000.0f\ \ }}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ TEMP\_CELSIUS\_CONST\ 273.15f}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ TEMP\_AMBIANT\ 298.15f}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ MIN\_BAT\_VOLTAGE\ 20.97f\ \ }}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ STM\_UTILS\_INC\_SUPERCAP\_DEF\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

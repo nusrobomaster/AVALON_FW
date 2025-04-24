@@ -1,0 +1,23 @@
+\chapter{Avalon Supercapacitor Power Manager -\/ Firmware}
+\hypertarget{index}{}\label{index}\index{Avalon Supercapacitor Power Manager -\/ Firmware@{Avalon Supercapacitor Power Manager -\/ Firmware}}
+\hypertarget{index_intro_sec}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{index_intro_sec}
+This documentation covers the STM32-\/based firmware used to drive the Avalon supercapacitor power manager board developed for RMUC 2025. The system manages high-\/speed power delivery, bidirectional energy control, and safety management for supercap-\/assisted robotics.\hypertarget{index_features_sec}{}\doxysection{\texorpdfstring{Features}{Features}}\label{index_features_sec}
+
+\begin{DoxyItemize}
+\item Real-\/time power feedback control
+\item CAN communication with robot control system
+\item PID-\/based charge/discharge regulation
+\item Voltage and current monitoring
+\item Thermal supervision
+\end{DoxyItemize}\hypertarget{index_usage_sec}{}\doxysection{\texorpdfstring{Structure Overview}{Structure Overview}}\label{index_usage_sec}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{main_8cpp}{main.\+cpp}}\+: Starts the system.
+\item {\ttfamily \doxylink{supercap__controllers_8cpp}{supercap\+\_\+controllers.\+cpp}}\+: Core control loop logic and PWM control.
+\item {\ttfamily \doxylink{adc__utils_8cpp}{adc\+\_\+utils.\+cpp}}\+: ADC sampling, filtering, and compensation.
+\item {\ttfamily \doxylink{msg__handler_8cpp}{msg\+\_\+handler.\+cpp}}\+: CAN communication layer.
+\end{DoxyItemize}\hypertarget{index_links_sec}{}\doxysection{\texorpdfstring{Related Resources}{Related Resources}}\label{index_links_sec}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/YassineBakkali/Avalon_HW--RMUC_2025_Supercap-manager}{\texttt{ Hardware Repository}} 
+\end{DoxyItemize}

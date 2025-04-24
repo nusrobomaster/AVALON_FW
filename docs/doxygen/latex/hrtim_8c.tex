@@ -1,0 +1,70 @@
+\doxysection{Core/\+Src/hrtim.c File Reference}
+\hypertarget{hrtim_8c}{}\label{hrtim_8c}\index{Core/Src/hrtim.c@{Core/Src/hrtim.c}}
+
+
+This file provides code for the configuration of the HRTIM instances.  
+
+
+{\ttfamily \#include "{}hrtim.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{hrtim_8c_a8cc295a92c53dfc88f138745b21f9023}{MX\+\_\+\+HRTIM1\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{hrtim_8c_a1562b31e0104ec746d25dacdb1af12ed}{HAL\+\_\+\+HRTIM\+\_\+\+Msp\+Init}} (HRTIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hrtim\+Handle)
+\item 
+void \mbox{\hyperlink{hrtim_8c_ac16b9b90fe7bf5abfbb0dc973631acf7}{HAL\+\_\+\+HRTIM\+\_\+\+Msp\+Post\+Init}} (HRTIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hrtim\+Handle)
+\item 
+void \mbox{\hyperlink{hrtim_8c_ad524e52203b365407575156756328b14}{HAL\+\_\+\+HRTIM\+\_\+\+Msp\+De\+Init}} (HRTIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hrtim\+Handle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+HRTIM\+\_\+\+Handle\+Type\+Def \mbox{\hyperlink{hrtim_8c_a44943263f7e1cd04f86903320b61859b}{hhrtim1}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file provides code for the configuration of the HRTIM instances. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2024 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{hrtim_8c_ad524e52203b365407575156756328b14}\index{hrtim.c@{hrtim.c}!HAL\_HRTIM\_MspDeInit@{HAL\_HRTIM\_MspDeInit}}
+\index{HAL\_HRTIM\_MspDeInit@{HAL\_HRTIM\_MspDeInit}!hrtim.c@{hrtim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_HRTIM\_MspDeInit()}{HAL\_HRTIM\_MspDeInit()}}
+{\footnotesize\ttfamily \label{hrtim_8c_ad524e52203b365407575156756328b14} 
+void HAL\+\_\+\+HRTIM\+\_\+\+Msp\+De\+Init (\begin{DoxyParamCaption}\item[{HRTIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hrtim\+Handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hrtim_8c_a1562b31e0104ec746d25dacdb1af12ed}\index{hrtim.c@{hrtim.c}!HAL\_HRTIM\_MspInit@{HAL\_HRTIM\_MspInit}}
+\index{HAL\_HRTIM\_MspInit@{HAL\_HRTIM\_MspInit}!hrtim.c@{hrtim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_HRTIM\_MspInit()}{HAL\_HRTIM\_MspInit()}}
+{\footnotesize\ttfamily \label{hrtim_8c_a1562b31e0104ec746d25dacdb1af12ed} 
+void HAL\+\_\+\+HRTIM\+\_\+\+Msp\+Init (\begin{DoxyParamCaption}\item[{HRTIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hrtim\+Handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hrtim_8c_ac16b9b90fe7bf5abfbb0dc973631acf7}\index{hrtim.c@{hrtim.c}!HAL\_HRTIM\_MspPostInit@{HAL\_HRTIM\_MspPostInit}}
+\index{HAL\_HRTIM\_MspPostInit@{HAL\_HRTIM\_MspPostInit}!hrtim.c@{hrtim.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_HRTIM\_MspPostInit()}{HAL\_HRTIM\_MspPostInit()}}
+{\footnotesize\ttfamily \label{hrtim_8c_ac16b9b90fe7bf5abfbb0dc973631acf7} 
+void HAL\+\_\+\+HRTIM\+\_\+\+Msp\+Post\+Init (\begin{DoxyParamCaption}\item[{HRTIM\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hrtim\+Handle}{}\end{DoxyParamCaption})}
+
+HRTIM1 GPIO Configuration PC8 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} HRTIM1\+\_\+\+CHE1 PC9 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} HRTIM1\+\_\+\+CHE2 PA8 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} HRTIM1\+\_\+\+CHA1 PA9 -\/-\/-\/-\/-\/-\/\texorpdfstring{$>$}{>} HRTIM1\+\_\+\+CHA2\Hypertarget{hrtim_8c_a8cc295a92c53dfc88f138745b21f9023}\index{hrtim.c@{hrtim.c}!MX\_HRTIM1\_Init@{MX\_HRTIM1\_Init}}
+\index{MX\_HRTIM1\_Init@{MX\_HRTIM1\_Init}!hrtim.c@{hrtim.c}}
+\doxysubsubsection{\texorpdfstring{MX\_HRTIM1\_Init()}{MX\_HRTIM1\_Init()}}
+{\footnotesize\ttfamily \label{hrtim_8c_a8cc295a92c53dfc88f138745b21f9023} 
+void MX\+\_\+\+HRTIM1\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{hrtim_8c_a44943263f7e1cd04f86903320b61859b}\index{hrtim.c@{hrtim.c}!hhrtim1@{hhrtim1}}
+\index{hhrtim1@{hhrtim1}!hrtim.c@{hrtim.c}}
+\doxysubsubsection{\texorpdfstring{hhrtim1}{hhrtim1}}
+{\footnotesize\ttfamily \label{hrtim_8c_a44943263f7e1cd04f86903320b61859b} 
+HRTIM\+\_\+\+Handle\+Type\+Def hhrtim1}
+

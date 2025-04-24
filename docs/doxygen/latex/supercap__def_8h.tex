@@ -1,0 +1,460 @@
+\doxysection{System/stm\+\_\+utils/\+Inc/supercap\+\_\+def.h File Reference}
+\hypertarget{supercap__def_8h}{}\label{supercap__def_8h}\index{System/stm\_utils/Inc/supercap\_def.h@{System/stm\_utils/Inc/supercap\_def.h}}
+
+
+Configuration constants for the supercapacitor power manager firmware.  
+
+
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_ab71664ad1994a581866ebae6cee29150}{P\+\_\+\+BATTERY\+\_\+\+KP}}~3.\+85f
+\begin{DoxyCompactList}\small\item\em Board ID must be defined externally via compiler or build system. Each board ID maps to a set of calibration constants (in \doxylink{adc__utils_8hpp}{adc\+\_\+utils.\+hpp}). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_aad38aa9cd8e345e2c6883920bd39bad1}{P\+\_\+\+BATTERY\+\_\+\+KI}}~0.\+048f
+\begin{DoxyCompactList}\small\item\em Integral gain for battery power regulation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a94c4b0ea4bdcaca4d315f569d7bf7947}{P\+\_\+\+BATTERY\+\_\+\+KD}}~0.\+001f
+\begin{DoxyCompactList}\small\item\em Derivative gain for battery power regulation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a944ff44ef7fe840f3281f85b679df3ce}{P\+\_\+\+BATTERY\+\_\+\+MIN\+\_\+\+OUTPUT}}~-\/400.\+0f
+\begin{DoxyCompactList}\small\item\em Minimum output for battery power PID. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a10d2fdc027c1a174256835067137a7eb}{P\+\_\+\+CHASSIS\+\_\+\+MAX\+\_\+\+OUTPUT}}~2.\+0f
+\begin{DoxyCompactList}\small\item\em Max output for chassis PID (currently unused) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a82b339cd5ffe359b9ab194a75a336096}{P\+\_\+\+CHASSIS\+\_\+\+MIN\+\_\+\+OUTPUT}}~-\/2.\+0f
+\begin{DoxyCompactList}\small\item\em Min output for chassis PID (currently unused) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a210231c585755d208f920bdbf78e9bb4}{I\+\_\+\+SUPERCAP\+\_\+\+KP}}~0.\+0207f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a5a887b6a2d0d3dba915ddb9d94f1a27b}{I\+\_\+\+SUPERCAP\+\_\+\+KI}}~0.\+00022f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a1f5eb9215a5da85d9b56f6faec7e9b2d}{I\+\_\+\+SUPERCAP\+\_\+\+KD}}~0.\+0f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a2892ae76021b701c4b04aaca94088a0b}{I\+\_\+\+SUPERCAP\+\_\+\+INTEG\+\_\+\+MAX}}~1.\+621f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a908eb32717d3e285eb97226efb770550}{I\+\_\+\+SUPERCAP\+\_\+\+INTEG\+\_\+\+MIN}}~0.\+127f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a4800e212269991dfd1beaf89b4bc3380}{I\+\_\+\+SUPERCAP\+\_\+\+MAX\+\_\+\+OUTPUT}}~1.\+621f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a955d407124dd990495ead1b778fc4cde}{I\+\_\+\+SUPERCAP\+\_\+\+MIN\+\_\+\+OUTPUT}}~0.\+127f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a3cc2bd1c13eedd913abd6594501efd2b}{I\+\_\+\+SUPERCAP\+\_\+\+INIT\+\_\+\+VAL}}~0.\+14f
+\begin{DoxyCompactList}\small\item\em Initial value for I-\/supercap PID state. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a8520827943925ddb5178f6a41a4ced7d}{V\+\_\+\+SUPERCAPMAX\+\_\+\+KP}}~0.\+001f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a83e035e21da1b9daed89221649a894fc}{V\+\_\+\+SUPERCAPMAX\+\_\+\+KI}}~0.\+0025f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a8f8be9791818b1afc97b4477cef96580}{V\+\_\+\+SUPERCAPMAX\+\_\+\+KD}}~0.\+001f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a2d540728386c6121bea2ecb48500ae19}{V\+\_\+\+SUPERCAPMAX\+\_\+\+INTEG\+\_\+\+MAX}}~1.\+6f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a5ed1b8a9c62006b2f31db71ef824aaf3}{V\+\_\+\+SUPERCAPMAX\+\_\+\+INTEG\+\_\+\+MIN}}~1.\+005f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a3db5687c1d61b6af2ffc0923f28d9eae}{V\+\_\+\+SUPERCAPMAX\+\_\+\+MAX\+\_\+\+OUTPUT}}~1.\+6f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a0451cf5d27069a86f2d6823fdd219d61}{V\+\_\+\+SUPERCAPMAX\+\_\+\+MIN\+\_\+\+OUTPUT}}~1.\+005f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a77e13c315212e2cf6535f32d607703f6}{V\+\_\+\+SUPERCAPMAX\+\_\+\+REF}}~26.\+0f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a487126c25fd044b2ee6fdffaa8f6f642}{V\+\_\+\+SUPERCAPMAX\+\_\+\+INIT\+\_\+\+VAL}}~1.\+4f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a5d951c55a1261ab52c852a2893ff056f}{V\+\_\+\+SUPERCAPMIN\+\_\+\+KP}}~0.\+001f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a0ee4d410ff714630aeb0ab91ce2f3bcc}{V\+\_\+\+SUPERCAPMIN\+\_\+\+KI}}~0.\+0025f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a9e6375c9a551f4744b2a73b7d3783c66}{V\+\_\+\+SUPERCAPMIN\+\_\+\+KD}}~0.\+0f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a5da726d0d65cdb950ae7c8ba659feaf7}{V\+\_\+\+SUPERCAPMIN\+\_\+\+INTEG\+\_\+\+MAX}}~0.\+179f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a1a5f9e9021a9751bc436db4f51895585}{V\+\_\+\+SUPERCAPMIN\+\_\+\+INTEG\+\_\+\+MIN}}~0.\+127f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a9f5eebe40089c37841e28e5e02f4e8c3}{V\+\_\+\+SUPERCAPMIN\+\_\+\+MAX\+\_\+\+OUTPUT}}~0.\+179f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_ab77195254a22dcb170efa8837fc71010}{V\+\_\+\+SUPERCAPMIN\+\_\+\+MIN\+\_\+\+OUTPUT}}~0.\+127f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_ae5bf757ec7319e4eb04ad9fb32fa8547}{V\+\_\+\+SUPERCAPMIN\+\_\+\+REF}}~2.\+7f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a835a1fd47c3512e2ab8d4e9552c1addd}{V\+\_\+\+SUPERCAPMIN\+\_\+\+INIT\+\_\+\+VAL}}~0.\+1f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a022596dc4d6d3c71642fd7d109cf1c17}{SUPERCAP\+\_\+\+CURRENT\+\_\+\+MAX}}~18.\+0f
+\begin{DoxyCompactList}\small\item\em Absolute max current for cap control. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a34263544c827f34d6893119ea76bf544}{SUPERCAP\+\_\+\+CURRENT\+\_\+\+MIN}}~-\/18.\+0f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_ab3196bdf6dddfd45d62edfee7fe5ecf9}{SUPERCAP\+\_\+\+CURRENT\+\_\+\+SAFETY\+\_\+\+MAX}}~20.\+5f
+\begin{DoxyCompactList}\small\item\em Current limit before triggering safety shutdown. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a4e7745e071f1211ac6abec57b8edeade}{ESR\+\_\+\+VALUE}}~0.\+17f
+\begin{DoxyCompactList}\small\item\em Equivalent series resistance of the supercap bank. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_aaaca9932ea878ab49b8ccef7b25ac181}{SUPERCAP\+\_\+\+MAX\+\_\+\+VOLTAGE}}~25.\+5f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a82a68354bb88dfec84209f4dad379bc7}{SUPERCAP\+\_\+\+MIN\+\_\+\+VOLTAGE}}~3.\+00f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_acce017a5a0a49ca62bed73f0571a0c6b}{MIN\+\_\+\+PMM\+\_\+\+VOLTAGE}}~18.\+0f
+\begin{DoxyCompactList}\small\item\em Minimum voltage allowed from PMM (input rail) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a75f36e362fad5a40af1786cea92152c9}{MAX\+\_\+\+PMM\+\_\+\+VOLTAGE}}~28.\+0f
+\begin{DoxyCompactList}\small\item\em Maximum voltage allowed from PMM. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a4c66f3e4c72603f57618b43daac19901}{MAX\+\_\+\+CAP\+\_\+\+CURRENT}}~18.\+0f
+\begin{DoxyCompactList}\small\item\em Max current used in feedforward model. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_aa1d8f4d8a48475579af322e75e2097d2}{TEMP\+\_\+\+PARAM\+\_\+B}}~3380.\+0f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a6a464a5c6dab92752538ccd48b6dea38}{TEMP\+\_\+\+FIX\+\_\+\+RES}}~10000.\+0f
+\begin{DoxyCompactList}\small\item\em Fixed resistor in the voltage divider. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_af8da995702765c89fc0b03fb047d0442}{TEMP\+\_\+\+NTC\+\_\+\+RES}}~10000.\+0f
+\begin{DoxyCompactList}\small\item\em Nominal resistance of the NTC. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a4d1fedefe4df4b73b41fffb58b3203ed}{TEMP\+\_\+\+CELSIUS\+\_\+\+CONST}}~273.\+15f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a9878d6f4091d41b7f88bca11d5c638d2}{TEMP\+\_\+\+AMBIANT}}~298.\+15f
+\item 
+\#define \mbox{\hyperlink{supercap__def_8h_a142ec02ed03a9872390887472cd555b9}{MIN\+\_\+\+BAT\+\_\+\+VOLTAGE}}~20.\+97f
+\begin{DoxyCompactList}\small\item\em Min voltage to consider battery healthy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration constants for the supercapacitor power manager firmware. 
+
+This file defines all global parameters for PID tuning, safety limits, thermal calculations, and voltage/current thresholds used throughout the supercapacitor controller logic.
+
+Created on\+: Jul 5, 2024 Author\+: Yassine Bakkali 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{supercap__def_8h_a4e7745e071f1211ac6abec57b8edeade}\index{supercap\_def.h@{supercap\_def.h}!ESR\_VALUE@{ESR\_VALUE}}
+\index{ESR\_VALUE@{ESR\_VALUE}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{ESR\_VALUE}{ESR\_VALUE}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a4e7745e071f1211ac6abec57b8edeade} 
+\#define ESR\+\_\+\+VALUE~0.\+17f}
+
+
+
+Equivalent series resistance of the supercap bank. 
+
+\Hypertarget{supercap__def_8h_a3cc2bd1c13eedd913abd6594501efd2b}\index{supercap\_def.h@{supercap\_def.h}!I\_SUPERCAP\_INIT\_VAL@{I\_SUPERCAP\_INIT\_VAL}}
+\index{I\_SUPERCAP\_INIT\_VAL@{I\_SUPERCAP\_INIT\_VAL}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{I\_SUPERCAP\_INIT\_VAL}{I\_SUPERCAP\_INIT\_VAL}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a3cc2bd1c13eedd913abd6594501efd2b} 
+\#define I\+\_\+\+SUPERCAP\+\_\+\+INIT\+\_\+\+VAL~0.\+14f}
+
+
+
+Initial value for I-\/supercap PID state. 
+
+\Hypertarget{supercap__def_8h_a2892ae76021b701c4b04aaca94088a0b}\index{supercap\_def.h@{supercap\_def.h}!I\_SUPERCAP\_INTEG\_MAX@{I\_SUPERCAP\_INTEG\_MAX}}
+\index{I\_SUPERCAP\_INTEG\_MAX@{I\_SUPERCAP\_INTEG\_MAX}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{I\_SUPERCAP\_INTEG\_MAX}{I\_SUPERCAP\_INTEG\_MAX}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a2892ae76021b701c4b04aaca94088a0b} 
+\#define I\+\_\+\+SUPERCAP\+\_\+\+INTEG\+\_\+\+MAX~1.\+621f}
+
+\Hypertarget{supercap__def_8h_a908eb32717d3e285eb97226efb770550}\index{supercap\_def.h@{supercap\_def.h}!I\_SUPERCAP\_INTEG\_MIN@{I\_SUPERCAP\_INTEG\_MIN}}
+\index{I\_SUPERCAP\_INTEG\_MIN@{I\_SUPERCAP\_INTEG\_MIN}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{I\_SUPERCAP\_INTEG\_MIN}{I\_SUPERCAP\_INTEG\_MIN}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a908eb32717d3e285eb97226efb770550} 
+\#define I\+\_\+\+SUPERCAP\+\_\+\+INTEG\+\_\+\+MIN~0.\+127f}
+
+\Hypertarget{supercap__def_8h_a1f5eb9215a5da85d9b56f6faec7e9b2d}\index{supercap\_def.h@{supercap\_def.h}!I\_SUPERCAP\_KD@{I\_SUPERCAP\_KD}}
+\index{I\_SUPERCAP\_KD@{I\_SUPERCAP\_KD}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{I\_SUPERCAP\_KD}{I\_SUPERCAP\_KD}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a1f5eb9215a5da85d9b56f6faec7e9b2d} 
+\#define I\+\_\+\+SUPERCAP\+\_\+\+KD~0.\+0f}
+
+\Hypertarget{supercap__def_8h_a5a887b6a2d0d3dba915ddb9d94f1a27b}\index{supercap\_def.h@{supercap\_def.h}!I\_SUPERCAP\_KI@{I\_SUPERCAP\_KI}}
+\index{I\_SUPERCAP\_KI@{I\_SUPERCAP\_KI}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{I\_SUPERCAP\_KI}{I\_SUPERCAP\_KI}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a5a887b6a2d0d3dba915ddb9d94f1a27b} 
+\#define I\+\_\+\+SUPERCAP\+\_\+\+KI~0.\+00022f}
+
+\Hypertarget{supercap__def_8h_a210231c585755d208f920bdbf78e9bb4}\index{supercap\_def.h@{supercap\_def.h}!I\_SUPERCAP\_KP@{I\_SUPERCAP\_KP}}
+\index{I\_SUPERCAP\_KP@{I\_SUPERCAP\_KP}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{I\_SUPERCAP\_KP}{I\_SUPERCAP\_KP}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a210231c585755d208f920bdbf78e9bb4} 
+\#define I\+\_\+\+SUPERCAP\+\_\+\+KP~0.\+0207f}
+
+\Hypertarget{supercap__def_8h_a4800e212269991dfd1beaf89b4bc3380}\index{supercap\_def.h@{supercap\_def.h}!I\_SUPERCAP\_MAX\_OUTPUT@{I\_SUPERCAP\_MAX\_OUTPUT}}
+\index{I\_SUPERCAP\_MAX\_OUTPUT@{I\_SUPERCAP\_MAX\_OUTPUT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{I\_SUPERCAP\_MAX\_OUTPUT}{I\_SUPERCAP\_MAX\_OUTPUT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a4800e212269991dfd1beaf89b4bc3380} 
+\#define I\+\_\+\+SUPERCAP\+\_\+\+MAX\+\_\+\+OUTPUT~1.\+621f}
+
+\Hypertarget{supercap__def_8h_a955d407124dd990495ead1b778fc4cde}\index{supercap\_def.h@{supercap\_def.h}!I\_SUPERCAP\_MIN\_OUTPUT@{I\_SUPERCAP\_MIN\_OUTPUT}}
+\index{I\_SUPERCAP\_MIN\_OUTPUT@{I\_SUPERCAP\_MIN\_OUTPUT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{I\_SUPERCAP\_MIN\_OUTPUT}{I\_SUPERCAP\_MIN\_OUTPUT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a955d407124dd990495ead1b778fc4cde} 
+\#define I\+\_\+\+SUPERCAP\+\_\+\+MIN\+\_\+\+OUTPUT~0.\+127f}
+
+\Hypertarget{supercap__def_8h_a4c66f3e4c72603f57618b43daac19901}\index{supercap\_def.h@{supercap\_def.h}!MAX\_CAP\_CURRENT@{MAX\_CAP\_CURRENT}}
+\index{MAX\_CAP\_CURRENT@{MAX\_CAP\_CURRENT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_CAP\_CURRENT}{MAX\_CAP\_CURRENT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a4c66f3e4c72603f57618b43daac19901} 
+\#define MAX\+\_\+\+CAP\+\_\+\+CURRENT~18.\+0f}
+
+
+
+Max current used in feedforward model. 
+
+\Hypertarget{supercap__def_8h_a75f36e362fad5a40af1786cea92152c9}\index{supercap\_def.h@{supercap\_def.h}!MAX\_PMM\_VOLTAGE@{MAX\_PMM\_VOLTAGE}}
+\index{MAX\_PMM\_VOLTAGE@{MAX\_PMM\_VOLTAGE}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_PMM\_VOLTAGE}{MAX\_PMM\_VOLTAGE}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a75f36e362fad5a40af1786cea92152c9} 
+\#define MAX\+\_\+\+PMM\+\_\+\+VOLTAGE~28.\+0f}
+
+
+
+Maximum voltage allowed from PMM. 
+
+\Hypertarget{supercap__def_8h_a142ec02ed03a9872390887472cd555b9}\index{supercap\_def.h@{supercap\_def.h}!MIN\_BAT\_VOLTAGE@{MIN\_BAT\_VOLTAGE}}
+\index{MIN\_BAT\_VOLTAGE@{MIN\_BAT\_VOLTAGE}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_BAT\_VOLTAGE}{MIN\_BAT\_VOLTAGE}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a142ec02ed03a9872390887472cd555b9} 
+\#define MIN\+\_\+\+BAT\+\_\+\+VOLTAGE~20.\+97f}
+
+
+
+Min voltage to consider battery healthy. 
+
+\Hypertarget{supercap__def_8h_acce017a5a0a49ca62bed73f0571a0c6b}\index{supercap\_def.h@{supercap\_def.h}!MIN\_PMM\_VOLTAGE@{MIN\_PMM\_VOLTAGE}}
+\index{MIN\_PMM\_VOLTAGE@{MIN\_PMM\_VOLTAGE}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_PMM\_VOLTAGE}{MIN\_PMM\_VOLTAGE}}
+{\footnotesize\ttfamily \label{supercap__def_8h_acce017a5a0a49ca62bed73f0571a0c6b} 
+\#define MIN\+\_\+\+PMM\+\_\+\+VOLTAGE~18.\+0f}
+
+
+
+Minimum voltage allowed from PMM (input rail) 
+
+\Hypertarget{supercap__def_8h_a94c4b0ea4bdcaca4d315f569d7bf7947}\index{supercap\_def.h@{supercap\_def.h}!P\_BATTERY\_KD@{P\_BATTERY\_KD}}
+\index{P\_BATTERY\_KD@{P\_BATTERY\_KD}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{P\_BATTERY\_KD}{P\_BATTERY\_KD}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a94c4b0ea4bdcaca4d315f569d7bf7947} 
+\#define P\+\_\+\+BATTERY\+\_\+\+KD~0.\+001f}
+
+
+
+Derivative gain for battery power regulation. 
+
+\Hypertarget{supercap__def_8h_aad38aa9cd8e345e2c6883920bd39bad1}\index{supercap\_def.h@{supercap\_def.h}!P\_BATTERY\_KI@{P\_BATTERY\_KI}}
+\index{P\_BATTERY\_KI@{P\_BATTERY\_KI}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{P\_BATTERY\_KI}{P\_BATTERY\_KI}}
+{\footnotesize\ttfamily \label{supercap__def_8h_aad38aa9cd8e345e2c6883920bd39bad1} 
+\#define P\+\_\+\+BATTERY\+\_\+\+KI~0.\+048f}
+
+
+
+Integral gain for battery power regulation. 
+
+\Hypertarget{supercap__def_8h_ab71664ad1994a581866ebae6cee29150}\index{supercap\_def.h@{supercap\_def.h}!P\_BATTERY\_KP@{P\_BATTERY\_KP}}
+\index{P\_BATTERY\_KP@{P\_BATTERY\_KP}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{P\_BATTERY\_KP}{P\_BATTERY\_KP}}
+{\footnotesize\ttfamily \label{supercap__def_8h_ab71664ad1994a581866ebae6cee29150} 
+\#define P\+\_\+\+BATTERY\+\_\+\+KP~3.\+85f}
+
+
+
+Board ID must be defined externally via compiler or build system. Each board ID maps to a set of calibration constants (in \doxylink{adc__utils_8hpp}{adc\+\_\+utils.\+hpp}). 
+
+Enable or disable calibration mode. When enabled, loop update is skipped and manual calibration logic may be run. Proportional gain for battery power regulation \Hypertarget{supercap__def_8h_a944ff44ef7fe840f3281f85b679df3ce}\index{supercap\_def.h@{supercap\_def.h}!P\_BATTERY\_MIN\_OUTPUT@{P\_BATTERY\_MIN\_OUTPUT}}
+\index{P\_BATTERY\_MIN\_OUTPUT@{P\_BATTERY\_MIN\_OUTPUT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{P\_BATTERY\_MIN\_OUTPUT}{P\_BATTERY\_MIN\_OUTPUT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a944ff44ef7fe840f3281f85b679df3ce} 
+\#define P\+\_\+\+BATTERY\+\_\+\+MIN\+\_\+\+OUTPUT~-\/400.\+0f}
+
+
+
+Minimum output for battery power PID. 
+
+\Hypertarget{supercap__def_8h_a10d2fdc027c1a174256835067137a7eb}\index{supercap\_def.h@{supercap\_def.h}!P\_CHASSIS\_MAX\_OUTPUT@{P\_CHASSIS\_MAX\_OUTPUT}}
+\index{P\_CHASSIS\_MAX\_OUTPUT@{P\_CHASSIS\_MAX\_OUTPUT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{P\_CHASSIS\_MAX\_OUTPUT}{P\_CHASSIS\_MAX\_OUTPUT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a10d2fdc027c1a174256835067137a7eb} 
+\#define P\+\_\+\+CHASSIS\+\_\+\+MAX\+\_\+\+OUTPUT~2.\+0f}
+
+
+
+Max output for chassis PID (currently unused) 
+
+\Hypertarget{supercap__def_8h_a82b339cd5ffe359b9ab194a75a336096}\index{supercap\_def.h@{supercap\_def.h}!P\_CHASSIS\_MIN\_OUTPUT@{P\_CHASSIS\_MIN\_OUTPUT}}
+\index{P\_CHASSIS\_MIN\_OUTPUT@{P\_CHASSIS\_MIN\_OUTPUT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{P\_CHASSIS\_MIN\_OUTPUT}{P\_CHASSIS\_MIN\_OUTPUT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a82b339cd5ffe359b9ab194a75a336096} 
+\#define P\+\_\+\+CHASSIS\+\_\+\+MIN\+\_\+\+OUTPUT~-\/2.\+0f}
+
+
+
+Min output for chassis PID (currently unused) 
+
+\Hypertarget{supercap__def_8h_a022596dc4d6d3c71642fd7d109cf1c17}\index{supercap\_def.h@{supercap\_def.h}!SUPERCAP\_CURRENT\_MAX@{SUPERCAP\_CURRENT\_MAX}}
+\index{SUPERCAP\_CURRENT\_MAX@{SUPERCAP\_CURRENT\_MAX}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{SUPERCAP\_CURRENT\_MAX}{SUPERCAP\_CURRENT\_MAX}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a022596dc4d6d3c71642fd7d109cf1c17} 
+\#define SUPERCAP\+\_\+\+CURRENT\+\_\+\+MAX~18.\+0f}
+
+
+
+Absolute max current for cap control. 
+
+\Hypertarget{supercap__def_8h_a34263544c827f34d6893119ea76bf544}\index{supercap\_def.h@{supercap\_def.h}!SUPERCAP\_CURRENT\_MIN@{SUPERCAP\_CURRENT\_MIN}}
+\index{SUPERCAP\_CURRENT\_MIN@{SUPERCAP\_CURRENT\_MIN}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{SUPERCAP\_CURRENT\_MIN}{SUPERCAP\_CURRENT\_MIN}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a34263544c827f34d6893119ea76bf544} 
+\#define SUPERCAP\+\_\+\+CURRENT\+\_\+\+MIN~-\/18.\+0f}
+
+\Hypertarget{supercap__def_8h_ab3196bdf6dddfd45d62edfee7fe5ecf9}\index{supercap\_def.h@{supercap\_def.h}!SUPERCAP\_CURRENT\_SAFETY\_MAX@{SUPERCAP\_CURRENT\_SAFETY\_MAX}}
+\index{SUPERCAP\_CURRENT\_SAFETY\_MAX@{SUPERCAP\_CURRENT\_SAFETY\_MAX}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{SUPERCAP\_CURRENT\_SAFETY\_MAX}{SUPERCAP\_CURRENT\_SAFETY\_MAX}}
+{\footnotesize\ttfamily \label{supercap__def_8h_ab3196bdf6dddfd45d62edfee7fe5ecf9} 
+\#define SUPERCAP\+\_\+\+CURRENT\+\_\+\+SAFETY\+\_\+\+MAX~20.\+5f}
+
+
+
+Current limit before triggering safety shutdown. 
+
+\Hypertarget{supercap__def_8h_aaaca9932ea878ab49b8ccef7b25ac181}\index{supercap\_def.h@{supercap\_def.h}!SUPERCAP\_MAX\_VOLTAGE@{SUPERCAP\_MAX\_VOLTAGE}}
+\index{SUPERCAP\_MAX\_VOLTAGE@{SUPERCAP\_MAX\_VOLTAGE}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{SUPERCAP\_MAX\_VOLTAGE}{SUPERCAP\_MAX\_VOLTAGE}}
+{\footnotesize\ttfamily \label{supercap__def_8h_aaaca9932ea878ab49b8ccef7b25ac181} 
+\#define SUPERCAP\+\_\+\+MAX\+\_\+\+VOLTAGE~25.\+5f}
+
+\Hypertarget{supercap__def_8h_a82a68354bb88dfec84209f4dad379bc7}\index{supercap\_def.h@{supercap\_def.h}!SUPERCAP\_MIN\_VOLTAGE@{SUPERCAP\_MIN\_VOLTAGE}}
+\index{SUPERCAP\_MIN\_VOLTAGE@{SUPERCAP\_MIN\_VOLTAGE}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{SUPERCAP\_MIN\_VOLTAGE}{SUPERCAP\_MIN\_VOLTAGE}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a82a68354bb88dfec84209f4dad379bc7} 
+\#define SUPERCAP\+\_\+\+MIN\+\_\+\+VOLTAGE~3.\+00f}
+
+\Hypertarget{supercap__def_8h_a9878d6f4091d41b7f88bca11d5c638d2}\index{supercap\_def.h@{supercap\_def.h}!TEMP\_AMBIANT@{TEMP\_AMBIANT}}
+\index{TEMP\_AMBIANT@{TEMP\_AMBIANT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_AMBIANT}{TEMP\_AMBIANT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a9878d6f4091d41b7f88bca11d5c638d2} 
+\#define TEMP\+\_\+\+AMBIANT~298.\+15f}
+
+\Hypertarget{supercap__def_8h_a4d1fedefe4df4b73b41fffb58b3203ed}\index{supercap\_def.h@{supercap\_def.h}!TEMP\_CELSIUS\_CONST@{TEMP\_CELSIUS\_CONST}}
+\index{TEMP\_CELSIUS\_CONST@{TEMP\_CELSIUS\_CONST}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_CELSIUS\_CONST}{TEMP\_CELSIUS\_CONST}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a4d1fedefe4df4b73b41fffb58b3203ed} 
+\#define TEMP\+\_\+\+CELSIUS\+\_\+\+CONST~273.\+15f}
+
+\Hypertarget{supercap__def_8h_a6a464a5c6dab92752538ccd48b6dea38}\index{supercap\_def.h@{supercap\_def.h}!TEMP\_FIX\_RES@{TEMP\_FIX\_RES}}
+\index{TEMP\_FIX\_RES@{TEMP\_FIX\_RES}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_FIX\_RES}{TEMP\_FIX\_RES}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a6a464a5c6dab92752538ccd48b6dea38} 
+\#define TEMP\+\_\+\+FIX\+\_\+\+RES~10000.\+0f}
+
+
+
+Fixed resistor in the voltage divider. 
+
+\Hypertarget{supercap__def_8h_af8da995702765c89fc0b03fb047d0442}\index{supercap\_def.h@{supercap\_def.h}!TEMP\_NTC\_RES@{TEMP\_NTC\_RES}}
+\index{TEMP\_NTC\_RES@{TEMP\_NTC\_RES}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_NTC\_RES}{TEMP\_NTC\_RES}}
+{\footnotesize\ttfamily \label{supercap__def_8h_af8da995702765c89fc0b03fb047d0442} 
+\#define TEMP\+\_\+\+NTC\+\_\+\+RES~10000.\+0f}
+
+
+
+Nominal resistance of the NTC. 
+
+\Hypertarget{supercap__def_8h_aa1d8f4d8a48475579af322e75e2097d2}\index{supercap\_def.h@{supercap\_def.h}!TEMP\_PARAM\_B@{TEMP\_PARAM\_B}}
+\index{TEMP\_PARAM\_B@{TEMP\_PARAM\_B}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{TEMP\_PARAM\_B}{TEMP\_PARAM\_B}}
+{\footnotesize\ttfamily \label{supercap__def_8h_aa1d8f4d8a48475579af322e75e2097d2} 
+\#define TEMP\+\_\+\+PARAM\+\_\+B~3380.\+0f}
+
+\Hypertarget{supercap__def_8h_a487126c25fd044b2ee6fdffaa8f6f642}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMAX\_INIT\_VAL@{V\_SUPERCAPMAX\_INIT\_VAL}}
+\index{V\_SUPERCAPMAX\_INIT\_VAL@{V\_SUPERCAPMAX\_INIT\_VAL}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMAX\_INIT\_VAL}{V\_SUPERCAPMAX\_INIT\_VAL}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a487126c25fd044b2ee6fdffaa8f6f642} 
+\#define V\+\_\+\+SUPERCAPMAX\+\_\+\+INIT\+\_\+\+VAL~1.\+4f}
+
+\Hypertarget{supercap__def_8h_a2d540728386c6121bea2ecb48500ae19}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMAX\_INTEG\_MAX@{V\_SUPERCAPMAX\_INTEG\_MAX}}
+\index{V\_SUPERCAPMAX\_INTEG\_MAX@{V\_SUPERCAPMAX\_INTEG\_MAX}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMAX\_INTEG\_MAX}{V\_SUPERCAPMAX\_INTEG\_MAX}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a2d540728386c6121bea2ecb48500ae19} 
+\#define V\+\_\+\+SUPERCAPMAX\+\_\+\+INTEG\+\_\+\+MAX~1.\+6f}
+
+\Hypertarget{supercap__def_8h_a5ed1b8a9c62006b2f31db71ef824aaf3}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMAX\_INTEG\_MIN@{V\_SUPERCAPMAX\_INTEG\_MIN}}
+\index{V\_SUPERCAPMAX\_INTEG\_MIN@{V\_SUPERCAPMAX\_INTEG\_MIN}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMAX\_INTEG\_MIN}{V\_SUPERCAPMAX\_INTEG\_MIN}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a5ed1b8a9c62006b2f31db71ef824aaf3} 
+\#define V\+\_\+\+SUPERCAPMAX\+\_\+\+INTEG\+\_\+\+MIN~1.\+005f}
+
+\Hypertarget{supercap__def_8h_a8f8be9791818b1afc97b4477cef96580}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMAX\_KD@{V\_SUPERCAPMAX\_KD}}
+\index{V\_SUPERCAPMAX\_KD@{V\_SUPERCAPMAX\_KD}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMAX\_KD}{V\_SUPERCAPMAX\_KD}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a8f8be9791818b1afc97b4477cef96580} 
+\#define V\+\_\+\+SUPERCAPMAX\+\_\+\+KD~0.\+001f}
+
+\Hypertarget{supercap__def_8h_a83e035e21da1b9daed89221649a894fc}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMAX\_KI@{V\_SUPERCAPMAX\_KI}}
+\index{V\_SUPERCAPMAX\_KI@{V\_SUPERCAPMAX\_KI}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMAX\_KI}{V\_SUPERCAPMAX\_KI}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a83e035e21da1b9daed89221649a894fc} 
+\#define V\+\_\+\+SUPERCAPMAX\+\_\+\+KI~0.\+0025f}
+
+\Hypertarget{supercap__def_8h_a8520827943925ddb5178f6a41a4ced7d}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMAX\_KP@{V\_SUPERCAPMAX\_KP}}
+\index{V\_SUPERCAPMAX\_KP@{V\_SUPERCAPMAX\_KP}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMAX\_KP}{V\_SUPERCAPMAX\_KP}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a8520827943925ddb5178f6a41a4ced7d} 
+\#define V\+\_\+\+SUPERCAPMAX\+\_\+\+KP~0.\+001f}
+
+\Hypertarget{supercap__def_8h_a3db5687c1d61b6af2ffc0923f28d9eae}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMAX\_MAX\_OUTPUT@{V\_SUPERCAPMAX\_MAX\_OUTPUT}}
+\index{V\_SUPERCAPMAX\_MAX\_OUTPUT@{V\_SUPERCAPMAX\_MAX\_OUTPUT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMAX\_MAX\_OUTPUT}{V\_SUPERCAPMAX\_MAX\_OUTPUT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a3db5687c1d61b6af2ffc0923f28d9eae} 
+\#define V\+\_\+\+SUPERCAPMAX\+\_\+\+MAX\+\_\+\+OUTPUT~1.\+6f}
+
+\Hypertarget{supercap__def_8h_a0451cf5d27069a86f2d6823fdd219d61}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMAX\_MIN\_OUTPUT@{V\_SUPERCAPMAX\_MIN\_OUTPUT}}
+\index{V\_SUPERCAPMAX\_MIN\_OUTPUT@{V\_SUPERCAPMAX\_MIN\_OUTPUT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMAX\_MIN\_OUTPUT}{V\_SUPERCAPMAX\_MIN\_OUTPUT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a0451cf5d27069a86f2d6823fdd219d61} 
+\#define V\+\_\+\+SUPERCAPMAX\+\_\+\+MIN\+\_\+\+OUTPUT~1.\+005f}
+
+\Hypertarget{supercap__def_8h_a77e13c315212e2cf6535f32d607703f6}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMAX\_REF@{V\_SUPERCAPMAX\_REF}}
+\index{V\_SUPERCAPMAX\_REF@{V\_SUPERCAPMAX\_REF}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMAX\_REF}{V\_SUPERCAPMAX\_REF}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a77e13c315212e2cf6535f32d607703f6} 
+\#define V\+\_\+\+SUPERCAPMAX\+\_\+\+REF~26.\+0f}
+
+\Hypertarget{supercap__def_8h_a835a1fd47c3512e2ab8d4e9552c1addd}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMIN\_INIT\_VAL@{V\_SUPERCAPMIN\_INIT\_VAL}}
+\index{V\_SUPERCAPMIN\_INIT\_VAL@{V\_SUPERCAPMIN\_INIT\_VAL}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMIN\_INIT\_VAL}{V\_SUPERCAPMIN\_INIT\_VAL}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a835a1fd47c3512e2ab8d4e9552c1addd} 
+\#define V\+\_\+\+SUPERCAPMIN\+\_\+\+INIT\+\_\+\+VAL~0.\+1f}
+
+\Hypertarget{supercap__def_8h_a5da726d0d65cdb950ae7c8ba659feaf7}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMIN\_INTEG\_MAX@{V\_SUPERCAPMIN\_INTEG\_MAX}}
+\index{V\_SUPERCAPMIN\_INTEG\_MAX@{V\_SUPERCAPMIN\_INTEG\_MAX}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMIN\_INTEG\_MAX}{V\_SUPERCAPMIN\_INTEG\_MAX}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a5da726d0d65cdb950ae7c8ba659feaf7} 
+\#define V\+\_\+\+SUPERCAPMIN\+\_\+\+INTEG\+\_\+\+MAX~0.\+179f}
+
+\Hypertarget{supercap__def_8h_a1a5f9e9021a9751bc436db4f51895585}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMIN\_INTEG\_MIN@{V\_SUPERCAPMIN\_INTEG\_MIN}}
+\index{V\_SUPERCAPMIN\_INTEG\_MIN@{V\_SUPERCAPMIN\_INTEG\_MIN}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMIN\_INTEG\_MIN}{V\_SUPERCAPMIN\_INTEG\_MIN}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a1a5f9e9021a9751bc436db4f51895585} 
+\#define V\+\_\+\+SUPERCAPMIN\+\_\+\+INTEG\+\_\+\+MIN~0.\+127f}
+
+\Hypertarget{supercap__def_8h_a9e6375c9a551f4744b2a73b7d3783c66}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMIN\_KD@{V\_SUPERCAPMIN\_KD}}
+\index{V\_SUPERCAPMIN\_KD@{V\_SUPERCAPMIN\_KD}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMIN\_KD}{V\_SUPERCAPMIN\_KD}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a9e6375c9a551f4744b2a73b7d3783c66} 
+\#define V\+\_\+\+SUPERCAPMIN\+\_\+\+KD~0.\+0f}
+
+\Hypertarget{supercap__def_8h_a0ee4d410ff714630aeb0ab91ce2f3bcc}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMIN\_KI@{V\_SUPERCAPMIN\_KI}}
+\index{V\_SUPERCAPMIN\_KI@{V\_SUPERCAPMIN\_KI}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMIN\_KI}{V\_SUPERCAPMIN\_KI}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a0ee4d410ff714630aeb0ab91ce2f3bcc} 
+\#define V\+\_\+\+SUPERCAPMIN\+\_\+\+KI~0.\+0025f}
+
+\Hypertarget{supercap__def_8h_a5d951c55a1261ab52c852a2893ff056f}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMIN\_KP@{V\_SUPERCAPMIN\_KP}}
+\index{V\_SUPERCAPMIN\_KP@{V\_SUPERCAPMIN\_KP}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMIN\_KP}{V\_SUPERCAPMIN\_KP}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a5d951c55a1261ab52c852a2893ff056f} 
+\#define V\+\_\+\+SUPERCAPMIN\+\_\+\+KP~0.\+001f}
+
+\Hypertarget{supercap__def_8h_a9f5eebe40089c37841e28e5e02f4e8c3}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMIN\_MAX\_OUTPUT@{V\_SUPERCAPMIN\_MAX\_OUTPUT}}
+\index{V\_SUPERCAPMIN\_MAX\_OUTPUT@{V\_SUPERCAPMIN\_MAX\_OUTPUT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMIN\_MAX\_OUTPUT}{V\_SUPERCAPMIN\_MAX\_OUTPUT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_a9f5eebe40089c37841e28e5e02f4e8c3} 
+\#define V\+\_\+\+SUPERCAPMIN\+\_\+\+MAX\+\_\+\+OUTPUT~0.\+179f}
+
+\Hypertarget{supercap__def_8h_ab77195254a22dcb170efa8837fc71010}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMIN\_MIN\_OUTPUT@{V\_SUPERCAPMIN\_MIN\_OUTPUT}}
+\index{V\_SUPERCAPMIN\_MIN\_OUTPUT@{V\_SUPERCAPMIN\_MIN\_OUTPUT}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMIN\_MIN\_OUTPUT}{V\_SUPERCAPMIN\_MIN\_OUTPUT}}
+{\footnotesize\ttfamily \label{supercap__def_8h_ab77195254a22dcb170efa8837fc71010} 
+\#define V\+\_\+\+SUPERCAPMIN\+\_\+\+MIN\+\_\+\+OUTPUT~0.\+127f}
+
+\Hypertarget{supercap__def_8h_ae5bf757ec7319e4eb04ad9fb32fa8547}\index{supercap\_def.h@{supercap\_def.h}!V\_SUPERCAPMIN\_REF@{V\_SUPERCAPMIN\_REF}}
+\index{V\_SUPERCAPMIN\_REF@{V\_SUPERCAPMIN\_REF}!supercap\_def.h@{supercap\_def.h}}
+\doxysubsubsection{\texorpdfstring{V\_SUPERCAPMIN\_REF}{V\_SUPERCAPMIN\_REF}}
+{\footnotesize\ttfamily \label{supercap__def_8h_ae5bf757ec7319e4eb04ad9fb32fa8547} 
+\#define V\+\_\+\+SUPERCAPMIN\+\_\+\+REF~2.\+7f}
+

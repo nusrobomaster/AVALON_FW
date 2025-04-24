@@ -1,0 +1,251 @@
+\doxysection{Core/\+Inc/main.h File Reference}
+\hypertarget{main_8h}{}\label{main_8h}\index{Core/Inc/main.h@{Core/Inc/main.h}}
+
+
+\+: Header for main.\+c file. This file contains the common defines of the application.  
+
+
+{\ttfamily \#include "{}stm32g4xx\+\_\+hal.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8h_abcc32db80fcdf4d5b0d0ce92046516bb}{V\+\_\+\+CHASSIS\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+1
+\item 
+\#define \mbox{\hyperlink{main_8h_ae9eff06135dada5e75ff7d5e77615b99}{V\+\_\+\+CHASSIS\+\_\+\+GPIO\+\_\+\+Port}}~GPIOC
+\item 
+\#define \mbox{\hyperlink{main_8h_a02bd0fd50806a2467e064a67b7a0eeb3}{I\+\_\+\+SOURCE\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+2
+\item 
+\#define \mbox{\hyperlink{main_8h_ae1898d49f82e88ae6bf786b98635b31d}{I\+\_\+\+SOURCE\+\_\+\+GPIO\+\_\+\+Port}}~GPIOC
+\item 
+\#define \mbox{\hyperlink{main_8h_a3b4e5f95ed0cb9e5fa1da2c4f79c8bf3}{I\+\_\+\+CHASSIS\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+3
+\item 
+\#define \mbox{\hyperlink{main_8h_a764f154c50ac959b78a36a929cafc51e}{I\+\_\+\+CHASSIS\+\_\+\+GPIO\+\_\+\+Port}}~GPIOC
+\item 
+\#define \mbox{\hyperlink{main_8h_a7782b928a6a8f95bceb13de771d05af4}{I\+\_\+\+CAP\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+0
+\item 
+\#define \mbox{\hyperlink{main_8h_aa78837263e8ba981ed14a90087e4207d}{I\+\_\+\+CAP\+\_\+\+GPIO\+\_\+\+Port}}~GPIOA
+\item 
+\#define \mbox{\hyperlink{main_8h_a567aaa9e1df00075e3bcf17e1a6168e1}{V\+\_\+\+CAP\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+1
+\item 
+\#define \mbox{\hyperlink{main_8h_a8bc547a2e74715e979b2033e16916337}{V\+\_\+\+CAP\+\_\+\+GPIO\+\_\+\+Port}}~GPIOA
+\item 
+\#define \mbox{\hyperlink{main_8h_a3cf714510dfe0e829a201fc81e7db5a9}{V\+\_\+\+TEMP\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+1
+\item 
+\#define \mbox{\hyperlink{main_8h_a4d6a516ebb430cfd51dfa1a70f3f572c}{V\+\_\+\+TEMP\+\_\+\+GPIO\+\_\+\+Port}}~GPIOB
+\item 
+\#define \mbox{\hyperlink{main_8h_aef42ed287971c28726c40f0ed1df9206}{GPIO\+\_\+\+LED\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+6
+\item 
+\#define \mbox{\hyperlink{main_8h_aa046f2a94aa4b697138899e14a3105e7}{GPIO\+\_\+\+LED\+\_\+\+GPIO\+\_\+\+Port}}~GPIOC
+\item 
+\#define \mbox{\hyperlink{main_8h_a71794256a28c229b4af92be64b8633db}{BAT\+\_\+\+MOS\+\_\+\+LOW\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+8
+\item 
+\#define \mbox{\hyperlink{main_8h_ae56c1ccdb1b22c5ce19b4b6b3f6f2581}{BAT\+\_\+\+MOS\+\_\+\+LOW\+\_\+\+GPIO\+\_\+\+Port}}~GPIOC
+\item 
+\#define \mbox{\hyperlink{main_8h_a60e3fe516f276efc14a767cce9423b57}{BAT\+\_\+\+MOS\+\_\+\+HIGH\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+9
+\item 
+\#define \mbox{\hyperlink{main_8h_a380d050046437aecfb841ac52aa1d455}{BAT\+\_\+\+MOS\+\_\+\+HIGH\+\_\+\+GPIO\+\_\+\+Port}}~GPIOC
+\item 
+\#define \mbox{\hyperlink{main_8h_a7a2f08b5fb503ed4973be990113ee27d}{CAP\+\_\+\+MOS\+\_\+\+LOW\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+8
+\item 
+\#define \mbox{\hyperlink{main_8h_ab01ddb0112ec4ea30f91e4b5e7f4494a}{CAP\+\_\+\+MOS\+\_\+\+LOW\+\_\+\+GPIO\+\_\+\+Port}}~GPIOA
+\item 
+\#define \mbox{\hyperlink{main_8h_a3c232ba9da0b7dfe0638801a94763c55}{CAP\+\_\+\+MOS\+\_\+\+HIGH\+\_\+\+Pin}}~GPIO\+\_\+\+PIN\+\_\+9
+\item 
+\#define \mbox{\hyperlink{main_8h_ada492eb34ff2815e2e603a81959574fb}{CAP\+\_\+\+MOS\+\_\+\+HIGH\+\_\+\+GPIO\+\_\+\+Port}}~GPIOA
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8h_a99d0fdb0434092bcb24d9c9af917e4e9}{Start\+Default\+Task}} (void \texorpdfstring{$\ast$}{*}argument)
+\item 
+void \mbox{\hyperlink{main_8h_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Period elapsed callback in non blocking mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Header for main.\+c file. This file contains the common defines of the application. 
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+Copyright (c) 2024 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{main_8h_a380d050046437aecfb841ac52aa1d455}\index{main.h@{main.h}!BAT\_MOS\_HIGH\_GPIO\_Port@{BAT\_MOS\_HIGH\_GPIO\_Port}}
+\index{BAT\_MOS\_HIGH\_GPIO\_Port@{BAT\_MOS\_HIGH\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_MOS\_HIGH\_GPIO\_Port}{BAT\_MOS\_HIGH\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_a380d050046437aecfb841ac52aa1d455} 
+\#define BAT\+\_\+\+MOS\+\_\+\+HIGH\+\_\+\+GPIO\+\_\+\+Port~GPIOC}
+
+\Hypertarget{main_8h_a60e3fe516f276efc14a767cce9423b57}\index{main.h@{main.h}!BAT\_MOS\_HIGH\_Pin@{BAT\_MOS\_HIGH\_Pin}}
+\index{BAT\_MOS\_HIGH\_Pin@{BAT\_MOS\_HIGH\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_MOS\_HIGH\_Pin}{BAT\_MOS\_HIGH\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_a60e3fe516f276efc14a767cce9423b57} 
+\#define BAT\+\_\+\+MOS\+\_\+\+HIGH\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+9}
+
+\Hypertarget{main_8h_ae56c1ccdb1b22c5ce19b4b6b3f6f2581}\index{main.h@{main.h}!BAT\_MOS\_LOW\_GPIO\_Port@{BAT\_MOS\_LOW\_GPIO\_Port}}
+\index{BAT\_MOS\_LOW\_GPIO\_Port@{BAT\_MOS\_LOW\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_MOS\_LOW\_GPIO\_Port}{BAT\_MOS\_LOW\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_ae56c1ccdb1b22c5ce19b4b6b3f6f2581} 
+\#define BAT\+\_\+\+MOS\+\_\+\+LOW\+\_\+\+GPIO\+\_\+\+Port~GPIOC}
+
+\Hypertarget{main_8h_a71794256a28c229b4af92be64b8633db}\index{main.h@{main.h}!BAT\_MOS\_LOW\_Pin@{BAT\_MOS\_LOW\_Pin}}
+\index{BAT\_MOS\_LOW\_Pin@{BAT\_MOS\_LOW\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{BAT\_MOS\_LOW\_Pin}{BAT\_MOS\_LOW\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_a71794256a28c229b4af92be64b8633db} 
+\#define BAT\+\_\+\+MOS\+\_\+\+LOW\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+8}
+
+\Hypertarget{main_8h_ada492eb34ff2815e2e603a81959574fb}\index{main.h@{main.h}!CAP\_MOS\_HIGH\_GPIO\_Port@{CAP\_MOS\_HIGH\_GPIO\_Port}}
+\index{CAP\_MOS\_HIGH\_GPIO\_Port@{CAP\_MOS\_HIGH\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{CAP\_MOS\_HIGH\_GPIO\_Port}{CAP\_MOS\_HIGH\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_ada492eb34ff2815e2e603a81959574fb} 
+\#define CAP\+\_\+\+MOS\+\_\+\+HIGH\+\_\+\+GPIO\+\_\+\+Port~GPIOA}
+
+\Hypertarget{main_8h_a3c232ba9da0b7dfe0638801a94763c55}\index{main.h@{main.h}!CAP\_MOS\_HIGH\_Pin@{CAP\_MOS\_HIGH\_Pin}}
+\index{CAP\_MOS\_HIGH\_Pin@{CAP\_MOS\_HIGH\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{CAP\_MOS\_HIGH\_Pin}{CAP\_MOS\_HIGH\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_a3c232ba9da0b7dfe0638801a94763c55} 
+\#define CAP\+\_\+\+MOS\+\_\+\+HIGH\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+9}
+
+\Hypertarget{main_8h_ab01ddb0112ec4ea30f91e4b5e7f4494a}\index{main.h@{main.h}!CAP\_MOS\_LOW\_GPIO\_Port@{CAP\_MOS\_LOW\_GPIO\_Port}}
+\index{CAP\_MOS\_LOW\_GPIO\_Port@{CAP\_MOS\_LOW\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{CAP\_MOS\_LOW\_GPIO\_Port}{CAP\_MOS\_LOW\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_ab01ddb0112ec4ea30f91e4b5e7f4494a} 
+\#define CAP\+\_\+\+MOS\+\_\+\+LOW\+\_\+\+GPIO\+\_\+\+Port~GPIOA}
+
+\Hypertarget{main_8h_a7a2f08b5fb503ed4973be990113ee27d}\index{main.h@{main.h}!CAP\_MOS\_LOW\_Pin@{CAP\_MOS\_LOW\_Pin}}
+\index{CAP\_MOS\_LOW\_Pin@{CAP\_MOS\_LOW\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{CAP\_MOS\_LOW\_Pin}{CAP\_MOS\_LOW\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_a7a2f08b5fb503ed4973be990113ee27d} 
+\#define CAP\+\_\+\+MOS\+\_\+\+LOW\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+8}
+
+\Hypertarget{main_8h_aa046f2a94aa4b697138899e14a3105e7}\index{main.h@{main.h}!GPIO\_LED\_GPIO\_Port@{GPIO\_LED\_GPIO\_Port}}
+\index{GPIO\_LED\_GPIO\_Port@{GPIO\_LED\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{GPIO\_LED\_GPIO\_Port}{GPIO\_LED\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_aa046f2a94aa4b697138899e14a3105e7} 
+\#define GPIO\+\_\+\+LED\+\_\+\+GPIO\+\_\+\+Port~GPIOC}
+
+\Hypertarget{main_8h_aef42ed287971c28726c40f0ed1df9206}\index{main.h@{main.h}!GPIO\_LED\_Pin@{GPIO\_LED\_Pin}}
+\index{GPIO\_LED\_Pin@{GPIO\_LED\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{GPIO\_LED\_Pin}{GPIO\_LED\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_aef42ed287971c28726c40f0ed1df9206} 
+\#define GPIO\+\_\+\+LED\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+6}
+
+\Hypertarget{main_8h_aa78837263e8ba981ed14a90087e4207d}\index{main.h@{main.h}!I\_CAP\_GPIO\_Port@{I\_CAP\_GPIO\_Port}}
+\index{I\_CAP\_GPIO\_Port@{I\_CAP\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{I\_CAP\_GPIO\_Port}{I\_CAP\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_aa78837263e8ba981ed14a90087e4207d} 
+\#define I\+\_\+\+CAP\+\_\+\+GPIO\+\_\+\+Port~GPIOA}
+
+\Hypertarget{main_8h_a7782b928a6a8f95bceb13de771d05af4}\index{main.h@{main.h}!I\_CAP\_Pin@{I\_CAP\_Pin}}
+\index{I\_CAP\_Pin@{I\_CAP\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{I\_CAP\_Pin}{I\_CAP\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_a7782b928a6a8f95bceb13de771d05af4} 
+\#define I\+\_\+\+CAP\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+0}
+
+\Hypertarget{main_8h_a764f154c50ac959b78a36a929cafc51e}\index{main.h@{main.h}!I\_CHASSIS\_GPIO\_Port@{I\_CHASSIS\_GPIO\_Port}}
+\index{I\_CHASSIS\_GPIO\_Port@{I\_CHASSIS\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{I\_CHASSIS\_GPIO\_Port}{I\_CHASSIS\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_a764f154c50ac959b78a36a929cafc51e} 
+\#define I\+\_\+\+CHASSIS\+\_\+\+GPIO\+\_\+\+Port~GPIOC}
+
+\Hypertarget{main_8h_a3b4e5f95ed0cb9e5fa1da2c4f79c8bf3}\index{main.h@{main.h}!I\_CHASSIS\_Pin@{I\_CHASSIS\_Pin}}
+\index{I\_CHASSIS\_Pin@{I\_CHASSIS\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{I\_CHASSIS\_Pin}{I\_CHASSIS\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_a3b4e5f95ed0cb9e5fa1da2c4f79c8bf3} 
+\#define I\+\_\+\+CHASSIS\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+3}
+
+\Hypertarget{main_8h_ae1898d49f82e88ae6bf786b98635b31d}\index{main.h@{main.h}!I\_SOURCE\_GPIO\_Port@{I\_SOURCE\_GPIO\_Port}}
+\index{I\_SOURCE\_GPIO\_Port@{I\_SOURCE\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{I\_SOURCE\_GPIO\_Port}{I\_SOURCE\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_ae1898d49f82e88ae6bf786b98635b31d} 
+\#define I\+\_\+\+SOURCE\+\_\+\+GPIO\+\_\+\+Port~GPIOC}
+
+\Hypertarget{main_8h_a02bd0fd50806a2467e064a67b7a0eeb3}\index{main.h@{main.h}!I\_SOURCE\_Pin@{I\_SOURCE\_Pin}}
+\index{I\_SOURCE\_Pin@{I\_SOURCE\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{I\_SOURCE\_Pin}{I\_SOURCE\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_a02bd0fd50806a2467e064a67b7a0eeb3} 
+\#define I\+\_\+\+SOURCE\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+2}
+
+\Hypertarget{main_8h_a8bc547a2e74715e979b2033e16916337}\index{main.h@{main.h}!V\_CAP\_GPIO\_Port@{V\_CAP\_GPIO\_Port}}
+\index{V\_CAP\_GPIO\_Port@{V\_CAP\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{V\_CAP\_GPIO\_Port}{V\_CAP\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_a8bc547a2e74715e979b2033e16916337} 
+\#define V\+\_\+\+CAP\+\_\+\+GPIO\+\_\+\+Port~GPIOA}
+
+\Hypertarget{main_8h_a567aaa9e1df00075e3bcf17e1a6168e1}\index{main.h@{main.h}!V\_CAP\_Pin@{V\_CAP\_Pin}}
+\index{V\_CAP\_Pin@{V\_CAP\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{V\_CAP\_Pin}{V\_CAP\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_a567aaa9e1df00075e3bcf17e1a6168e1} 
+\#define V\+\_\+\+CAP\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+1}
+
+\Hypertarget{main_8h_ae9eff06135dada5e75ff7d5e77615b99}\index{main.h@{main.h}!V\_CHASSIS\_GPIO\_Port@{V\_CHASSIS\_GPIO\_Port}}
+\index{V\_CHASSIS\_GPIO\_Port@{V\_CHASSIS\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{V\_CHASSIS\_GPIO\_Port}{V\_CHASSIS\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_ae9eff06135dada5e75ff7d5e77615b99} 
+\#define V\+\_\+\+CHASSIS\+\_\+\+GPIO\+\_\+\+Port~GPIOC}
+
+\Hypertarget{main_8h_abcc32db80fcdf4d5b0d0ce92046516bb}\index{main.h@{main.h}!V\_CHASSIS\_Pin@{V\_CHASSIS\_Pin}}
+\index{V\_CHASSIS\_Pin@{V\_CHASSIS\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{V\_CHASSIS\_Pin}{V\_CHASSIS\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_abcc32db80fcdf4d5b0d0ce92046516bb} 
+\#define V\+\_\+\+CHASSIS\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+1}
+
+\Hypertarget{main_8h_a4d6a516ebb430cfd51dfa1a70f3f572c}\index{main.h@{main.h}!V\_TEMP\_GPIO\_Port@{V\_TEMP\_GPIO\_Port}}
+\index{V\_TEMP\_GPIO\_Port@{V\_TEMP\_GPIO\_Port}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{V\_TEMP\_GPIO\_Port}{V\_TEMP\_GPIO\_Port}}
+{\footnotesize\ttfamily \label{main_8h_a4d6a516ebb430cfd51dfa1a70f3f572c} 
+\#define V\+\_\+\+TEMP\+\_\+\+GPIO\+\_\+\+Port~GPIOB}
+
+\Hypertarget{main_8h_a3cf714510dfe0e829a201fc81e7db5a9}\index{main.h@{main.h}!V\_TEMP\_Pin@{V\_TEMP\_Pin}}
+\index{V\_TEMP\_Pin@{V\_TEMP\_Pin}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{V\_TEMP\_Pin}{V\_TEMP\_Pin}}
+{\footnotesize\ttfamily \label{main_8h_a3cf714510dfe0e829a201fc81e7db5a9} 
+\#define V\+\_\+\+TEMP\+\_\+\+Pin~GPIO\+\_\+\+PIN\+\_\+1}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8h_a1730ffe1e560465665eb47d9264826f9}\index{main.h@{main.h}!Error\_Handler@{Error\_Handler}}
+\index{Error\_Handler@{Error\_Handler}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{Error\_Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily \label{main_8h_a1730ffe1e560465665eb47d9264826f9} 
+void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Period elapsed callback in non blocking mode. 
+
+\begin{DoxyNote}{Note}
+This function is called when TIM2 interrupt took place, inside HAL\+\_\+\+TIM\+\_\+\+IRQHandler(). It makes a direct call to HAL\+\_\+\+Inc\+Tick() to increment a global variable "{}uw\+Tick"{} used as application time base. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em htim} & \+: TIM handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+This function is executed in case of error occurrence. 
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Period elapsed callback in non blocking mode.
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{main_8h_a99d0fdb0434092bcb24d9c9af917e4e9}\index{main.h@{main.h}!StartDefaultTask@{StartDefaultTask}}
+\index{StartDefaultTask@{StartDefaultTask}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{StartDefaultTask()}{StartDefaultTask()}}
+{\footnotesize\ttfamily \label{main_8h_a99d0fdb0434092bcb24d9c9af917e4e9} 
+void Start\+Default\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{argument}{}\end{DoxyParamCaption})}
+

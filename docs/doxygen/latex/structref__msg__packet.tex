@@ -1,0 +1,75 @@
+\doxysection{ref\+\_\+msg\+\_\+packet Struct Reference}
+\hypertarget{structref__msg__packet}{}\label{structref__msg__packet}\index{ref\_msg\_packet@{ref\_msg\_packet}}
+
+
+Incoming reference message structure received over CAN.  
+
+
+
+
+{\ttfamily \#include $<$msg\+\_\+handler.\+hpp$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structref__msg__packet_ad5bfb8b583a9ea0a1dc2082656370408}{enable\+\_\+module}}
+\begin{DoxyCompactList}\small\item\em Enable/disable flag for supercap control loop. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structref__msg__packet_af2bf82580f64691164251210e11b24f1}{reset}}
+\begin{DoxyCompactList}\small\item\em If set, triggers a software reset. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{structref__msg__packet_ac07c218c2983c9d4bd4d1d703d530333}{pow\+\_\+limit}}
+\begin{DoxyCompactList}\small\item\em Maximum power budget (W) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structref__msg__packet_a7603f45569795659923e265953347d7b}{energy\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Optional buffer value to apply limiting strategy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Incoming reference message structure received over CAN. 
+
+This message typically originates from the robot\textquotesingle{}s main controller and is used to configure and control the supercap module in real-\/time. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structref__msg__packet_ad5bfb8b583a9ea0a1dc2082656370408}\index{ref\_msg\_packet@{ref\_msg\_packet}!enable\_module@{enable\_module}}
+\index{enable\_module@{enable\_module}!ref\_msg\_packet@{ref\_msg\_packet}}
+\doxysubsubsection{\texorpdfstring{enable\_module}{enable\_module}}
+{\footnotesize\ttfamily \label{structref__msg__packet_ad5bfb8b583a9ea0a1dc2082656370408} 
+uint8\+\_\+t ref\+\_\+msg\+\_\+packet\+::enable\+\_\+module}
+
+
+
+Enable/disable flag for supercap control loop. 
+
+\Hypertarget{structref__msg__packet_a7603f45569795659923e265953347d7b}\index{ref\_msg\_packet@{ref\_msg\_packet}!energy\_buffer@{energy\_buffer}}
+\index{energy\_buffer@{energy\_buffer}!ref\_msg\_packet@{ref\_msg\_packet}}
+\doxysubsubsection{\texorpdfstring{energy\_buffer}{energy\_buffer}}
+{\footnotesize\ttfamily \label{structref__msg__packet_a7603f45569795659923e265953347d7b} 
+uint16\+\_\+t ref\+\_\+msg\+\_\+packet\+::energy\+\_\+buffer}
+
+
+
+Optional buffer value to apply limiting strategy. 
+
+\Hypertarget{structref__msg__packet_ac07c218c2983c9d4bd4d1d703d530333}\index{ref\_msg\_packet@{ref\_msg\_packet}!pow\_limit@{pow\_limit}}
+\index{pow\_limit@{pow\_limit}!ref\_msg\_packet@{ref\_msg\_packet}}
+\doxysubsubsection{\texorpdfstring{pow\_limit}{pow\_limit}}
+{\footnotesize\ttfamily \label{structref__msg__packet_ac07c218c2983c9d4bd4d1d703d530333} 
+uint8\+\_\+t ref\+\_\+msg\+\_\+packet\+::pow\+\_\+limit}
+
+
+
+Maximum power budget (W) 
+
+\Hypertarget{structref__msg__packet_af2bf82580f64691164251210e11b24f1}\index{ref\_msg\_packet@{ref\_msg\_packet}!reset@{reset}}
+\index{reset@{reset}!ref\_msg\_packet@{ref\_msg\_packet}}
+\doxysubsubsection{\texorpdfstring{reset}{reset}}
+{\footnotesize\ttfamily \label{structref__msg__packet_af2bf82580f64691164251210e11b24f1} 
+uint8\+\_\+t ref\+\_\+msg\+\_\+packet\+::reset}
+
+
+
+If set, triggers a software reset. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+System/stm\+\_\+utils/\+Inc/\mbox{\hyperlink{msg__handler_8hpp}{msg\+\_\+handler.\+hpp}}\end{DoxyCompactItemize}

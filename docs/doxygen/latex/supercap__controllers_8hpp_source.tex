@@ -1,0 +1,74 @@
+\doxysection{supercap\+\_\+controllers.\+hpp}
+\hypertarget{supercap__controllers_8hpp_source}{}\label{supercap__controllers_8hpp_source}\index{System/stm\_utils/Inc/supercap\_controllers.hpp@{System/stm\_utils/Inc/supercap\_controllers.hpp}}
+\mbox{\hyperlink{supercap__controllers_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ STM\_UTILS\_INC\_SUPERCAP\_CONTROLLERS\_HPP\_}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ STM\_UTILS\_INC\_SUPERCAP\_CONTROLLERS\_HPP\_}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{adc__utils_8hpp}{adc\_utils.hpp}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hrtim_8h}{hrtim.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79a6dc7329986a7d9cb2d1055734af76ed3}{voltageErr}},\ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79acc03ead3284ecb449bada5a041bf597e}{currentErr}}\ \ \ \ \ }
+\DoxyCodeLine{00024\ \}\ \mbox{\hyperlink{supercap__controllers_8hpp_ac22ba838cd4049682821877288724d79}{Safety\_DetectItemTypedef}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92cad39f1aeb49159b3560b773670af53091}{safe}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca8de9aef05fc85e519a0cfce33573f492}{warning}},\ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca54016404fbedbcdc1d6cee80a11a273f}{wtf}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92cae674dad1b068a0f517e1f061191db302}{runAway}},\ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92ca762262832fe227551367d5a88ca3ba5f}{itsJoever}}\ \ \ }
+\DoxyCodeLine{00038\ \}\ \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92c}{safetyLevelDef}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17a0e9a37114c0e458d28d52f06ec0f2242}{idle}},\ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17aebc81705969b8c5ae986b0b2ec08d1d5}{normal}}\ \ \ }
+\DoxyCodeLine{00046\ \}\ \mbox{\hyperlink{supercap__controllers_8hpp_aa0e9b7ff7bcdd512c6fe7530def28d17}{Mode\_ModeTypedef}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ HRTIM\_PERIOD\ 34000}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ HRTIM\_HALF\_PERIOD\ 17000}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsupercap__control__manager_a9c6a56dec2098d79af654c8e2b03fbde}{supercap\_control\_manager}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classadc__manager_a1a88da33daa8bbdd601bdb9d0dc7791f}{adc\_manager}}\ \{}
+\DoxyCodeLine{00063\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classsupercap__control__manager_a9c6a56dec2098d79af654c8e2b03fbde}{supercap\_control\_manager}}(ADC\_HandleTypeDef*\ adc\_cap,\ ADC\_HandleTypeDef*\ adc\_bat,\ ADC\_HandleTypeDef*\ adc\_temp)\ :}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classadc__manager_a1a88da33daa8bbdd601bdb9d0dc7791f}{adc\_manager}}(adc\_cap,\ adc\_bat,\ adc\_temp)\ \{\};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classsupercap__control__manager_ad23eb2bbe99fb0f6b281a1eea871e5c8}{\string~supercap\_control\_manager}}()\ \{\};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00080\ \ \ \ \ HAL\_StatusTypeDef\ \mbox{\hyperlink{classsupercap__control__manager_a938dd82a5e912e79b3838c4b0d3879bb}{init\_loop}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsupercap__control__manager_aed93c989e0784f9363a064fde4d3f32e}{setup\_pid\_controllers}}();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsupercap__control__manager_a3232216531c15765c269f70ca738edd6}{set\_ref\_chassis\_power}}(\textcolor{keywordtype}{float}\ ref\_power\_);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsupercap__control__manager_a4c8b57a0cc60b8915157f6ed261372cb}{loop\_update}}(\textcolor{keywordtype}{float}\ Icap\_,\ \textcolor{keywordtype}{float}\ Ibat\_,\ \textcolor{keywordtype}{float}\ Vcap\_,\ \textcolor{keywordtype}{float}\ Ichassis\_,\ \textcolor{keywordtype}{float}\ Vbat\_);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsupercap__control__manager_a50bdf5a8e41d2a23738aff8da8fde391}{stop\_loop}}();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00112\ \ \ \ \ HAL\_StatusTypeDef\ \mbox{\hyperlink{classsupercap__control__manager_a6abb1fd969adbba14b518da8ec0830ae}{start\_loop}}();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \ \ \ \ HAL\_StatusTypeDef\ \mbox{\hyperlink{classsupercap__control__manager_a532f7603af350d8fc079adee14d8ff71}{start\_gates\_pwm}}(\textcolor{keywordtype}{float}\ init\_duty\_cycle);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsupercap__control__manager_acfe7a6aec1ede157ea85260871aa6239}{all\_safety\_checks}}();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsupercap__control__manager_ada5922bcb0490963cd9c812f0fd742f9}{silent\_mode}}();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{supercap__controllers_8hpp_a184125051e5d414b5fc8fe639fa3e92c}{safetyLevelDef}}\ \mbox{\hyperlink{classsupercap__control__manager_a61078cf818a35904e0b949357b6c53ba}{safetyLevel}};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{float}\ ref\_power\ =\ 60.0f;}
+\DoxyCodeLine{00137\ \};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00142\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{supercap__controllers_8hpp_a7dd54fc66122a231da37b565f13d23c5}{softwareReset}}();}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{supercap__controllers_8cpp_a279987673281ac0b5a019326653e3520}{safetyItemLevel}}[8];}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00153\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{supercap__controllers_8cpp_abe6e2082cb3bc83efd0c83f6c75adde1}{chassis\_voltage}};}
+\DoxyCodeLine{00154\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{supercap__controllers_8cpp_aaecc091ac17639abe1eb50af6f0cb7fb}{battery\_current}};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ STM\_UTILS\_INC\_SUPERCAP\_CONTROLLERS\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

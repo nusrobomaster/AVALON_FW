@@ -1,0 +1,366 @@
+\doxysection{System/stm\+\_\+utils/\+Inc/adc\+\_\+utils.hpp File Reference}
+\hypertarget{adc__utils_8hpp}{}\label{adc__utils_8hpp}\index{System/stm\_utils/Inc/adc\_utils.hpp@{System/stm\_utils/Inc/adc\_utils.hpp}}
+
+
+Header file for managing ADC sampling, compensation, and filtering for the supercapacitor control board.  
+
+
+{\ttfamily \#include $<$adc.\+h$>$}\newline
+{\ttfamily \#include $<$dma.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$arm\+\_\+math.\+h$>$}\newline
+{\ttfamily \#include "{}supercap\+\_\+def.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmov__avrg__filter}{mov\+\_\+avrg\+\_\+filter}}
+\begin{DoxyCompactList}\small\item\em Moving average filter structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_loop_ctrl___p_i_d}{Loop\+Ctrl\+\_\+\+PID}}
+\begin{DoxyCompactList}\small\item\em PID loop controller structure. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classadc__manager}{adc\+\_\+manager}}
+\begin{DoxyCompactList}\small\item\em Class to manage ADC hardware sampling and filtering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}}~4095.\+0f
+\begin{DoxyCompactList}\small\item\em ADC maximum value (12-\/bit) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a4b47e005f382513a12cb21b762f70c79}{INV\+\_\+\+VOLT\+\_\+\+DIV}}~11.\+0f
+\begin{DoxyCompactList}\small\item\em Inverse of voltage divider ratio (used for voltage measurement scaling) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}}~3.\+3f
+\begin{DoxyCompactList}\small\item\em Reference voltage for ADC (V) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a58ae2dfadb1cd504beadaf6d7fac2d1b}{INA186\+A2\+\_\+\+GAIN}}~50.\+0f
+\begin{DoxyCompactList}\small\item\em INA186\+A2 current amplifier gain (datasheet) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_afc0b378f10595a0cbf38a4da1a2d31a6}{SHUNT\+\_\+\+RESISTOR}}~0.\+004f
+\begin{DoxyCompactList}\small\item\em Value of current sensing shunt resistor (Ohms) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_af1153fd273a948a7363d4fb204d1da7a}{VCAP\+\_\+\+GAIN}}~\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{adc__utils_8hpp_a4b47e005f382513a12cb21b762f70c79}{INV\+\_\+\+VOLT\+\_\+\+DIV}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}}
+\begin{DoxyCompactList}\small\item\em Voltage measurement gain\+: V = (ADC / 4095) \texorpdfstring{$\ast$}{*} 3.\+3 \texorpdfstring{$\ast$}{*} 11. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_ab74dee029b377d07904bc931227c6963}{VBAT\+\_\+\+GAIN}}~\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{adc__utils_8hpp_a4b47e005f382513a12cb21b762f70c79}{INV\+\_\+\+VOLT\+\_\+\+DIV}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}}
+\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a5620ff64c23de3e0b18f15471d288869}{IBAT\+\_\+\+GAIN}}~-\/(\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} / \mbox{\hyperlink{adc__utils_8hpp_afc0b378f10595a0cbf38a4da1a2d31a6}{SHUNT\+\_\+\+RESISTOR}} / \mbox{\hyperlink{adc__utils_8hpp_a58ae2dfadb1cd504beadaf6d7fac2d1b}{INA186\+A2\+\_\+\+GAIN}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}})
+\begin{DoxyCompactList}\small\item\em Current measurement gain from each source, sign indicates direction. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a6792419ac1fbfaa0747d443f1b4af1c3}{ISOURCE\+\_\+\+GAIN}}~-\/(\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} / \mbox{\hyperlink{adc__utils_8hpp_afc0b378f10595a0cbf38a4da1a2d31a6}{SHUNT\+\_\+\+RESISTOR}} / \mbox{\hyperlink{adc__utils_8hpp_a58ae2dfadb1cd504beadaf6d7fac2d1b}{INA186\+A2\+\_\+\+GAIN}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}})
+\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a80af2f1c738fe15ec0b8d4df8129756a}{ICAP\+\_\+\+GAIN}}~-\/(\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} / \mbox{\hyperlink{adc__utils_8hpp_afc0b378f10595a0cbf38a4da1a2d31a6}{SHUNT\+\_\+\+RESISTOR}} / \mbox{\hyperlink{adc__utils_8hpp_a58ae2dfadb1cd504beadaf6d7fac2d1b}{INA186\+A2\+\_\+\+GAIN}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}})
+\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a54cdc241427de8e0352612586641084e}{ADC1\+\_\+\+CHANNELS}}~2
+\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a3781fd12d13d2a0c867eba10909873da}{ADC2\+\_\+\+CHANNELS}}~3
+\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a9b435799701060ee7759b795ceca45e8}{ADC\+\_\+\+FIRST\+\_\+\+BUFFER}}~0
+\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a80a6ec27aae3b807c9dbc5736bcb8b05}{ADC\+\_\+\+SECOND\+\_\+\+BUFFER}}~1
+\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_a36474e14239c669145747a77c8d91db3}{ADC\+\_\+\+BUFFER\+\_\+\+DEPTH}}~16
+\item 
+\#define \mbox{\hyperlink{adc__utils_8hpp_abdd082117654447b0422cb5a718bf58c}{GET\+\_\+\+COMPENSATED\+\_\+\+ADC}}(ADC\+\_\+\+VAL,  NAME)
+\begin{DoxyCompactList}\small\item\em Helper macro for applying gain + offset compensation on raw ADC readings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799}{adc\+\_\+names}} \{ \newline
+\mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799af214a7fa5d1445a5cbe8e8bb1b9ddacf}{I\+\_\+cap}}
+, \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799ab50afdeac5bc3148b777cc77b1f0c632}{V\+\_\+cap}}
+, \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799af5bf208601547baf0ed8b6a55d6aa2d7}{V\+\_\+bat}}
+, \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799a9226677819b817c2a6c8678564ee32ca}{I\+\_\+chassis}}
+, \newline
+\mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799ad2dcb856604a40556c5c19da0613ddee}{I\+\_\+bat}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum for identifying ADC channels. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12}{pid\+\_\+names}} \{ \newline
+\mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a94dfe2b34d3e8674898632196b121148}{P\+\_\+bat}}
+, \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a8ee2ae8d088c7db2640824af7679e8a4}{P\+\_\+chassis}}
+, \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a20bc672e476005b3b6c5a25f8209cdd1}{I\+\_\+capa}}
+, \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a9314604ec904c5dff156e47db06bdf70}{V\+\_\+cap\+\_\+max}}
+, \newline
+\mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a715f4bb451ff2eedc7cc6479654fc1fa}{V\+\_\+cap\+\_\+min}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum for identifying PID loops. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{adc__utils_8hpp_a08737bb431cb4cae01fa4661b9bc286f}{adc1\+\_\+samples}} \mbox{[}2\mbox{]}\mbox{[}16\mbox{]}\mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Raw buffer for ADC1. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{adc__utils_8hpp_a7ee90f0e85f6ec368017308eda5b69af}{adc2\+\_\+samples}} \mbox{[}2\mbox{]}\mbox{[}16\mbox{]}\mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em Raw buffer for ADC2. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{adc__utils_8hpp_a3e1e952364ca1f287cc67d3d04b59c0c}{ADC\+\_\+filtered\+\_\+data}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Filtered data per channel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmov__avrg__filter}{mov\+\_\+avrg\+\_\+filter}} \mbox{\hyperlink{adc__utils_8hpp_a279b3b57733e7c5e4d8880b49fb7317d}{filters}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Filter states per channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{adc__utils_8hpp_a022492d6772864952aa55c385aa22604}{adc\+\_\+gains}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Gain correction per channel. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{adc__utils_8hpp_af417779b6559c4900d6e0075c7b33d21}{adc\+\_\+offsets}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Offset correction per channel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for managing ADC sampling, compensation, and filtering for the supercapacitor control board. 
+
+Defines gain/offset macros, buffer sizes, filtering structures, and the ADC manager class.
+
+Created on\+: Jul 5, 2024 Author\+: Yassine Bakkali 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{adc__utils_8hpp_a54cdc241427de8e0352612586641084e}\index{adc\_utils.hpp@{adc\_utils.hpp}!ADC1\_CHANNELS@{ADC1\_CHANNELS}}
+\index{ADC1\_CHANNELS@{ADC1\_CHANNELS}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ADC1\_CHANNELS}{ADC1\_CHANNELS}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a54cdc241427de8e0352612586641084e} 
+\#define ADC1\+\_\+\+CHANNELS~2}
+
+\Hypertarget{adc__utils_8hpp_a3781fd12d13d2a0c867eba10909873da}\index{adc\_utils.hpp@{adc\_utils.hpp}!ADC2\_CHANNELS@{ADC2\_CHANNELS}}
+\index{ADC2\_CHANNELS@{ADC2\_CHANNELS}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ADC2\_CHANNELS}{ADC2\_CHANNELS}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a3781fd12d13d2a0c867eba10909873da} 
+\#define ADC2\+\_\+\+CHANNELS~3}
+
+\Hypertarget{adc__utils_8hpp_a36474e14239c669145747a77c8d91db3}\index{adc\_utils.hpp@{adc\_utils.hpp}!ADC\_BUFFER\_DEPTH@{ADC\_BUFFER\_DEPTH}}
+\index{ADC\_BUFFER\_DEPTH@{ADC\_BUFFER\_DEPTH}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ADC\_BUFFER\_DEPTH}{ADC\_BUFFER\_DEPTH}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a36474e14239c669145747a77c8d91db3} 
+\#define ADC\+\_\+\+BUFFER\+\_\+\+DEPTH~16}
+
+\Hypertarget{adc__utils_8hpp_a9b435799701060ee7759b795ceca45e8}\index{adc\_utils.hpp@{adc\_utils.hpp}!ADC\_FIRST\_BUFFER@{ADC\_FIRST\_BUFFER}}
+\index{ADC\_FIRST\_BUFFER@{ADC\_FIRST\_BUFFER}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ADC\_FIRST\_BUFFER}{ADC\_FIRST\_BUFFER}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a9b435799701060ee7759b795ceca45e8} 
+\#define ADC\+\_\+\+FIRST\+\_\+\+BUFFER~0}
+
+\Hypertarget{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}\index{adc\_utils.hpp@{adc\_utils.hpp}!ADC\_REF@{ADC\_REF}}
+\index{ADC\_REF@{ADC\_REF}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ADC\_REF}{ADC\_REF}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0} 
+\#define ADC\+\_\+\+REF~3.\+3f}
+
+
+
+Reference voltage for ADC (V) 
+
+\Hypertarget{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}\index{adc\_utils.hpp@{adc\_utils.hpp}!ADC\_RES@{ADC\_RES}}
+\index{ADC\_RES@{ADC\_RES}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ADC\_RES}{ADC\_RES}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80} 
+\#define ADC\+\_\+\+RES~4095.\+0f}
+
+
+
+ADC maximum value (12-\/bit) 
+
+\Hypertarget{adc__utils_8hpp_a80a6ec27aae3b807c9dbc5736bcb8b05}\index{adc\_utils.hpp@{adc\_utils.hpp}!ADC\_SECOND\_BUFFER@{ADC\_SECOND\_BUFFER}}
+\index{ADC\_SECOND\_BUFFER@{ADC\_SECOND\_BUFFER}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ADC\_SECOND\_BUFFER}{ADC\_SECOND\_BUFFER}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a80a6ec27aae3b807c9dbc5736bcb8b05} 
+\#define ADC\+\_\+\+SECOND\+\_\+\+BUFFER~1}
+
+\Hypertarget{adc__utils_8hpp_abdd082117654447b0422cb5a718bf58c}\index{adc\_utils.hpp@{adc\_utils.hpp}!GET\_COMPENSATED\_ADC@{GET\_COMPENSATED\_ADC}}
+\index{GET\_COMPENSATED\_ADC@{GET\_COMPENSATED\_ADC}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{GET\_COMPENSATED\_ADC}{GET\_COMPENSATED\_ADC}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_abdd082117654447b0422cb5a718bf58c} 
+\#define GET\+\_\+\+COMPENSATED\+\_\+\+ADC(\begin{DoxyParamCaption}\item[{}]{ADC\+\_\+\+VAL}{, }\item[{}]{NAME}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(((float)(ADC\_VAL))\ *\ \mbox{\hyperlink{adc__utils_8cpp_a022492d6772864952aa55c385aa22604}{adc\_gains}}[NAME])\ +\ \mbox{\hyperlink{adc__utils_8cpp_af417779b6559c4900d6e0075c7b33d21}{adc\_offsets}}[NAME]}
+
+\end{DoxyCode}
+
+
+Helper macro for applying gain + offset compensation on raw ADC readings. 
+
+\Hypertarget{adc__utils_8hpp_a5620ff64c23de3e0b18f15471d288869}\index{adc\_utils.hpp@{adc\_utils.hpp}!IBAT\_GAIN@{IBAT\_GAIN}}
+\index{IBAT\_GAIN@{IBAT\_GAIN}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{IBAT\_GAIN}{IBAT\_GAIN}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a5620ff64c23de3e0b18f15471d288869} 
+\#define IBAT\+\_\+\+GAIN~-\/(\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} / \mbox{\hyperlink{adc__utils_8hpp_afc0b378f10595a0cbf38a4da1a2d31a6}{SHUNT\+\_\+\+RESISTOR}} / \mbox{\hyperlink{adc__utils_8hpp_a58ae2dfadb1cd504beadaf6d7fac2d1b}{INA186\+A2\+\_\+\+GAIN}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}})}
+
+
+
+Current measurement gain from each source, sign indicates direction. 
+
+\Hypertarget{adc__utils_8hpp_a80af2f1c738fe15ec0b8d4df8129756a}\index{adc\_utils.hpp@{adc\_utils.hpp}!ICAP\_GAIN@{ICAP\_GAIN}}
+\index{ICAP\_GAIN@{ICAP\_GAIN}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ICAP\_GAIN}{ICAP\_GAIN}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a80af2f1c738fe15ec0b8d4df8129756a} 
+\#define ICAP\+\_\+\+GAIN~-\/(\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} / \mbox{\hyperlink{adc__utils_8hpp_afc0b378f10595a0cbf38a4da1a2d31a6}{SHUNT\+\_\+\+RESISTOR}} / \mbox{\hyperlink{adc__utils_8hpp_a58ae2dfadb1cd504beadaf6d7fac2d1b}{INA186\+A2\+\_\+\+GAIN}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}})}
+
+\Hypertarget{adc__utils_8hpp_a58ae2dfadb1cd504beadaf6d7fac2d1b}\index{adc\_utils.hpp@{adc\_utils.hpp}!INA186A2\_GAIN@{INA186A2\_GAIN}}
+\index{INA186A2\_GAIN@{INA186A2\_GAIN}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{INA186A2\_GAIN}{INA186A2\_GAIN}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a58ae2dfadb1cd504beadaf6d7fac2d1b} 
+\#define INA186\+A2\+\_\+\+GAIN~50.\+0f}
+
+
+
+INA186\+A2 current amplifier gain (datasheet) 
+
+\Hypertarget{adc__utils_8hpp_a4b47e005f382513a12cb21b762f70c79}\index{adc\_utils.hpp@{adc\_utils.hpp}!INV\_VOLT\_DIV@{INV\_VOLT\_DIV}}
+\index{INV\_VOLT\_DIV@{INV\_VOLT\_DIV}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{INV\_VOLT\_DIV}{INV\_VOLT\_DIV}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a4b47e005f382513a12cb21b762f70c79} 
+\#define INV\+\_\+\+VOLT\+\_\+\+DIV~11.\+0f}
+
+
+
+Inverse of voltage divider ratio (used for voltage measurement scaling) 
+
+\Hypertarget{adc__utils_8hpp_a6792419ac1fbfaa0747d443f1b4af1c3}\index{adc\_utils.hpp@{adc\_utils.hpp}!ISOURCE\_GAIN@{ISOURCE\_GAIN}}
+\index{ISOURCE\_GAIN@{ISOURCE\_GAIN}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ISOURCE\_GAIN}{ISOURCE\_GAIN}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a6792419ac1fbfaa0747d443f1b4af1c3} 
+\#define ISOURCE\+\_\+\+GAIN~-\/(\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} / \mbox{\hyperlink{adc__utils_8hpp_afc0b378f10595a0cbf38a4da1a2d31a6}{SHUNT\+\_\+\+RESISTOR}} / \mbox{\hyperlink{adc__utils_8hpp_a58ae2dfadb1cd504beadaf6d7fac2d1b}{INA186\+A2\+\_\+\+GAIN}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}})}
+
+\Hypertarget{adc__utils_8hpp_afc0b378f10595a0cbf38a4da1a2d31a6}\index{adc\_utils.hpp@{adc\_utils.hpp}!SHUNT\_RESISTOR@{SHUNT\_RESISTOR}}
+\index{SHUNT\_RESISTOR@{SHUNT\_RESISTOR}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{SHUNT\_RESISTOR}{SHUNT\_RESISTOR}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_afc0b378f10595a0cbf38a4da1a2d31a6} 
+\#define SHUNT\+\_\+\+RESISTOR~0.\+004f}
+
+
+
+Value of current sensing shunt resistor (Ohms) 
+
+\Hypertarget{adc__utils_8hpp_ab74dee029b377d07904bc931227c6963}\index{adc\_utils.hpp@{adc\_utils.hpp}!VBAT\_GAIN@{VBAT\_GAIN}}
+\index{VBAT\_GAIN@{VBAT\_GAIN}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{VBAT\_GAIN}{VBAT\_GAIN}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_ab74dee029b377d07904bc931227c6963} 
+\#define VBAT\+\_\+\+GAIN~\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{adc__utils_8hpp_a4b47e005f382513a12cb21b762f70c79}{INV\+\_\+\+VOLT\+\_\+\+DIV}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}}}
+
+\Hypertarget{adc__utils_8hpp_af1153fd273a948a7363d4fb204d1da7a}\index{adc\_utils.hpp@{adc\_utils.hpp}!VCAP\_GAIN@{VCAP\_GAIN}}
+\index{VCAP\_GAIN@{VCAP\_GAIN}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{VCAP\_GAIN}{VCAP\_GAIN}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_af1153fd273a948a7363d4fb204d1da7a} 
+\#define VCAP\+\_\+\+GAIN~\mbox{\hyperlink{adc__utils_8hpp_abe7d90bd1e8c6c56e8a9f8542f80baa0}{ADC\+\_\+\+REF}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{adc__utils_8hpp_a4b47e005f382513a12cb21b762f70c79}{INV\+\_\+\+VOLT\+\_\+\+DIV}} / \mbox{\hyperlink{adc__utils_8hpp_ab298faea909e0aa62203195aa3d6ca80}{ADC\+\_\+\+RES}}}
+
+
+
+Voltage measurement gain\+: V = (ADC / 4095) \texorpdfstring{$\ast$}{*} 3.\+3 \texorpdfstring{$\ast$}{*} 11. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{adc__utils_8hpp_afc5117089f86c477334576ef093ca799}\index{adc\_utils.hpp@{adc\_utils.hpp}!adc\_names@{adc\_names}}
+\index{adc\_names@{adc\_names}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{adc\_names}{adc\_names}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_afc5117089f86c477334576ef093ca799} 
+enum \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799}{adc\+\_\+names}}}
+
+
+
+Enum for identifying ADC channels. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\_cap@{I\_cap}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!I\_cap@{I\_cap}}}\Hypertarget{adc__utils_8hpp_afc5117089f86c477334576ef093ca799af214a7fa5d1445a5cbe8e8bb1b9ddacf}\label{adc__utils_8hpp_afc5117089f86c477334576ef093ca799af214a7fa5d1445a5cbe8e8bb1b9ddacf} 
+I\+\_\+cap&Current from capacitor side. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{V\_cap@{V\_cap}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!V\_cap@{V\_cap}}}\Hypertarget{adc__utils_8hpp_afc5117089f86c477334576ef093ca799ab50afdeac5bc3148b777cc77b1f0c632}\label{adc__utils_8hpp_afc5117089f86c477334576ef093ca799ab50afdeac5bc3148b777cc77b1f0c632} 
+V\+\_\+cap&Voltage on supercap bank. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{V\_bat@{V\_bat}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!V\_bat@{V\_bat}}}\Hypertarget{adc__utils_8hpp_afc5117089f86c477334576ef093ca799af5bf208601547baf0ed8b6a55d6aa2d7}\label{adc__utils_8hpp_afc5117089f86c477334576ef093ca799af5bf208601547baf0ed8b6a55d6aa2d7} 
+V\+\_\+bat&Voltage from battery input. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\_chassis@{I\_chassis}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!I\_chassis@{I\_chassis}}}\Hypertarget{adc__utils_8hpp_afc5117089f86c477334576ef093ca799a9226677819b817c2a6c8678564ee32ca}\label{adc__utils_8hpp_afc5117089f86c477334576ef093ca799a9226677819b817c2a6c8678564ee32ca} 
+I\+\_\+chassis&Current flowing to chassis. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\_bat@{I\_bat}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!I\_bat@{I\_bat}}}\Hypertarget{adc__utils_8hpp_afc5117089f86c477334576ef093ca799ad2dcb856604a40556c5c19da0613ddee}\label{adc__utils_8hpp_afc5117089f86c477334576ef093ca799ad2dcb856604a40556c5c19da0613ddee} 
+I\+\_\+bat&Current from PMM to board. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12}\index{adc\_utils.hpp@{adc\_utils.hpp}!pid\_names@{pid\_names}}
+\index{pid\_names@{pid\_names}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{pid\_names}{pid\_names}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12} 
+enum \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12}{pid\+\_\+names}}}
+
+
+
+Enum for identifying PID loops. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\_bat@{P\_bat}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!P\_bat@{P\_bat}}}\Hypertarget{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a94dfe2b34d3e8674898632196b121148}\label{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a94dfe2b34d3e8674898632196b121148} 
+P\+\_\+bat&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\_chassis@{P\_chassis}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!P\_chassis@{P\_chassis}}}\Hypertarget{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a8ee2ae8d088c7db2640824af7679e8a4}\label{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a8ee2ae8d088c7db2640824af7679e8a4} 
+P\+\_\+chassis&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\_capa@{I\_capa}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!I\_capa@{I\_capa}}}\Hypertarget{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a20bc672e476005b3b6c5a25f8209cdd1}\label{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a20bc672e476005b3b6c5a25f8209cdd1} 
+I\+\_\+capa&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{V\_cap\_max@{V\_cap\_max}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!V\_cap\_max@{V\_cap\_max}}}\Hypertarget{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a9314604ec904c5dff156e47db06bdf70}\label{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a9314604ec904c5dff156e47db06bdf70} 
+V\+\_\+cap\+\_\+max&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{V\_cap\_min@{V\_cap\_min}!adc\_utils.hpp@{adc\_utils.hpp}}\index{adc\_utils.hpp@{adc\_utils.hpp}!V\_cap\_min@{V\_cap\_min}}}\Hypertarget{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a715f4bb451ff2eedc7cc6479654fc1fa}\label{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a715f4bb451ff2eedc7cc6479654fc1fa} 
+V\+\_\+cap\+\_\+min&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{adc__utils_8hpp_a08737bb431cb4cae01fa4661b9bc286f}\index{adc\_utils.hpp@{adc\_utils.hpp}!adc1\_samples@{adc1\_samples}}
+\index{adc1\_samples@{adc1\_samples}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{adc1\_samples}{adc1\_samples}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a08737bb431cb4cae01fa4661b9bc286f} 
+uint16\+\_\+t adc1\+\_\+samples\mbox{[}2\mbox{]}\mbox{[}16\mbox{]}\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Raw buffer for ADC1. 
+
+\Hypertarget{adc__utils_8hpp_a7ee90f0e85f6ec368017308eda5b69af}\index{adc\_utils.hpp@{adc\_utils.hpp}!adc2\_samples@{adc2\_samples}}
+\index{adc2\_samples@{adc2\_samples}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{adc2\_samples}{adc2\_samples}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a7ee90f0e85f6ec368017308eda5b69af} 
+uint16\+\_\+t adc2\+\_\+samples\mbox{[}2\mbox{]}\mbox{[}16\mbox{]}\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Raw buffer for ADC2. 
+
+\Hypertarget{adc__utils_8hpp_a3e1e952364ca1f287cc67d3d04b59c0c}\index{adc\_utils.hpp@{adc\_utils.hpp}!ADC\_filtered\_data@{ADC\_filtered\_data}}
+\index{ADC\_filtered\_data@{ADC\_filtered\_data}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{ADC\_filtered\_data}{ADC\_filtered\_data}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a3e1e952364ca1f287cc67d3d04b59c0c} 
+uint16\+\_\+t ADC\+\_\+filtered\+\_\+data\mbox{[}5\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Filtered data per channel. 
+
+\Hypertarget{adc__utils_8hpp_a022492d6772864952aa55c385aa22604}\index{adc\_utils.hpp@{adc\_utils.hpp}!adc\_gains@{adc\_gains}}
+\index{adc\_gains@{adc\_gains}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{adc\_gains}{adc\_gains}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a022492d6772864952aa55c385aa22604} 
+float adc\+\_\+gains\mbox{[}5\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Gain correction per channel. 
+
+\Hypertarget{adc__utils_8hpp_af417779b6559c4900d6e0075c7b33d21}\index{adc\_utils.hpp@{adc\_utils.hpp}!adc\_offsets@{adc\_offsets}}
+\index{adc\_offsets@{adc\_offsets}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{adc\_offsets}{adc\_offsets}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_af417779b6559c4900d6e0075c7b33d21} 
+float adc\+\_\+offsets\mbox{[}5\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Offset correction per channel. 
+
+\Hypertarget{adc__utils_8hpp_a279b3b57733e7c5e4d8880b49fb7317d}\index{adc\_utils.hpp@{adc\_utils.hpp}!filters@{filters}}
+\index{filters@{filters}!adc\_utils.hpp@{adc\_utils.hpp}}
+\doxysubsubsection{\texorpdfstring{filters}{filters}}
+{\footnotesize\ttfamily \label{adc__utils_8hpp_a279b3b57733e7c5e4d8880b49fb7317d} 
+\mbox{\hyperlink{structmov__avrg__filter}{mov\+\_\+avrg\+\_\+filter}} filters\mbox{[}5\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Filter states per channel. 
+

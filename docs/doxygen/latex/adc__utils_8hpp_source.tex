@@ -1,0 +1,166 @@
+\doxysection{adc\+\_\+utils.\+hpp}
+\hypertarget{adc__utils_8hpp_source}{}\label{adc__utils_8hpp_source}\index{System/stm\_utils/Inc/adc\_utils.hpp@{System/stm\_utils/Inc/adc\_utils.hpp}}
+\mbox{\hyperlink{adc__utils_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ STM\_UTILS\_INC\_ADC\_UTILS\_HPP\_}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ STM\_UTILS\_INC\_ADC\_UTILS\_HPP\_}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{adc_8h}{adc.h}}>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dma_8h}{dma.h}}>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <arm\_math.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{supercap__def_8h}{supercap\_def.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ ADC\ and\ Signal\ Definitions}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ ADC\_RES\ 4095.0f}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ INV\_VOLT\_DIV\ 11.0f}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ADC\_REF\ 3.3f}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ INA186A2\_GAIN\ 50.0f}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ SHUNT\_RESISTOR\ 0.004f}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ VCAP\_GAIN\ ADC\_REF\ *\ INV\_VOLT\_DIV\ /\ ADC\_RES}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ VBAT\_GAIN\ ADC\_REF\ *\ INV\_VOLT\_DIV\ /\ ADC\_RES}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ IBAT\_GAIN\ -\/(ADC\_REF\ /\ SHUNT\_RESISTOR\ /\ INA186A2\_GAIN\ /\ ADC\_RES)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ ISOURCE\_GAIN\ -\/(ADC\_REF\ /\ SHUNT\_RESISTOR\ /\ INA186A2\_GAIN\ /\ ADC\_RES)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ ICAP\_GAIN\ -\/(ADC\_REF\ /\ SHUNT\_RESISTOR\ /\ INA186A2\_GAIN\ /\ ADC\_RES)}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Offset\ Calibration\ per\ Board}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#if\ BOARD\_ID\ ==\ 0x01}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ \#define\ VCAP\_OFFSET\ 0.4914794921875f}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \ \ \#define\ VBAT\_OFFSET\ 0.5060302734375f}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ \#define\ IBAT\_OFFSET\ 8.018306816f}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ \#define\ ISOURCE\_OFFSET\ 8.0183068822f}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \ \ \#define\ ICAP\_OFFSET\ 7.97801410408f}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#elif\ BOARD\_ID\ ==\ 0x02}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \ \ \#define\ VCAP\_OFFSET\ 0.5300927721875f}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \ \ \#define\ VBAT\_OFFSET\ 0.6178282734375f}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\ \ \ \ \#define\ IBAT\_OFFSET\ 7.9417500291f}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ \#define\ ISOURCE\_OFFSET\ 7.9941314767f}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \ \ \#define\ ICAP\_OFFSET\ 7.95786746968f}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#elif\ BOARD\_ID\ ==\ 0x03}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ \#define\ VCAP\_OFFSET\ 0.5344686121875f}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ \#define\ VBAT\_OFFSET\ 0.5866657734375f}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \ \ \#define\ IBAT\_OFFSET\ 8.018306816f}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \#define\ ISOURCE\_OFFSET\ 8.0183068822f}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ \#define\ ICAP\_OFFSET\ 7.97801410408f}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#elif\ BOARD\_ID\ ==\ 0x04}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \ \ \ \#define\ VCAP\_OFFSET\ 0.5344686121875f}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \ \ \#define\ VBAT\_OFFSET\ 0.5866657734375f}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \#define\ IBAT\_OFFSET\ 8.018306816f}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \ \ \#define\ ISOURCE\_OFFSET\ 8.0183068822f}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ \#define\ ICAP\_OFFSET\ 7.97801410408f}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \#error\ "{}WRONG\ BOARD\ ID."{}}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ ADC\ Buffers\ and\ Channels}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ ADC1\_CHANNELS\ 2}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ ADC2\_CHANNELS\ 3}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ ADC\_FIRST\_BUFFER\ 0}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ ADC\_SECOND\_BUFFER\ 1}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ ADC\_BUFFER\_DEPTH\ 16}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ Enumerations}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799af214a7fa5d1445a5cbe8e8bb1b9ddacf}{I\_cap}},\ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799ab50afdeac5bc3148b777cc77b1f0c632}{V\_cap}},\ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799af5bf208601547baf0ed8b6a55d6aa2d7}{V\_bat}},\ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799a9226677819b817c2a6c8678564ee32ca}{I\_chassis}},\ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799ad2dcb856604a40556c5c19da0613ddee}{I\_bat}}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \}\ \mbox{\hyperlink{adc__utils_8hpp_afc5117089f86c477334576ef093ca799}{adc\_names}};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a94dfe2b34d3e8674898632196b121148}{P\_bat}},}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a8ee2ae8d088c7db2640824af7679e8a4}{P\_chassis}},}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a20bc672e476005b3b6c5a25f8209cdd1}{I\_capa}},}
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a9314604ec904c5dff156e47db06bdf70}{V\_cap\_max}},}
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12a715f4bb451ff2eedc7cc6479654fc1fa}{V\_cap\_min}}}
+\DoxyCodeLine{00115\ \}\ \mbox{\hyperlink{adc__utils_8hpp_ab20cfbfae4ebf2162ea738741073bf12}{pid\_names}};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ Data\ Structures}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00125\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structmov__avrg__filter_a0b55e344f43e46a0519ebd2486d4d69b}{window\_filter}}[64];\ }
+\DoxyCodeLine{00126\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structmov__avrg__filter_abf7f7ad272e280913faab69e63a4888f}{length}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structmov__avrg__filter_ac13a509e592c8d6e88763b5722c8756a}{index}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structmov__avrg__filter_afde9b91fa0a2c01e2c50ee843ec56562}{sum}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00129\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structmov__avrg__filter_a9daa9d1240812b73e7f45bb2c7415a5b}{full}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \}\ \mbox{\hyperlink{structmov__avrg__filter}{mov\_avrg\_filter}}\ ;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00136\ \ \ \ \ arm\_pid\_instance\_f32\ \mbox{\hyperlink{struct_loop_ctrl___p_i_d_a5749d8bcebc79726c662d9b358862d17}{ArmPID\_Instance}};\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_loop_ctrl___p_i_d_a1edeeae8b8d50ff18ecd12e3ead4d8ab}{IntegMax}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_loop_ctrl___p_i_d_a9c2cbff59a8c9422751dd9da50cc496f}{IntegMin}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_loop_ctrl___p_i_d_a9dcce54551d80f9daa15de119d6afd46}{OutputMax}};\ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_loop_ctrl___p_i_d_a1a2ed4deca872a4e8dc5cb699727c3fe}{OutputMin}};\ \ \ \ \ \ }
+\DoxyCodeLine{00141\ \}\ \mbox{\hyperlink{struct_loop_ctrl___p_i_d}{LoopCtrl\_PID}};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ ADC\ Manager\ Class}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classadc__manager_a1a88da33daa8bbdd601bdb9d0dc7791f}{adc\_manager}}\ \{}
+\DoxyCodeLine{00152\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{classadc__manager_a1a88da33daa8bbdd601bdb9d0dc7791f}{adc\_manager}}(ADC\_HandleTypeDef*\ adc\_cap,\ ADC\_HandleTypeDef*\ adc\_bat,\ ADC\_HandleTypeDef*\ adc\_temp)}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ :\ adc\_cap\_(adc\_cap),\ adc\_bat\_(adc\_bat),\ adc\_temp\_(adc\_temp)\ \{\}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00167\ \ \ \ \ HAL\_StatusTypeDef\ \mbox{\hyperlink{classadc__manager_aa0e5b68c23328dbdd8fa687539f484c0}{adc\_init}}(uint8\_t*\ filters\_length);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classadc__manager_aae46d558401cfab485b8ced03624f05e}{get\_temperature}}();}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classadc__manager_a00a4020c7ba022baff1b51fa178b277b}{calibration\_ready}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{void}\ set\_gains\_offsets();\ }
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ ADC\ handles}}
+\DoxyCodeLine{00181\ \ \ \ \ ADC\_HandleTypeDef*\ adc\_cap\_;}
+\DoxyCodeLine{00182\ \ \ \ \ ADC\_HandleTypeDef*\ adc\_bat\_;}
+\DoxyCodeLine{00183\ \ \ \ \ ADC\_HandleTypeDef*\ adc\_temp\_;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//\ (Deprecated)\ unused\ PID\ constants}}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{float}\ P\_KP\_chassis,\ P\_KI\_chassis,\ P\_KD\_chassis;}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{float}\ P\_KP\_battery,\ P\_KI\_battery,\ P\_KD\_battery;}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{float}\ I\_KP\_supercap,\ I\_KI\_supercap,\ I\_KD\_supercap;}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{float}\ V\_KP\_capMax,\ V\_KI\_capMax,\ V\_KD\_capMax;}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{float}\ V\_KP\_capMin,\ V\_KI\_capMin,\ V\_KD\_capMin;}
+\DoxyCodeLine{00191\ \};}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00194\ \textcolor{comment}{//\ External\ Variables}}
+\DoxyCodeLine{00195\ \textcolor{comment}{//\ ==========================}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{adc__utils_8cpp_a08737bb431cb4cae01fa4661b9bc286f}{adc1\_samples}}[2][16][2];\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{adc__utils_8cpp_a7ee90f0e85f6ec368017308eda5b69af}{adc2\_samples}}[2][16][3];\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{adc__utils_8cpp_a3e1e952364ca1f287cc67d3d04b59c0c}{ADC\_filtered\_data}}[5];\ \ }
+\DoxyCodeLine{00200\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structmov__avrg__filter}{mov\_avrg\_filter}}\ \mbox{\hyperlink{adc__utils_8cpp_a279b3b57733e7c5e4d8880b49fb7317d}{filters}}[5];\ \ \ \ \ }
+\DoxyCodeLine{00201\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{adc__utils_8cpp_a022492d6772864952aa55c385aa22604}{adc\_gains}}[5];\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{adc__utils_8cpp_af417779b6559c4900d6e0075c7b33d21}{adc\_offsets}}[5];\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#define\ GET\_COMPENSATED\_ADC(ADC\_VAL,\ NAME)\ (((float)(ADC\_VAL))\ *\ adc\_gains[NAME])\ +\ adc\_offsets[NAME]}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ STM\_UTILS\_INC\_ADC\_UTILS\_HPP\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
