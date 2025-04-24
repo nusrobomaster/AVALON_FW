@@ -109,7 +109,7 @@ If you're using a different STM32G4 variant, make sure to update the pin configu
 
 ## Documentation
 
-This project is documented using **Doxygen**. You can generate and view the documentation locally, or access it online via the [GitHub Pages site](https://nusrobomaster.github.io/AVALON_FW/).
+This project is documented using **Doxygen**. You can generate and view the documentation locally, or access it online via our [GitHub Pages site](https://nusrobomaster.github.io/Avalon_FW/).
 
 ## License
 
