@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['i_5fcap_5fgpio_5fport_0',['I_CAP_GPIO_Port',['../main_8h.html#aa78837263e8ba981ed14a90087e4207d',1,'main.h']]],
+  ['i_5fcap_5fpin_1',['I_CAP_Pin',['../main_8h.html#a7782b928a6a8f95bceb13de771d05af4',1,'main.h']]],
+  ['i_5fchassis_5fgpio_5fport_2',['I_CHASSIS_GPIO_Port',['../main_8h.html#a764f154c50ac959b78a36a929cafc51e',1,'main.h']]],
+  ['i_5fchassis_5fpin_3',['I_CHASSIS_Pin',['../main_8h.html#a3b4e5f95ed0cb9e5fa1da2c4f79c8bf3',1,'main.h']]],
+  ['i_5fsource_5fgpio_5fport_4',['I_SOURCE_GPIO_Port',['../main_8h.html#ae1898d49f82e88ae6bf786b98635b31d',1,'main.h']]],
+  ['i_5fsource_5fpin_5',['I_SOURCE_Pin',['../main_8h.html#a02bd0fd50806a2467e064a67b7a0eeb3',1,'main.h']]],
+  ['i_5fsupercap_5finit_5fval_6',['I_SUPERCAP_INIT_VAL',['../supercap__def_8h.html#a3cc2bd1c13eedd913abd6594501efd2b',1,'supercap_def.h']]],
+  ['i_5fsupercap_5finteg_5fmax_7',['I_SUPERCAP_INTEG_MAX',['../supercap__def_8h.html#a2892ae76021b701c4b04aaca94088a0b',1,'supercap_def.h']]],
+  ['i_5fsupercap_5finteg_5fmin_8',['I_SUPERCAP_INTEG_MIN',['../supercap__def_8h.html#a908eb32717d3e285eb97226efb770550',1,'supercap_def.h']]],
+  ['i_5fsupercap_5fkd_9',['I_SUPERCAP_KD',['../supercap__def_8h.html#a1f5eb9215a5da85d9b56f6faec7e9b2d',1,'supercap_def.h']]],
+  ['i_5fsupercap_5fki_10',['I_SUPERCAP_KI',['../supercap__def_8h.html#a5a887b6a2d0d3dba915ddb9d94f1a27b',1,'supercap_def.h']]],
+  ['i_5fsupercap_5fkp_11',['I_SUPERCAP_KP',['../supercap__def_8h.html#a210231c585755d208f920bdbf78e9bb4',1,'supercap_def.h']]],
+  ['i_5fsupercap_5fmax_5foutput_12',['I_SUPERCAP_MAX_OUTPUT',['../supercap__def_8h.html#a4800e212269991dfd1beaf89b4bc3380',1,'supercap_def.h']]],
+  ['i_5fsupercap_5fmin_5foutput_13',['I_SUPERCAP_MIN_OUTPUT',['../supercap__def_8h.html#a955d407124dd990495ead1b778fc4cde',1,'supercap_def.h']]],
+  ['ibat_5fgain_14',['IBAT_GAIN',['../adc__utils_8hpp.html#a5620ff64c23de3e0b18f15471d288869',1,'adc_utils.hpp']]],
+  ['icap_5fgain_15',['ICAP_GAIN',['../adc__utils_8hpp.html#a80af2f1c738fe15ec0b8d4df8129756a',1,'adc_utils.hpp']]],
+  ['ina186a2_5fgain_16',['INA186A2_GAIN',['../adc__utils_8hpp.html#a58ae2dfadb1cd504beadaf6d7fac2d1b',1,'adc_utils.hpp']]],
+  ['instruction_5fcache_5fenable_17',['INSTRUCTION_CACHE_ENABLE',['../stm32g4xx__hal__conf_8h.html#a3379989d46599c7e19a43f42e9145a4a',1,'stm32g4xx_hal_conf.h']]],
+  ['inv_5fvolt_5fdiv_18',['INV_VOLT_DIV',['../adc__utils_8hpp.html#a4b47e005f382513a12cb21b762f70c79',1,'adc_utils.hpp']]],
+  ['isource_5fgain_19',['ISOURCE_GAIN',['../adc__utils_8hpp.html#a6792419ac1fbfaa0747d443f1b4af1c3',1,'adc_utils.hpp']]]
+];

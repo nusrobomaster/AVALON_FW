@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['safety_5fchange_5flevel_0',['safety_change_level',['../supercap__controllers_8cpp.html#a96056a8046434e0683c4c4b5cce9c26e',1,'supercap_controllers.cpp']]],
+  ['safety_5fcheck_5fcurrents_1',['safety_check_currents',['../supercap__controllers_8cpp.html#ae89ccaa857bc05c4a7c5d7725ac597dd',1,'supercap_controllers.cpp']]],
+  ['safety_5fcheck_5fvoltages_2',['safety_check_voltages',['../supercap__controllers_8cpp.html#aa6f1aee2abb42683116182bcd70bc2d9',1,'supercap_controllers.cpp']]],
+  ['sample_5fadc_3',['sample_adc',['../supercap__controllers_8cpp.html#aba3127849c2e3b057ae866a50726d0dc',1,'supercap_controllers.cpp']]],
+  ['sendmessage_4',['sendMessage',['../class_c_a_n_comm.html#a28400032a36ce634e1d1392ce78dd60e',1,'CANComm']]],
+  ['set_5fref_5fchassis_5fpower_5',['set_ref_chassis_power',['../classsupercap__control__manager.html#a3232216531c15765c269f70ca738edd6',1,'supercap_control_manager']]],
+  ['setup_5fpid_5fcontrollers_6',['setup_pid_controllers',['../classsupercap__control__manager.html#aed93c989e0784f9363a064fde4d3f32e',1,'supercap_control_manager']]],
+  ['silent_5fmode_7',['silent_mode',['../classsupercap__control__manager.html#ada5922bcb0490963cd9c812f0fd742f9',1,'supercap_control_manager']]],
+  ['softwarereset_8',['softwareReset',['../supercap__controllers_8cpp.html#a7dd54fc66122a231da37b565f13d23c5',1,'softwareReset():&#160;supercap_controllers.cpp'],['../supercap__controllers_8hpp.html#a7dd54fc66122a231da37b565f13d23c5',1,'softwareReset():&#160;supercap_controllers.cpp']]],
+  ['start_5fgates_5fpwm_9',['start_gates_pwm',['../classsupercap__control__manager.html#a532f7603af350d8fc079adee14d8ff71',1,'supercap_control_manager']]],
+  ['start_5floop_10',['start_loop',['../classsupercap__control__manager.html#a6abb1fd969adbba14b518da8ec0830ae',1,'supercap_control_manager']]],
+  ['startdefaulttask_11',['StartDefaultTask',['../main_8h.html#a99d0fdb0434092bcb24d9c9af917e4e9',1,'main.h']]],
+  ['stop_5fgates_5fpwm_12',['stop_gates_pwm',['../supercap__controllers_8cpp.html#a900e71684e129e79e1783534a3debe3b',1,'supercap_controllers.cpp']]],
+  ['stop_5floop_13',['stop_loop',['../classsupercap__control__manager.html#a50bdf5a8e41d2a23738aff8da8fde391',1,'supercap_control_manager::stop_loop()'],['../supercap__controllers_8cpp.html#a96b593097aa92fa0833e7133289303d0',1,'stop_loop():&#160;supercap_controllers.cpp']]],
+  ['supercap_5fcontrol_5fmanager_14',['supercap_control_manager',['../classsupercap__control__manager.html#a9c6a56dec2098d79af654c8e2b03fbde',1,'supercap_control_manager']]],
+  ['svc_5fhandler_15',['SVC_Handler',['../stm32g4xx__it_8h.html#a3e5ddb3df0d62f2dc357e64a3f04a6ce',1,'SVC_Handler(void):&#160;stm32g4xx_it.c'],['../stm32g4xx__it_8c.html#a3e5ddb3df0d62f2dc357e64a3f04a6ce',1,'SVC_Handler(void):&#160;stm32g4xx_it.c']]],
+  ['systemclock_5fconfig_16',['SystemClock_Config',['../main_8cpp.html#a70af21c671abfcc773614a9a4f63d920',1,'SystemClock_Config(void):&#160;main.cpp'],['../main__cringe_8c.html#a70af21c671abfcc773614a9a4f63d920',1,'SystemClock_Config(void):&#160;main_cringe.c'],['../main__temp_8c.html#a70af21c671abfcc773614a9a4f63d920',1,'SystemClock_Config(void):&#160;main_temp.c']]],
+  ['systemcoreclockupdate_17',['SystemCoreClockUpdate',['../group___s_t_m32_g4xx___system___private___functions.html#gae0c36a9591fe6e9c45ecb21a794f0f0f',1,'system_stm32g4xx.c']]],
+  ['systeminit_18',['SystemInit',['../group___s_t_m32_g4xx___system___private___functions.html#ga93f514700ccf00d08dbdcff7f1224eb2',1,'system_stm32g4xx.c']]],
+  ['systick_5fhandler_19',['SysTick_Handler',['../stm32g4xx__it_8h.html#ab5e09814056d617c521549e542639b7e',1,'SysTick_Handler(void):&#160;stm32g4xx_it.c'],['../stm32g4xx__it_8c.html#ab5e09814056d617c521549e542639b7e',1,'SysTick_Handler(void):&#160;stm32g4xx_it.c']]]
+];
