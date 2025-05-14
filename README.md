@@ -8,7 +8,7 @@ Avalon is designed to manage power flow between the robot’s battery and an onb
 
 To achieve this, the firmware operates a bidirectional synchronous buck-boost converter, driven by an STM32G4 microcontroller. The firmware monitors voltages and currents in real-time using filtered ADC measurements, and runs multiple cascaded PID controllers to regulate charging and discharging cycles efficiently and safely. When the robot is idle or cruising, excess power is used to charge the supercaps; during high-demand events, stored energy is discharged into the system to supplement the chassis power.
 
-The firmware is developed in **STM32CubeIDE**, uses **FreeRTOS**, and includes custom modules for ADC filtering, control logic, CAN communication, safety handling, and gate signal generation through HRTIM.
+The firmware is developed in **STM32CubeIDE**, and includes custom modules for ADC filtering, control logic, CAN communication, safety handling, and gate signal generation through HRTIM.
 
 
 ## Folder Structure
@@ -19,8 +19,7 @@ The structure below only includes the essential files for control, communication
 .
 Core/
 └── Src/
-    ├── main.cpp             # Firmware entry point: initializes system and peripherals
-    └── app_freertos.cpp     # Sets up FreeRTOS tasks and scheduling
+    └── main.cpp             # Firmware entry point: initializes system and peripherals
 
 System/
 └── stm_utils/
@@ -103,7 +102,7 @@ This project is developed in **STM32CubeIDE** and is intended to run on an STM32
 5. Click **Directory** and choose the folder where the project is, then click **Finish**.
 5. Click **Run > Debug As > STM32 Cortex-M C/C++ Application** to flash the firmware to the board.
 
-The project uses FreeRTOS. The default configuration assumes DMA-driven ADC sampling, HRTIM timers for gate signal generation, and CAN communication on FDCAN3.
+The default configuration assumes DMA-driven ADC sampling, HRTIM timers for gate signal generation, and CAN communication on FDCAN3.
 
 If you're using a different STM32G4 variant, make sure to update the pin configuration accordingly in `.ioc`.
 
