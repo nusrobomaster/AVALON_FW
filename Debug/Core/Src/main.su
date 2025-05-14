@@ -1,0 +1,5 @@
+../Core/Src/main.cpp:186:6:void SystemClock_Config()	88	static,ignoring_inline_asm
+../Core/Src/main.cpp:82:5:int main()	8	static
+../Core/Src/main.cpp:232:6:void TIM2_IRQHandler()	0	static
+../Core/Src/main.cpp:268:6:void Error_Handler()	0	static,ignoring_inline_asm
+../Core/Src/main.cpp:277:1:cpp)	4	static

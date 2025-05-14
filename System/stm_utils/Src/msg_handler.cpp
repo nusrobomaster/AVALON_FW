@@ -9,8 +9,20 @@
  * Date: Jan 20, 2025
  */
 
+
+#include "msg_handler.hpp"
+
 /// Local message object storing the latest received control packet.
 static ref_msg_packet rxMsg;
+extern float chassis_voltage;
+extern float battery_current;
+extern float cap_voltage;
+extern float source_current;
+float energy_buff;
+extern uint8_t max_chassis_power;
+uint8_t enable_supercap;
+
+extern supercap_control_manager supercap_controller;
 
 
 /**

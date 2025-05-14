@@ -1,0 +1,5 @@
+../System/stm_utils/Src/msg_handler.cpp:36:6:void initCANComm(FDCAN_HandleTypeDef*)	48	static
+../System/stm_utils/Src/msg_handler.cpp:68:6:void CANComm::txHeaderConfig()	4	static
+../System/stm_utils/Src/msg_handler.cpp:87:6:void CANComm::sendMessage()	8	static
+../System/stm_utils/Src/msg_handler.cpp:117:6:void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef*, uint32_t)	56	static
+../System/stm_utils/Src/msg_handler.cpp:154:6:void HAL_FDCAN_ErrorStatusCallback(FDCAN_HandleTypeDef*, uint32_t)	8	static

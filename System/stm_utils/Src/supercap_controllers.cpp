@@ -431,85 +431,6 @@ void supercap_control_manager::set_ref_chassis_power(float ref_power_){
 
 
 /**
- * @brief Runs all safety checks for voltage and current conditions.
- *
- * Combines the voltage and current safety check routines if the system is initialized.
- */
-static inline void all_safety_checks(){
-	if(is_init){
-		safety_check_voltages();
-		safety_check_currents();
-	}
-}
-
-
-/**
- * @brief Updates the control loop at each HRTIM callback cycle.
- *
- * This function is the heart of the closed-loop control logic.
- * It:
- *  - Runs safety checks
- *  - Reads filtered sensor values
- *  - Computes a desired supercap current to keep battery power below limits
- *  - Computes duty cycle through cascaded PID loops with voltage clamping
- *  - Updates PWM outputs accordingly
- */
-static inline void loop_update(){
-	all_safety_checks();
-
-	cap_voltage = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::V_cap], adc_names::V_cap);
-	chassis_voltage = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::V_bat], adc_names::V_bat);
-	cap_current = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::I_cap], adc_names::I_cap);
-	battery_current = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::I_bat], adc_names::I_bat);
-
-	if (in_loop){
-		update_pid_maxpow();
-
-		// Estimate desired chassis power (W)
-		float ref_Pchassis = get_PID(&pid[pid_names::P_bat], max_chassis_power-3, chassis_voltage * battery_current, 0);
-
-		// Estimate supercap current needed to maintain ref_Pchassis
-		float temp = ref_Pchassis / cap_voltage;
-
-		// Clamp intermediate target current
-		if(temp > MAX_CAP_CURRENT)
-			temp = MAX_CAP_CURRENT;
-		else if (temp < -MAX_CAP_CURRENT)
-			temp = -MAX_CAP_CURRENT;
-
-		// Refine supercap current using ESR model
-		float ref_icap = ref_Pchassis / (cap_voltage + ESR_VALUE * (temp - I_supercap_last));
-
-		// Final current clamping
-		if(ref_icap > MAX_CAP_CURRENT)
-			ref_icap = MAX_CAP_CURRENT;
-		else if(ref_icap < -MAX_CAP_CURRENT)
-			ref_icap = -MAX_CAP_CURRENT;
-
-		icap_output = ref_icap;
-		I_supercap_last = ref_icap;
-
-		// Cascade PID: get duty cycle from current loop
-		float ref_duty_ratio = get_PID(&pid[pid_names::I_capa], ref_icap, cap_current, 0);
-
-		// Clamp duty cycle based on voltage thresholds
-		float Vcapmax_ratio = get_PID(&pid[pid_names::V_cap_max], SUPERCAP_MAX_VOLTAGE, cap_voltage, 0);
-		float Vcapmin_ratio = get_PID(&pid[pid_names::V_cap_min], SUPERCAP_MIN_VOLTAGE, cap_voltage, 0);
-
-		float out_duty_ratio = 0.0;
-		if(ref_duty_ratio > Vcapmax_ratio)
-			out_duty_ratio = Vcapmax_ratio;
-		else if (ref_duty_ratio < Vcapmin_ratio)
-			out_duty_ratio = Vcapmin_ratio;
-		else
-			out_duty_ratio = ref_duty_ratio;
-
-		update_dutyCycle(out_duty_ratio);
-	}
-}
-
-
-/**
  * @brief Safely updates the level of a safety item if required.
  *
  * Changes the level only if escalating or recovering from a serious state.
@@ -625,6 +546,86 @@ static inline void safety_check_currents(){
 		}
 	}
 }
+
+
+/**
+ * @brief Runs all safety checks for voltage and current conditions.
+ *
+ * Combines the voltage and current safety check routines if the system is initialized.
+ */
+static inline void all_safety_checks(){
+	if(is_init){
+		safety_check_voltages();
+		safety_check_currents();
+	}
+}
+
+
+/**
+ * @brief Updates the control loop at each HRTIM callback cycle.
+ *
+ * This function is the heart of the closed-loop control logic.
+ * It:
+ *  - Runs safety checks
+ *  - Reads filtered sensor values
+ *  - Computes a desired supercap current to keep battery power below limits
+ *  - Computes duty cycle through cascaded PID loops with voltage clamping
+ *  - Updates PWM outputs accordingly
+ */
+static inline void loop_update(){
+	all_safety_checks();
+
+	cap_voltage = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::V_cap], adc_names::V_cap);
+	chassis_voltage = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::V_bat], adc_names::V_bat);
+	cap_current = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::I_cap], adc_names::I_cap);
+	battery_current = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::I_bat], adc_names::I_bat);
+
+	if (in_loop){
+		update_pid_maxpow();
+
+		// Estimate desired chassis power (W)
+		float ref_Pchassis = get_PID(&pid[pid_names::P_bat], max_chassis_power-3, chassis_voltage * battery_current, 0);
+
+		// Estimate supercap current needed to maintain ref_Pchassis
+		float temp = ref_Pchassis / cap_voltage;
+
+		// Clamp intermediate target current
+		if(temp > MAX_CAP_CURRENT)
+			temp = MAX_CAP_CURRENT;
+		else if (temp < -MAX_CAP_CURRENT)
+			temp = -MAX_CAP_CURRENT;
+
+		// Refine supercap current using ESR model
+		float ref_icap = ref_Pchassis / (cap_voltage + ESR_VALUE * (temp - I_supercap_last));
+
+		// Final current clamping
+		if(ref_icap > MAX_CAP_CURRENT)
+			ref_icap = MAX_CAP_CURRENT;
+		else if(ref_icap < -MAX_CAP_CURRENT)
+			ref_icap = -MAX_CAP_CURRENT;
+
+		icap_output = ref_icap;
+		I_supercap_last = ref_icap;
+
+		// Cascade PID: get duty cycle from current loop
+		float ref_duty_ratio = get_PID(&pid[pid_names::I_capa], ref_icap, cap_current, 0);
+
+		// Clamp duty cycle based on voltage thresholds
+		float Vcapmax_ratio = get_PID(&pid[pid_names::V_cap_max], SUPERCAP_MAX_VOLTAGE, cap_voltage, 0);
+		float Vcapmin_ratio = get_PID(&pid[pid_names::V_cap_min], SUPERCAP_MIN_VOLTAGE, cap_voltage, 0);
+
+		float out_duty_ratio = 0.0;
+		if(ref_duty_ratio > Vcapmax_ratio)
+			out_duty_ratio = Vcapmax_ratio;
+		else if (ref_duty_ratio < Vcapmin_ratio)
+			out_duty_ratio = Vcapmin_ratio;
+		else
+			out_duty_ratio = ref_duty_ratio;
+
+		update_dutyCycle(out_duty_ratio);
+	}
+}
+
 
 
 /**

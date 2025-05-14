@@ -14,6 +14,7 @@
 
 #include <cstdint>   ///< Standard integer types
 #include <fdcan.h>   ///< FDCAN peripheral definitions
+#include <supercap_controllers.hpp>
 
 /**
  * @brief CAN ID for receiving command messages intended for this board.
