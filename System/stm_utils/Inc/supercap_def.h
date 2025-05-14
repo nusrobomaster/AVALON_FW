@@ -14,9 +14,6 @@
 
 // ───── Board & Mode Configuration ───────────────────────────────
 
-#define BOARD_ID 0x01
-#define CALIBRATION_MODE 1
-
 /**
  * @brief Board ID must be defined externally via compiler or build system.
  * Each board ID maps to a set of calibration constants (in adc_utils.hpp).
