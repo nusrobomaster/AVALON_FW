@@ -13,7 +13,8 @@
 #define STM_UTILS_INC_SUPERCAP_DEF_H_
 
 // ───── Board & Mode Configuration ───────────────────────────────
-
+#define BOARD_ID 3
+#define CALIBRATION_MODE 0
 /**
  * @brief Board ID must be defined externally via compiler or build system.
  * Each board ID maps to a set of calibration constants (in adc_utils.hpp).

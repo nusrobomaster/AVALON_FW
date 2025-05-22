@@ -1,0 +1,15 @@
+../System/stm_utils/Src/supercap_controllers.cpp:278:20:void stop_gates_pwm()	1
+../System/stm_utils/Src/supercap_controllers.cpp:343:20:void update_dutyCycle(float)	4
+../System/stm_utils/Src/supercap_controllers.cpp:441:20:void safety_change_level(uint8_t, uint8_t)	5
+../System/stm_utils/Src/supercap_controllers.cpp:326:20:void idle_mode()	2
+../System/stm_utils/Src/supercap_controllers.cpp:402:21:float get_PID(LoopCtrl_PID*, float, float, float)	4
+../System/stm_utils/Src/supercap_controllers.cpp:289:6:void supercap_control_manager::stop_loop()	1
+../System/stm_utils/Src/supercap_controllers.cpp:312:6:void softwareReset()	1
+../System/stm_utils/Src/supercap_controllers.cpp:384:19:HAL_StatusTypeDef supercap_control_manager::start_gates_pwm(float)	1
+../System/stm_utils/Src/supercap_controllers.cpp:104:6:void supercap_control_manager::setup_pid_controllers()	3
+../System/stm_utils/Src/supercap_controllers.cpp:69:19:HAL_StatusTypeDef supercap_control_manager::init_loop()	1
+../System/stm_utils/Src/supercap_controllers.cpp:259:19:HAL_StatusTypeDef supercap_control_manager::start_loop()	1
+../System/stm_utils/Src/supercap_controllers.cpp:428:6:void supercap_control_manager::set_ref_chassis_power(float)	1
+../System/stm_utils/Src/supercap_controllers.cpp:638:6:void AnalogSignal_ADCDMA_OVRStop(ADC_HandleTypeDef*)	1
+../System/stm_utils/Src/supercap_controllers.cpp:651:6:void AnalogSignal_ADCDMA_OVRRecovery(ADC_HandleTypeDef*)	3
+../System/stm_utils/Src/supercap_controllers.cpp:682:17:void HAL_HRTIM_RepetitionEventCallback(HRTIM_HandleTypeDef*, uint32_t)	43

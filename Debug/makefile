@@ -85,8 +85,8 @@ all: main-build
 main-build: Avalon_SW.elf secondary-outputs
 
 # Tool invocations
-Avalon_SW.elf Avalon_SW.map: $(OBJS) $(USER_OBJS) C:\Users\ybakk\OneDrive\Bureau\AVALON_FW\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "Avalon_SW.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ybakk\OneDrive\Bureau\AVALON_FW\STM32G474RETX_FLASH.ld" -Wl,-Map="Avalon_SW.map" -Wl,--gc-sections -static -L"C:\Users\ybakk\OneDrive\Bureau\AVALON_FW\Drivers\CMSIS\DSP\Lib\GCC" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Avalon_SW.elf Avalon_SW.map: $(OBJS) $(USER_OBJS) C:\Users\ngwei\OneDrive\Documents\AVALON_FW\STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "Avalon_SW.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\ngwei\OneDrive\Documents\AVALON_FW\STM32G474RETX_FLASH.ld" -Wl,-Map="Avalon_SW.map" -Wl,--gc-sections -static -L"C:\Users\ngwei\OneDrive\Documents\AVALON_FW\Drivers\CMSIS\DSP\Lib\GCC" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
