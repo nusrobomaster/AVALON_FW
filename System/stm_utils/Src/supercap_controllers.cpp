@@ -148,8 +148,8 @@ void supercap_control_manager::setup_pid_controllers(){
 	HAL_Delay(100);
 	float initDutyRatio = 15.0;
 	while (initDutyRatio >= 2.0f || initDutyRatio <= 0.0f){
-		volatile float cap_temp = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::V_cap], adc_names::V_cap);
-		volatile float bat_temp = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::V_bat], V_bat);
+		volatile float cap_temp = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::V_cap], adc_names::V_cap);//NOT TEMPERATURE IF YOU WERE WONDERING
+		volatile float bat_temp = GET_COMPENSATED_ADC(ADC_filtered_data[adc_names::V_bat], V_bat);//NOT TEMPERATURE IF YOU WERE WONDERING
 		initDutyRatio = cap_temp / bat_temp;
 	}
 	pid[2].ArmPID_Instance.state[2] = initDutyRatio;

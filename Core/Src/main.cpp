@@ -122,6 +122,10 @@ int main(void)
   MX_CRC_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  for (int i = 0; i < 3; i++) {
+    HAL_GPIO_TogglePin(GPIO_LED_GPIO_Port, GPIO_LED_Pin);
+    HAL_Delay(100);
+  }//debug blinker
   HAL_TIM_Base_Start_IT(&htim2);
   initCANComm(&hfdcan3);
 
@@ -158,7 +162,8 @@ int main(void)
 //	  HAL_IWDG_Refresh(&hiwdg);
 //	  temperature = supercap_controller.get_temperature();
     /* USER CODE END WHILE */
-
+      //HAL_GPIO_TogglePin(GPIO_LED_GPIO_Port, GPIO_LED_Pin);
+      //HAL_Delay(500); // 500 ms = 1Hz blink
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

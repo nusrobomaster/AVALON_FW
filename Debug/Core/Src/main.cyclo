@@ -1,5 +1,12 @@
-../Core/Src/main.cpp:186:6:void SystemClock_Config()	3
-../Core/Src/main.cpp:82:5:int main()	1
-../Core/Src/main.cpp:232:6:void TIM2_IRQHandler()	1
-../Core/Src/main.cpp:268:6:void Error_Handler()	1
-../Core/Src/main.cpp:277:1:cpp)	1
+C:/Users/ngwei/OneDrive/Documents/AVALON_FW/System/stm_utils/Inc/adc_utils.hpp:159:2:adc_manager::adc_manager(ADC_HandleTypeDef*, ADC_HandleTypeDef*, ADC_HandleTypeDef*)	1
+C:/Users/ngwei/OneDrive/Documents/AVALON_FW/System/stm_utils/Inc/supercap_controllers.hpp:70:2:supercap_control_manager::supercap_control_manager(ADC_HandleTypeDef*, ADC_HandleTypeDef*, ADC_HandleTypeDef*)	1
+C:/Users/ngwei/OneDrive/Documents/AVALON_FW/System/stm_utils/Inc/supercap_controllers.hpp:74:2:supercap_control_manager::~supercap_control_manager()	1
+C:/Users/ngwei/OneDrive/Documents/AVALON_FW/System/stm_utils/Inc/msg_handler.hpp:75:5:CANComm::CANComm(FDCAN_HandleTypeDef*)	1
+C:/Users/ngwei/OneDrive/Documents/AVALON_FW/System/stm_utils/Inc/msg_handler.hpp:80:5:CANComm::~CANComm()	1
+../Core/Src/main.cpp:82:5:int main()	2
+../Core/Src/main.cpp:191:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:237:6:void TIM2_IRQHandler()	1
+../Core/Src/main.cpp:273:6:void Error_Handler()	1
+../Core/Src/main.cpp:282:1:void __static_initialization_and_destruction_0(int, int)	5
+../Core/Src/main.cpp:282:1:cpp)	1
+../Core/Src/main.cpp:282:1:cpp)	1
