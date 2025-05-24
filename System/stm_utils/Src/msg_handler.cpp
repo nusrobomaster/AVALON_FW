@@ -116,6 +116,9 @@ void CANComm::sendMessage() {
  */
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
 	if (hfdcan == &hfdcan3 && RxFifo0ITs == FDCAN_IT_RX_FIFO0_NEW_MESSAGE) {
+		//debug blink
+		HAL_GPIO_TogglePin(GPIO_LED_GPIO_Port, GPIO_LED_Pin);
+
 		FDCAN_RxHeaderTypeDef FDCAN_RxHeader;
 		HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &FDCAN_RxHeader, (uint8_t *)&rxMsg);
 

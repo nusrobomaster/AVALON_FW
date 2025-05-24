@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -18,8 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-//#include "cmsis_os.h"
 #include "adc.h"
+#include "crc.h"
 #include "dma.h"
 #include "fdcan.h"
 #include "hrtim.h"
@@ -29,29 +29,23 @@
 #include "usart.h"
 #include "usb.h"
 #include "gpio.h"
-#include "crc.h"
 
 /* Private includes ----------------------------------------------------------*/
-
 /* USER CODE BEGIN Includes */
-#include "supercap_controllers.hpp"
-#include "msg_handler.hpp"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
-
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
-
 /* USER CODE BEGIN PD */
 
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
-
 /* USER CODE BEGIN PM */
 
 /* USER CODE END PM */
@@ -59,20 +53,18 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-supercap_control_manager supercap_controller(&hadc1, &hadc2, &hadc3);
-CANComm canComDriver(&hfdcan3);
-static uint8_t filter_lengths[5] = {32,64,64,64,64};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 /* USER CODE END 0 */
 
 /**
@@ -81,6 +73,7 @@ void MX_FREERTOS_Init(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -105,9 +98,7 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_ADC1_Init();
-//  MX_FDCAN1_Init();
   MX_FDCAN2_Init();
-//  MX_SPI1_Init();
   MX_USART1_UART_Init();
   MX_USB_PCD_Init();
   MX_FDCAN3_Init();
@@ -119,71 +110,24 @@ int main(void)
   MX_USART3_UART_Init();
   MX_HRTIM1_Init();
   MX_ADC3_Init();
+  MX_IWDG_Init();
   MX_CRC_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  for (int i = 0; i < 10; i++) {
-    HAL_GPIO_TogglePin(GPIO_LED_GPIO_Port, GPIO_LED_Pin);
-    HAL_Delay(100);
-  }//debug blinker
-  HAL_TIM_Base_Start_IT(&htim2);
-  initCANComm(&hfdcan3);
-
-  supercap_controller.adc_init(filter_lengths);
-  HAL_Delay(1000);
-//  HAL_Delay(100);
-  HAL_HRTIM_WaveformCountStart_IT(&hhrtim1, HRTIM_TIMERID_MASTER|HRTIM_TIMERID_TIMER_A|HRTIM_TIMERID_TIMER_E);
-////  HAL_Delay(100);
-  supercap_controller.init_loop();
-
-//  HAL_GPIO_TogglePin(BAT_MOS_HIGH_GPIO_Port, BAT_MOS_HIGH_Pin);
-
-//  MX_IWDG_Init();
 
   /* USER CODE END 2 */
 
-  /* Init scheduler */
-//  osKernelInitialize();
-//
-//  /* Call init function for freertos objects (in cmsis_os2.c) */
-//  MX_FREERTOS_Init();
-//
-//  /* Start scheduler */
-//  osKernelStart();
-
-
-  /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  hihihaha++;
-//	  HAL_Delay(5);
-//	  HAL_IWDG_Refresh(&hiwdg);
-//	  temperature = supercap_controller.get_temperature();
     /* USER CODE END WHILE */
-      HAL_GPIO_TogglePin(GPIO_LED_GPIO_Port, GPIO_LED_Pin);
-      HAL_Delay(500); // 500 ms = 1Hz blink
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
-//void StartDefaultTask(void *argument)
-//{
-//  /* USER CODE BEGIN StartDefaultTask */
-//  /* Infinite loop */
-////  supercap_controller.adc_init(filter_lengths);
-//////  HAL_Delay(100);
-////  HAL_HRTIM_WaveformCountStart_IT(&hhrtim1, HRTIM_TIMERID_MASTER|HRTIM_TIMERID_TIMER_A|HRTIM_TIMERID_TIMER_E);
-////////  HAL_Delay(100);
-////  supercap_controller.init_loop();
-//  for(;;)
-//  {
-////	HAL_IWDG_Refresh(&hiwdg);
-////    osDelay(1);
-//  }
-//  /* USER CODE END StartDefaultTask */
-//}
+
 /**
   * @brief System Clock Configuration
   * @retval None
@@ -210,7 +154,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV12;
   RCC_OscInitStruct.PLL.PLLN = 85;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV4;
   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
@@ -231,41 +175,10 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 }
+
 /* USER CODE BEGIN 4 */
-//stm32g4xx_it.c COMMENT IT OUT or shift this inside there
-extern "C"
-{
-void TIM2_IRQHandler(void)
-{
-    __HAL_TIM_CLEAR_FLAG(&htim2, TIM_FLAG_UPDATE);
-//    updateStatus();
-//    ErrorChecker::handleErrorState();
-    canComDriver.sendMessage();
-}
-}
 
 /* USER CODE END 4 */
-
-///**
-//  * @brief  Period elapsed callback in non blocking mode
-//  * @note   This function is called  when TIM2 interrupt took place, inside
-//  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
-//  * a global variable "uwTick" used as application time base.
-//  * @param  htim : TIM handle
-//  * @retval None
-//  */
-//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-//{
-//  /* USER CODE BEGIN Callback 0 */
-//
-//  /* USER CODE END Callback 0 */
-//  if (htim->Instance == TIM2) {
-//    HAL_IncTick();
-//  }
-//  /* USER CODE BEGIN Callback 1 */
-//
-//  /* USER CODE END Callback 1 */
-//}
 
 /**
   * @brief  This function is executed in case of error occurrence.
