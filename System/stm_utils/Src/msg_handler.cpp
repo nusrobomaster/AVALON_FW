@@ -74,7 +74,7 @@ void CANComm::txHeaderConfig() {
 	TxHeader.MessageMarker = 0;
 	TxHeader.DataLength = FDCAN_DLC_BYTES_6;
 	TxHeader.IdType = FDCAN_STANDARD_ID;
-	TxHeader.Identifier = DEVC_NODE_ID;
+	TxHeader.Identifier = DEVC_NODE_ID;//0x077
 }
 
 

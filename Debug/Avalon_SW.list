@@ -29859,7 +29859,7 @@ void CANComm::txHeaderConfig() {
  800b3b2:	687b      	ldr	r3, [r7, #4]
  800b3b4:	2200      	movs	r2, #0
  800b3b6:	635a      	str	r2, [r3, #52]	@ 0x34
-	TxHeader.Identifier = DEVC_NODE_ID;
+	TxHeader.Identifier = DEVC_NODE_ID;//0x077
  800b3b8:	687b      	ldr	r3, [r7, #4]
  800b3ba:	2277      	movs	r2, #119	@ 0x77
  800b3bc:	631a      	str	r2, [r3, #48]	@ 0x30
