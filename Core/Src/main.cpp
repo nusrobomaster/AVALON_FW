@@ -122,15 +122,15 @@ int main(void)
   MX_CRC_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  for (int i = 0; i < 10; i++) {
+  /*for (int i = 0; i < 10; i++) {
     HAL_GPIO_TogglePin(GPIO_LED_GPIO_Port, GPIO_LED_Pin);
     HAL_Delay(100);
-  }//debug blinker
+  }//debug blinker*/
   HAL_TIM_Base_Start_IT(&htim2);
   initCANComm(&hfdcan3);
 
   supercap_controller.adc_init(filter_lengths);
-  HAL_Delay(1000);
+  HAL_Delay(500);
 //  HAL_Delay(100);
   HAL_HRTIM_WaveformCountStart_IT(&hhrtim1, HRTIM_TIMERID_MASTER|HRTIM_TIMERID_TIMER_A|HRTIM_TIMERID_TIMER_E);
 ////  HAL_Delay(100);

@@ -3,7 +3,7 @@ C:/Users/ngwei/OneDrive/Documents/AVALON_FW/System/stm_utils/Inc/supercap_contro
 C:/Users/ngwei/OneDrive/Documents/AVALON_FW/System/stm_utils/Inc/supercap_controllers.hpp:74:2:supercap_control_manager::~supercap_control_manager()	16	static
 C:/Users/ngwei/OneDrive/Documents/AVALON_FW/System/stm_utils/Inc/msg_handler.hpp:75:5:CANComm::CANComm(FDCAN_HandleTypeDef*)	16	static
 C:/Users/ngwei/OneDrive/Documents/AVALON_FW/System/stm_utils/Inc/msg_handler.hpp:80:5:CANComm::~CANComm()	16	static
-../Core/Src/main.cpp:82:5:int main()	16	static
+../Core/Src/main.cpp:82:5:int main()	8	static
 ../Core/Src/main.cpp:191:6:void SystemClock_Config()	88	static
 ../Core/Src/main.cpp:238:6:void TIM2_IRQHandler()	8	static
 ../Core/Src/main.cpp:274:6:void Error_Handler()	4	static,ignoring_inline_asm
